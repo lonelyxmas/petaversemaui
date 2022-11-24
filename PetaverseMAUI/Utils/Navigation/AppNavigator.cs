@@ -64,8 +64,8 @@ public class AppNavigator : IAppNavigator
             TextColor = AppColors.White,
             ActionButtonTextColor = AppColors.Pink,
             CornerRadius = new CornerRadius(Dimensions.ButtonCornerRadius),
-            Font = Font.OfSize(FontNames.ArchiaRegular, Dimensions.FontSizeT6),
-            ActionButtonFont = Font.OfSize(FontNames.ArchiaSemiBold, Dimensions.FontSizeT6),
+            Font = Font.OfSize(FontNames.SmoochSansRegular, Dimensions.FontSizeT6),
+            ActionButtonFont = Font.OfSize(FontNames.SmoochSansBold, Dimensions.FontSizeT6),
             CharacterSpacing = 0.5
         };
         var snackbar = Snackbar.Make(message, action, actionText ?? "OK", TimeSpan.FromSeconds(5), options);

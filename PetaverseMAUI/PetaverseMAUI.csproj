@@ -49,6 +49,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
+	  <None Remove="Resources\Fonts\SmoochSans-Bold.ttf" />
+	  <None Remove="Resources\Fonts\SmoochSans-Regular.ttf" />
+	  <None Remove="Resources\Images\Walkthrough1.svg" />
+	  <None Remove="Resources\Images\Walkthrough2.svg" />
+	  <None Remove="Resources\Images\Walkthrough3.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Bogus" Version="34.0.2" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="3.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0-preview1" />
@@ -73,6 +82,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Features\Authentication\Pages\ForgotPasswordPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Authentication\Pages\SignInPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Authentication\Pages\SignUpPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Welcome\Pages\WalkthroughPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

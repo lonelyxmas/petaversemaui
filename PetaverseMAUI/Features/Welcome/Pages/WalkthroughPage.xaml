@@ -3,53 +3,103 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:PetaverseMAUI"
+    xmlns:triggers="clr-namespace:PetaverseMAUI.Triggers"
+    xmlns:animations="clr-namespace:PetaverseMAUI.Animations"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     
-    BackgroundColor="{x:Static app:AppColors.BrColor}"
     Shell.NavBarIsVisible="False"
     ios:Page.UseSafeArea="False"
     
     x:Class="PetaverseMAUI.WalkthroughPage"
-    x:DataType="app:WalkthroughPageViewModel">
-    <Grid>
-        <CarouselView
-            Loop="False"
-            IsSwipeEnabled="False"
-            HorizontalScrollBarVisibility="Never"
-            Position="{Binding ItemPosition}"
-            IndicatorView="indicatorView"
-            ItemsSource="{Binding Items}">
-            <CarouselView.ItemTemplate>
-                <DataTemplate
-                    x:DataType="app:WalkthroughItemModel">
-                    <StackLayout>
-                        <ContentView
-                            VerticalOptions="FillAndExpand">
-                            <Image
-                                Margin="{Binding ImageMargin}"
-                                Source="{Binding Image}"
-                                Aspect="Fill" />
-                        </ContentView>
-                        <StackLayout
-                            Padding="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingLg}}"
-                            Spacing="{x:Static app:Dimensions.SpacingMd}"
-                            VerticalOptions="FillAndExpand">
-                            <Label
-                                HorizontalTextAlignment="Center"
-                                Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingXxl}}"
-                                Text="{Binding Title}"
-                                Style="{x:Static app:Styles.Title3}"
-                                TextColor="{x:Static app:AppColors.Grey60}" />
-                            <Label
-                                HorizontalTextAlignment="Center"
-                                Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg}}"
-                                Text="{Binding Subtitle}"
-                                Style="{x:Static app:Styles.Subtitle6}"
-                                TextColor="{x:Static app:AppColors.Grey50}" />
-                        </StackLayout>
-                    </StackLayout>
-                </DataTemplate>
-            </CarouselView.ItemTemplate>
+    x:DataType="app:WalkthroughPageViewModel"
+    SizeChanged="BasePage_SizeChanged">
+    <app:BasePage.Resources>
+        <animations:FadeToAnimation x:Key="FadeToAnimation"
+                                    Target="{x:Reference SwipeInstructionLabel}"
+                                    Duration="1000"
+                                    Opacity="0"/>
+
+        <animations:FadeInAnimation x:Key="FadeInAnimation"
+                                    Target="{x:Reference SwipeInstructionLabel}"
+                                    Duration="1000"/>
+
+        <animations:FadeOutAnimation x:Key="FadeOutAnimation"
+                                     Target="{x:Reference BackButton}"
+                                     Duration="1000"/>
+        <FontImageSource x:Key="BackIcon"
+                         FontFamily="FluentSystemIcons"
+                         Color="{x:Static app:AppColors.White}"
+                         Glyph="{Static app:FluentUIIcon.Ic_fluent_arrow_left_48_regular}"/>
+
+        <DataTemplate x:Key="WalkthroughCarouselTemplate"
+                      x:DataType="app:WalkthroughItemModel">
+            <VerticalStackLayout>
+                <VerticalStackLayout.Resources>
+                    <animations:FadeInAnimation x:Key="FadeInAnimation"
+                                                Target="{x:Reference TitleLabel, SubTitleLabel}"
+                                                Duration="1000"/>
+                </VerticalStackLayout.Resources>
+                <ContentView VerticalOptions="FillAndExpand">
+                    <Image x:Name="WalkthroughImage" 
+                           Aspect="AspectFill" 
+                           WidthRequest="400"
+                           HeightRequest="460"
+                           Source="{Binding Image}"
+                           BackgroundColor="Transparent"/>
+                </ContentView>
+                <!--<VerticalStackLayout MaximumWidthRequest="350"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="FillAndExpand"
+                                     Spacing="{x:Static app:Dimensions.SpacingMd}">-->
+                    <Label x:Name="TitleLabel"
+                           FontAttributes="Bold"
+                           Text="{Binding Title}"
+                           FontFamily="SmoochSansRegular"
+                           HorizontalTextAlignment="Center"
+                           Style="{x:Static app:Styles.Title2}"
+                           TextColor="{AppThemeBinding Light={x:Static app:AppColors.Black}, Dark={x:Static app:AppColors.White}}">
+                        <Label.Triggers>
+                            <EventTrigger Event="Loaded">
+                                <triggers:BeginAnimation Animation="{StaticResource FadeInAnimation}"/>
+                            </EventTrigger>
+                        </Label.Triggers>
+                    </Label>
+                <Label x:Name="SubTitleLabel"
+                       Text="{Binding Subtitle}"
+                       FontFamily="SmoochSansRegular"
+                       HorizontalTextAlignment="Center"
+                       Style="{x:Static app:Styles.Subtitle3}"
+                       Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg}}"
+                       TextColor="{AppThemeBinding Light={x:Static app:AppColors.Black}, Dark={x:Static app:AppColors.White}}">
+                        <Label.Triggers>
+                            <EventTrigger Event="Loaded">
+                                <triggers:BeginAnimation Animation="{StaticResource FadeInAnimation}"/>
+                            </EventTrigger>
+                        </Label.Triggers>
+                    </Label>
+                <!--</VerticalStackLayout>-->
+            </VerticalStackLayout>
+        </DataTemplate>
+    </app:BasePage.Resources>
+    <Grid VerticalOptions="FillAndExpand"
+          HorizontalOptions="FillAndExpand"
+          BackgroundColor="{AppThemeBinding Light='#ffffff', Dark='#24292e'}">
+        <CarouselView Loop="False"
+                      IsSwipeEnabled="True"
+                      MaximumWidthRequest="400"
+                      MinimumHeightRequest="650"
+                      HorizontalOptions="Center"
+                      IndicatorView="indicatorView"
+                      ItemsSource="{Binding Items}"
+                      VerticalOptions="StartAndExpand"
+                      HorizontalScrollBarVisibility="Never"
+                      Position="{Binding ItemPosition, Mode=TwoWay}"
+                      ItemTemplate="{StaticResource WalkthroughCarouselTemplate}">
+            <CarouselView.Triggers>
+                <EventTrigger Event="PositionChanged">
+                    <triggers:BeginAnimation Animation="{StaticResource FadeToAnimation}"/>
+                </EventTrigger>
+            </CarouselView.Triggers>
         </CarouselView>
         <StackLayout
             Padding="{app:EdgeInsets
@@ -62,34 +112,32 @@
                     Bottom={x:Static app:Dimensions.SpacingMd}
                 }"
                 x:Name="indicatorView"
-                IndicatorColor="{x:Static app:AppColors.Grey20}"
-                SelectedIndicatorColor="{x:Static app:AppColors.Green}"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center" 
+                SelectedIndicatorColor="#fd853a"
+                IndicatorColor="{x:Static app:AppColors.Grey20}"/>
 
             <Button
-                IsVisible="{Binding AllowsToContinue}"
-                HorizontalOptions="Center"
-                Style="{x:Static app:Styles.ButtonPrimary}"
-                Text="Tiếp tục"
-                Command="{Binding MoveCommand}" >
+                    Text="Tiếp tục"
+                    HorizontalOptions="Center"
+                    Command="{Binding MoveCommand}" 
+                    IsVisible="{Binding AllowsToContinue}"
+                    Style="{x:Static app:Styles.ButtonPrimary}"
+                    FontSize="{x:Static app:Dimensions.FontSizeT3}">
                 <Button.CommandParameter>
                     <x:Boolean>False</x:Boolean>
                 </Button.CommandParameter>
             </Button>
-            <Button
-                IsVisible="{Binding AllowsToStart}"
-                HorizontalOptions="Center"
-                Style="{x:Static app:Styles.ButtonAccent}"
-                Text="Bắt đầu"
-                Command="{Binding StartCommand}"/>
-            <Button
-                Margin="{app:EdgeInsets
-                    Top={x:Static app:Dimensions.SpacingSm}
-                }"
-                HorizontalOptions="Center"
-                Style="{x:Static app:Styles.ButtonFlat}"
-                Text="Bỏ qua"
-                Command="{Binding SkipCommand}" >
+            <Button Text="Bắt đầu"
+                    HorizontalOptions="Center"
+                    BackgroundColor="#fd853a"
+                    Command="{Binding StartCommand}"
+                    IsVisible="{Binding AllowsToStart}"
+                    Style="{x:Static app:Styles.ButtonAccent}"/>
+            <Button Text="Bỏ qua"
+                    HorizontalOptions="Center"
+                    Command="{Binding SkipCommand}" 
+                    Style="{x:Static app:Styles.ButtonFlat}"
+                    Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingSm}}">
                 <Button.Triggers>
                     <DataTrigger
                         TargetType="Button"
@@ -107,19 +155,47 @@
             </Button>
         </StackLayout>
 
-        <ImageButton
-            Margin="{app:EdgeInsets
-                Top={x:Static app:Dimensions.SpacingLg},
-                Left={x:Static app:Dimensions.SpacingMd}
-            }"
-            VerticalOptions="Start"
-            HorizontalOptions="Start"
-            IsVisible="{Binding AllowsToGoback}"
-            Source="ic_back.png"
-            Command="{Binding MoveCommand}">
-            <ImageButton.CommandParameter>
+        <Button x:Name="BackButton"
+                WidthRequest="47"
+                HeightRequest="47"
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                BackgroundColor="#53b1fd"
+                Command="{Binding MoveCommand}"
+                IsVisible="{Binding AllowsToGoback}"
+                ImageSource="{StaticResource BackIcon}"
+                Margin="{app:EdgeInsets
+                            Top={x:Static app:Dimensions.SpacingLg},
+                            Left={x:Static app:Dimensions.SpacingMd}}">
+            <Button.CommandParameter>
                 <x:Boolean>True</x:Boolean>
-            </ImageButton.CommandParameter>
-        </ImageButton>
+            </Button.CommandParameter>
+            <!--<Button.Triggers>
+                <EventTrigger Event="Loaded">
+                    <triggers:BeginAnimation Animation="{StaticResource FadeInAnimation}"/>
+                </EventTrigger>
+                <EventTrigger Event="Unloaded">
+                    <triggers:BeginAnimation Animation="{StaticResource FadeOutAnimation}"/>
+                </EventTrigger>
+            </Button.Triggers>-->
+        </Button>
+
+        <Label x:Name="SwipeInstructionLabel"
+               Opacity="0"
+               VerticalOptions="Start"
+               HorizontalOptions="End"
+               MaximumWidthRequest="300"
+               HorizontalTextAlignment="End"
+               Style="{x:Static app:Styles.Title2}"
+               TextColor="{x:Static app:AppColors.Black}"
+               Text="Vuốt phải để khám phá các tính năng nổi bật"
+               Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingLg},
+                                       Right={x:Static app:Dimensions.SpacingMd}}">
+            <Label.Triggers>
+                <EventTrigger Event="Loaded">
+                    <triggers:BeginAnimation Animation="{StaticResource FadeInAnimation}"/>
+                </EventTrigger>
+            </Label.Triggers>
+        </Label>
     </Grid>
 </app:BasePage>

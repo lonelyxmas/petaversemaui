@@ -33,11 +33,11 @@ public partial class Styles
         .Set(VisualElement.MaximumWidthRequestProperty, Dimensions.ButtonWidth)
         .Set(Button.CornerRadiusProperty, Dimensions.ButtonCornerRadius)
         .Set(Button.FontSizeProperty, Dimensions.FontSizeT5)
-        .Set(Button.FontFamilyProperty, FontNames.ArchiaSemiBold);
+        .Set(Button.FontFamilyProperty, FontNames.SmoochSansBold);
 
     public static readonly Style ButtonPrimary = CreateStyle<Button>()
         .BaseOn(ButtonBase)
-        .Set(VisualElement.BackgroundColorProperty, AppColors.Purple)
+        .Set(VisualElement.BackgroundColorProperty, AppColors.PetaversePrimary)
         .Set(Button.TextColorProperty, AppColors.Secondary1)
         .Set(VisualElement.MinimumHeightRequestProperty, Dimensions.ButtonHeight)
         .Set(VisualElement.HeightRequestProperty, Dimensions.ButtonHeight)
@@ -52,11 +52,12 @@ public partial class Styles
         .BaseOn(ButtonPrimary)
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Button.TextColorProperty, AppColors.Grey50)
-        ;
+        .Set(Button.FontSizeProperty, Dimensions.FontSizeT3);
 
     public static readonly Style ButtonAccent = CreateStyle<Button>()
         .BaseOn(ButtonPrimary)
-        .Set(VisualElement.BackgroundColorProperty, AppColors.Pink);
+        .Set(VisualElement.BackgroundColorProperty, AppColors.Pink)
+        .Set(Button.FontSizeProperty, Dimensions.FontSizeT3);
 
     public static readonly Style ButtonPrimarySm = CreateStyle<Button>()
         .BaseOn(ButtonBase)
@@ -119,7 +120,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT1)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaSemiBold)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansBold)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT1)
         ;
 
@@ -127,7 +128,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT2)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaSemiBold)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansBold)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT2)
         ;
 
@@ -135,7 +136,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT3)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaSemiBold)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansBold)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT3)
         ;
 
@@ -143,7 +144,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT4)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaSemiBold)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansBold)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT4)
         ;
 
@@ -151,7 +152,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT5)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaSemiBold)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansBold)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT5)
         ;
 
@@ -159,7 +160,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT6)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaSemiBold)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansBold)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT6)
         ;
 
@@ -167,7 +168,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT7)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaSemiBold)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansBold)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT7)
         ;
 
@@ -175,7 +176,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT1)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaRegular)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT1)
         ;
 
@@ -183,7 +184,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT2)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaRegular)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT2)
         ;
 
@@ -191,7 +192,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT3)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaRegular)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT3)
         ;
 
@@ -199,7 +200,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT4)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaRegular)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT4)
         ;
 
@@ -207,7 +208,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT5)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaRegular)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT5)
         ;
 
@@ -215,7 +216,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT6)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaRegular)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT6)
         ;
 
@@ -223,7 +224,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT7)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaRegular)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT6)
         ;
 
@@ -231,7 +232,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT5)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaRegular)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT3)
         ;
 
@@ -239,7 +240,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT6)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaRegular)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT6)
         ;
 
@@ -247,7 +248,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT7)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaRegular)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT7)
         ;
 
@@ -255,7 +256,7 @@ public partial class Styles
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT8)
-        .Set(Label.FontFamilyProperty, FontNames.ArchiaRegular)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimens.LineHeightT8)
         ;
 }

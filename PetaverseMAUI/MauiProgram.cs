@@ -13,10 +13,13 @@ public static class MauiProgram
 			.UseMauiApp<App>()
 			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			})
+                fonts.AddFont("SmoochSans-Bold.ttf", FontNames.SmoochSansBold);
+                fonts.AddFont("SmoochSans-Regular.ttf", FontNames.SmoochSansRegular);
+                fonts.AddFont("FluentSystemIcons-Regular.ttf", "FluentSystemIcons");
+            })
 			.ConfigureEssentials(essentials =>
 			{
 				essentials.UseVersionTracking();
