@@ -1,9 +1,11 @@
-namespace PetaverseMAUI.Features.Authentication.Pages;
+namespace PetaverseMAUI;
 
-public partial class ForgotPasswordPage : ContentPage
+public partial class ForgotPasswordPage
 {
-	public ForgotPasswordPage()
-	{
-		InitializeComponent();
-	}
+    public ForgotPasswordPage(ForgotPasswordPageViewModel vm)
+    {
+        InitializeComponent();
+
+        BindingContext = vm;
+    }
 }

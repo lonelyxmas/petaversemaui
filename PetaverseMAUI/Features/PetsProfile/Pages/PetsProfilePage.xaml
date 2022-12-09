@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:app="clr-namespace:PetaverseMAUI"
+              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+              
+              x:Class="PetaverseMAUI.PetsProfilePage"
+              Title="PetsProfilePage">
+    <app:BasePage.Resources>
+        <FontImageSource x:Key="AddIcon"
+                         Color="{x:Static app:AppColors.White}"
+                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                         Glyph="{Static app:FluentUIIcon.Ic_fluent_add_24_regular}"/>
+    </app:BasePage.Resources>
+    
+
+    <Grid>
+        <Frame Padding="0"
+               Margin="10"
+               BackgroundColor="Transparent">
+            <Grid ColumnDefinitions="130, *">
+                <toolkit:AvatarView Margin="5"
+                                    CornerRadius="60"
+                                    WidthRequest="110"
+                                    HeightRequest="110"
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="Start"/>
+
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="Snow"
+                           FontSize="40"
+                           FontAttributes="Bold"/>
+                    <Frame Padding="30,5,30,5"
+                           HorizontalOptions="Start"
+                           BackgroundColor="#c39550">
+                        <Label Text="Tabby"
+                               FontSize="24"/>
+                    </Frame>
+                    <Label Text="Beautiful White"
+                           FontSize="18"/>
+                </VerticalStackLayout>
+                <app:HorizontalIconButton PrefixIcon="{x:StaticResource AddIcon}"
+                                          Text="Bruh"/>
+            </Grid>
+        </Frame>
+    </Grid>
+</app:BasePage>

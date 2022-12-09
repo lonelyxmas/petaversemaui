@@ -5,6 +5,9 @@ public partial class AppShell : Shell
 	public AppShell()
 	{
 		InitializeComponent();
+
+        Routing.RegisterRoute("signUp", typeof(SignUpPage));
+        Routing.RegisterRoute("forgotPassword", typeof(ForgotPasswordPage));
     }
     protected override void OnNavigating(ShellNavigatingEventArgs args)
     {

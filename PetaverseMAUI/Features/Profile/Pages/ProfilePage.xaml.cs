@@ -1,12 +1,11 @@
 namespace PetaverseMAUI;
 
-public partial class SignInPage
+public partial class ProfilePage
 {
-    public SignInPage(SignInPageViewModel vm)
+    public ProfilePage(ProfilePageViewModel vm)
     {
         InitializeComponent();
 
         BindingContext = vm;
     }
 }
-

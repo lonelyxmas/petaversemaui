@@ -27,8 +27,8 @@
                                      Target="{x:Reference BackButton}"
                                      Duration="1000"/>
         <FontImageSource x:Key="BackIcon"
-                         FontFamily="FluentSystemIcons"
                          Color="{x:Static app:AppColors.White}"
+                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
                          Glyph="{Static app:FluentUIIcon.Ic_fluent_arrow_left_48_regular}"/>
 
         <DataTemplate x:Key="WalkthroughCarouselTemplate"
@@ -82,8 +82,7 @@
         </DataTemplate>
     </app:BasePage.Resources>
     <Grid VerticalOptions="FillAndExpand"
-          HorizontalOptions="FillAndExpand"
-          BackgroundColor="{AppThemeBinding Light='#ffffff', Dark='#24292e'}">
+          HorizontalOptions="FillAndExpand">
         <CarouselView Loop="False"
                       IsSwipeEnabled="True"
                       MaximumWidthRequest="400"

@@ -32,7 +32,7 @@ public partial class Styles
         .Set(VisualElement.MaximumHeightRequestProperty, Dimensions.ButtonHeight)
         .Set(VisualElement.MaximumWidthRequestProperty, Dimensions.ButtonWidth)
         .Set(Button.CornerRadiusProperty, Dimensions.ButtonCornerRadius)
-        .Set(Button.FontSizeProperty, Dimensions.FontSizeT5)
+        .Set(Button.FontSizeProperty, Dimensions.FontSizeT4)
         .Set(Button.FontFamilyProperty, FontNames.SmoochSansBold);
 
     public static readonly Style ButtonPrimary = CreateStyle<Button>()

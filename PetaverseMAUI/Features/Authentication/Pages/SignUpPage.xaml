@@ -1,12 +1,155 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PetaverseMAUI.Features.Authentication.Pages.SignUpPage"
-             Title="SignUpPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
-</ContentPage>
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:PetaverseMAUI"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    x:Class="PetaverseMAUI.SignUpPage"
+    BackgroundColor="{x:Static app:AppColors.BrColor}"
+    ios:Page.UseSafeArea="False"
+    Shell.NavBarIsVisible="False"
+    x:DataType="app:SignUpPageViewModel">
+    
+    <app:BasePage.Resources>
+        <FontImageSource x:Key="PersonIcon"
+                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                         Color="{x:Static app:AppColors.Black}"
+                         Glyph="{Static app:FluentUIIcon.Ic_fluent_person_24_regular}"/>
+
+        <FontImageSource x:Key="PhoneIcon"
+                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                         Color="{x:Static app:AppColors.Black}"
+                         Glyph="{Static app:FluentUIIcon.Ic_fluent_phone_24_regular}"/>
+
+        <FontImageSource x:Key="MailIcon"
+                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                         Color="{x:Static app:AppColors.Black}"
+                         Glyph="{Static app:FluentUIIcon.Ic_fluent_mail_24_regular}"/>
+
+        <FontImageSource x:Key="PasswordIcon"
+                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                         Color="{x:Static app:AppColors.Black}"
+                         Glyph="{Static app:FluentUIIcon.Ic_fluent_password_24_regular}"/>
+    </app:BasePage.Resources>
+    
+    
+    <Grid>
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <StackLayout
+                Spacing="0">
+                <Image
+                    Source="cap_icon"
+                    HeightRequest="48"
+                    HorizontalOptions="Center" 
+                    SemanticProperties.Description="Petaverse"
+                    Margin="{app:EdgeInsets Top=80, Bottom={x:Static app:Dimensions.SpacingMd}}"/>
+                <Label
+                    Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingMd}}"
+                    Style="{x:Static app:Styles.Title3}"
+                    TextColor="{x:Static app:AppColors.Black}"
+                    HorizontalTextAlignment="Center"
+                    Text="Đăng ký" />
+                <Label
+                    Margin="{app:EdgeInsets
+                        Top={x:Static app:Dimensions.SpacingSm},
+                        Bottom={x:Static app:Dimensions.SpacingLg},
+                        Horizontal={x:Static app:Dimensions.SpacingXxl}
+                    }"
+                    Style="{x:Static app:Styles.Subtitle6}"
+                    TextColor="{x:Static app:AppColors.Grey50}"
+                    HorizontalTextAlignment="Center"
+                    Text="Chúng tôi sẽ gửi OTP ở bước kế tiếp, Vui lòng hoàn tất thông tin của bạn." />
+
+                <app:RoundedEntry 
+                    Margin="{app:EdgeInsets
+                        Horizontal={x:Static app:Dimensions.SpacingLg},
+                        Bottom={x:Static app:Dimensions.SpacingSm}}"
+                    PrefixIcon="{StaticResource PersonIcon}"
+                    Text="{Binding Form.FullName}"
+                    IsValid="{Binding Form.FullNameValid}"
+                    Placeholder="Tên của bạn"
+                    />
+                <app:RoundedEntry 
+                    Margin="{app:EdgeInsets
+                        Horizontal={x:Static app:Dimensions.SpacingLg},
+                        Bottom={x:Static app:Dimensions.SpacingSm}}"
+                    PrefixIcon="{StaticResource PhoneIcon}"
+                    Text="{Binding Form.PhoneNumber}"
+                    IsValid="{Binding Form.PhoneNumberValid}"
+                    Placeholder="Số điện thoại"
+                    Keyboard="Telephone"
+                    />
+                <app:RoundedEntry 
+                    Margin="{app:EdgeInsets
+                        Horizontal={x:Static app:Dimensions.SpacingLg},
+                        Bottom={x:Static app:Dimensions.SpacingSm}}"
+                    PrefixIcon="{StaticResource MailIcon}"
+                    Text="{Binding Form.Email}"
+                    IsValid="{Binding Form.Email}"
+                    Placeholder="Địa chỉ mail"
+                    Keyboard="Email"
+                    />
+                <app:RoundedEntry 
+                    Margin="{app:EdgeInsets
+                        Horizontal={x:Static app:Dimensions.SpacingLg},
+                        Bottom={x:Static app:Dimensions.SpacingSm}}"
+                    PrefixIcon="{StaticResource PasswordIcon}"
+                    Text="{Binding Form.Password}"
+                    IsValid="{Binding Form.PasswordValid}"
+                    Placeholder="Nhập mật khẩu"
+                    IsPassword="True"
+                    />
+                <app:RoundedEntry 
+                    Margin="{app:EdgeInsets
+                        Horizontal={x:Static app:Dimensions.SpacingLg}
+                    }"
+                    PrefixIcon="{StaticResource PasswordIcon}"
+                    Text="{Binding Form.ConfirmPassword}"
+                    IsValid="{Binding Form.ConfirmPasswordValid}"
+                    Placeholder="Nhập lại mật khẩu"
+                    IsPassword="True"
+                    />
+
+                <Label
+                    Margin="{app:EdgeInsets
+                        Horizontal={x:Static app:Dimensions.SpacingLg},
+                        Top={x:Static app:Dimensions.SpacingXl}}"
+                    HorizontalTextAlignment="Center"
+                    Style="{x:Static app:Styles.Body2}"
+                    TextColor="{x:Static app:AppColors.Red}" >
+                    <Label.Opacity>
+                        <MultiBinding Converter="{Static app:AppConverters.AnyFalseToOpacity}">
+                            <Binding Path="Form.FullNameValid"/>
+                            <Binding Path="Form.PhoneNumberValid"/>
+                            <Binding Path="Form.PasswordValid"/>
+                            <Binding Path="Form.ConfirmPasswordValid"/>
+                        </MultiBinding>
+                    </Label.Opacity>
+                    <Label.Text>
+                        <MultiBinding Converter="{Static app:AppConverters.FirstItem}">
+                            <Binding Path="Form.FullNameInvalidMessage"/>
+                            <Binding Path="Form.PhoneNumberInvalidMessage"/>
+                            <Binding Path="Form.PasswordInvalidMessage"/>
+                            <Binding Path="Form.ConfirmPasswordInvalidMessage"/>
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+
+                <Button
+                    Margin="{app:EdgeInsets Vertical={x:Static app:Dimensions.SpacingLg}}"
+                    HorizontalOptions="Center"
+                    Style="{x:Static app:Styles.ButtonPrimary}"
+                    Text="Đăng ký"
+                    Command="{Binding SignUpCommand}" />
+            </StackLayout>
+        </ScrollView>
+        <ImageButton
+            Margin="{app:EdgeInsets
+                Top={x:Static app:Dimensions.SpacingLg},
+                Left={x:Static app:Dimensions.SpacingMd}
+            }"
+            VerticalOptions="Start"
+            HorizontalOptions="Start"
+            Source="ic_back.png"
+            Command="{Binding BackCommand}" />
+    </Grid>
+</app:BasePage>

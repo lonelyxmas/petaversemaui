@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage xmlns:app="clr-namespace:PetaverseMAUI"
+              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+              
+              x:Class="PetaverseMAUI.ProfilePage"
+              x:DataType="app:ProfilePageViewModel"
+              Title="ProfilePage">
+    <app:BasePage.Resources>
+        <Style x:Key="FollowSwithStyle"
+               TargetType="Switch">
+            
+        </Style>
+        <Style x:Key="InfoFlexLayoutStyle"
+               TargetType="FlexLayout">
+            <Setter Property="Direction" Value="Row"/>
+            <Setter Property="AlignItems" Value="Stretch"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="JustifyContent" Value="SpaceBetween"/>
+        </Style>
+    </app:BasePage.Resources>
+    
+    <Grid>
+        <toolkit:AvatarView CornerRadius="50"
+                            WidthRequest="100"
+                            HeightRequest="100"
+                            ImageSource="https://i.imgur.com/vc9FudE.jpg"/>
+        <Frame>
+            <VerticalStackLayout>
+                <Label Text="Strypper Vandel Jason"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
+                <Switch HorizontalOptions="Center"
+                        Style="{StaticResource FollowSwithStyle}"/>
+                <FlexLayout Style="{StaticResource InfoFlexLayoutStyle}">
+                    <Label Text="Country"/>
+                    <Label Text="Viet Nam"/>
+                </FlexLayout>
+                <FlexLayout Style="{StaticResource InfoFlexLayoutStyle}">
+                    <Label Text="Phone Number"/>
+                    <Label Text="{x:Binding PhoneNumber}"/>
+                </FlexLayout>
+            </VerticalStackLayout>
+        </Frame>
+    </Grid>
+</app:BasePage>

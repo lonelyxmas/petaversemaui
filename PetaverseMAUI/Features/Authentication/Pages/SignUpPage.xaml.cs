@@ -1,9 +1,12 @@
-namespace PetaverseMAUI.Features.Authentication.Pages;
+namespace PetaverseMAUI;
 
-public partial class SignUpPage : ContentPage
+public partial class SignUpPage
 {
-	public SignUpPage()
-	{
-		InitializeComponent();
-	}
+    public SignUpPage(SignUpPageViewModel vm)
+    {
+        InitializeComponent();
+
+        BindingContext = vm;
+    }
 }
+
