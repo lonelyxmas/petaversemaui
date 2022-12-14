@@ -32,7 +32,7 @@
                 <Label
                     Text="Đăng nhập" 
                     HorizontalTextAlignment="Center"
-                    Style="{x:Static app:Styles.Title3}"
+                    Style="{x:Static app:Styles.Heading3}"
                     TextColor="{x:Static app:AppColors.Black}"
                     Margin="{app:EdgeInsets Vertical={x:Static app:Dimensions.SpacingLg}}"/>
 
@@ -61,7 +61,7 @@
                         Bottom={x:Static app:Dimensions.SpacingMd}}"
                     Padding="{app:EdgeInsets Vertical={x:Static app:Dimensions.SpacingMd}}"
                     HorizontalOptions="End"
-                    Style="{x:Static app:Styles.Subtitle5}"
+                    Style="{x:Static app:Styles.SubHeading1Semi}"
                     TextColor="{x:Static app:AppColors.LightBlue}"
                     Text="Quên mật khẩu?">
                     <Label.GestureRecognizers>
@@ -73,7 +73,7 @@
                 <Label
                     Padding="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingMd}}"
                     HorizontalTextAlignment="Center"
-                    Style="{x:Static app:Styles.Body2}"
+                    Style="{x:Static app:Styles.BodySmall}"
                     TextColor="{x:Static app:AppColors.Red}">
                     <Label.Opacity>
                         <MultiBinding Converter="{Static app:AppConverters.AnyFalseToOpacity}">
@@ -98,7 +98,7 @@
 
                 <Label Text="Đăng nhập bằng"
                        HorizontalTextAlignment="Center"
-                       Style="{x:Static app:Styles.Subtitle4}"
+                       Style="{x:Static app:Styles.SubHeading1Semi}"
                        TextColor="{x:Static app:AppColors.Grey40}" />
 
                 <HorizontalStackLayout
@@ -150,9 +150,9 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Chưa có tài khoản? "  
-                                  Style="{x:Static app:Styles.Title5}"/>
+                                  Style="{x:Static app:Styles.Heading5}"/>
                             <Span Text="Đăng ký."
-                                  Style="{x:Static app:Styles.Title5}"
+                                  Style="{x:Static app:Styles.Heading5}"
                                   TextColor="{x:Static app:AppColors.LightBlue}" />
                         </FormattedString>
                     </Label.FormattedText>

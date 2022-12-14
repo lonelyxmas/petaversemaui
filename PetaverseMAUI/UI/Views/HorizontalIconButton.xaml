@@ -6,11 +6,14 @@
              x:Name="root"
              x:DataType="local:HorizontalIconButton"
              x:Class="PetaverseMAUI.HorizontalIconButton">
-    <HorizontalStackLayout>
-        <Image Source="{x:Binding PrefixIcon, {x:Reference root}}"/>
-        <Label 
-            Text="{x:Binding Text, {x:Reference root}}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </HorizontalStackLayout>
+
+    <Frame Padding="10,5,10,5">
+        <HorizontalStackLayout>
+            <Image Source="{x:Binding PrefixIcon, Source={x:Reference root}}"/>
+            <Label Text="{x:Binding Text, Source={x:Reference root}}"
+                   TextColor="{x:Static local:AppColors.Black}"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+    </Frame>
 </ContentView>

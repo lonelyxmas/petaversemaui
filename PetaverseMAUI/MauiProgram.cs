@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
 
 namespace PetaverseMAUI;
@@ -42,6 +43,7 @@ public static class MauiProgram
         {
 #if ANDROID
             handler.PlatformView.SetBackgroundColor(Colors.Transparent.ToPlatform());
+            ImageHandler.Mapper.PrependToMapping(nameof(Microsoft.Maui.IImage.Source), (handler, view) => PrependToMappingImageSource(handler, view));
 #elif IOS
             handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 #elif WINDOWS
@@ -63,8 +65,16 @@ public static class MauiProgram
 #endif
         });
 
+
         return builder.Build();
 	}
+
+#if __ANDROID__
+    public static void PrependToMappingImageSource(IImageHandler handler, Microsoft.Maui.IImage image)
+    {
+        handler.PlatformView?.Clear();
+    }
+#endif
 
     static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
@@ -76,6 +86,7 @@ public static class MauiProgram
         //builder.Services.AddSingleton<IAppSettingsService, AppSettingsService>();
 
         builder.Services.AddTransient<IWelcomeService, WelcomeService>();
+        builder.Services.AddTransient<IPetProfileService, PetProfileService>();
 
         return builder;
     }
@@ -88,6 +99,7 @@ public static class MauiProgram
         builder.Services.AddPage<SignUpPage, SignUpPageViewModel>();
         builder.Services.AddPage<ForgotPasswordPage, ForgotPasswordPageViewModel>();
         builder.Services.AddPage<ProfilePage, ProfilePageViewModel>();
+        builder.Services.AddPage<PetsProfilePage, PetProfilePageViewModel>();
         return builder;
     }
 

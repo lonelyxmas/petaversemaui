@@ -44,7 +44,7 @@
                     Margin="{app:EdgeInsets Top=80, Bottom={x:Static app:Dimensions.SpacingMd}}"/>
                 <Label
                     Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingMd}}"
-                    Style="{x:Static app:Styles.Title3}"
+                    Style="{x:Static app:Styles.Heading3}"
                     TextColor="{x:Static app:AppColors.Black}"
                     HorizontalTextAlignment="Center"
                     Text="Đăng ký" />
@@ -54,7 +54,7 @@
                         Bottom={x:Static app:Dimensions.SpacingLg},
                         Horizontal={x:Static app:Dimensions.SpacingXxl}
                     }"
-                    Style="{x:Static app:Styles.Subtitle6}"
+                    Style="{x:Static app:Styles.SubHeading2Semi}"
                     TextColor="{x:Static app:AppColors.Grey50}"
                     HorizontalTextAlignment="Center"
                     Text="Chúng tôi sẽ gửi OTP ở bước kế tiếp, Vui lòng hoàn tất thông tin của bạn." />
@@ -114,7 +114,7 @@
                         Horizontal={x:Static app:Dimensions.SpacingLg},
                         Top={x:Static app:Dimensions.SpacingXl}}"
                     HorizontalTextAlignment="Center"
-                    Style="{x:Static app:Styles.Body2}"
+                    Style="{x:Static app:Styles.BodySmall}"
                     TextColor="{x:Static app:AppColors.Red}" >
                     <Label.Opacity>
                         <MultiBinding Converter="{Static app:AppConverters.AnyFalseToOpacity}">

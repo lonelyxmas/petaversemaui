@@ -60,7 +60,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Bogus" Version="34.0.2" />
-		<PackageReference Include="CommunityToolkit.Maui" Version="3.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="3.1.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0-preview1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
@@ -70,9 +70,8 @@
 	  <Folder Include="Features\Home\Pages\" />
 	  <Folder Include="Features\Profile\Models\" />
 	  <Folder Include="Features\Profile\Services\" />
+	  <Folder Include="Features\Shared\" />
 	  <Folder Include="Features\Wiki\" />
-	  <Folder Include="Features\PetsProfile\Models\" />
-	  <Folder Include="Features\PetsProfile\Services\" />
 	  <Folder Include="Interfaces\" />
 	  <Folder Include="Converters\" />
 	  <Folder Include="ContentViews\" />
@@ -99,6 +98,9 @@
 	  <MauiXaml Update="Features\Authentication\Pages\SignUpPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\PetsProfile\ContentViews\PetaverseThumbnailContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\PetsProfile\Pages\PetsProfilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -118,5 +120,13 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
+
+	<PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningKeyStore>myapp.keystore</AndroidSigningKeyStore>
+		<AndroidSigningKeyAlias>key</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass></AndroidSigningKeyPass>
+		<AndroidSigningStorePass></AndroidSigningStorePass>
+	</PropertyGroup>
 
 </Project>

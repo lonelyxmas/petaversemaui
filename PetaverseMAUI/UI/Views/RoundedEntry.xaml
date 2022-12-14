@@ -35,7 +35,6 @@
                 IsPassword="{Binding IsPassword, Source={x:Reference root}}"
                 Text="{Binding Text, Source={x:Reference root}}"
                 FontSize="{x:Static app:Dimensions.FontSizeT5}"
-                FontFamily="{x:Static app:FontNames.SmoochSansBold}"
                 PlaceholderColor="{x:Static app:AppColors.Grey20}"
                 TextColor="{x:Static app:AppColors.Grey50}"
                 Focused="Entry_Focused"
@@ -44,4 +43,3 @@
         </HorizontalStackLayout>
     </Frame>
 </ContentView>
-

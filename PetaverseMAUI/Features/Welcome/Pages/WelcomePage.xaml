@@ -21,12 +21,12 @@
             <Label
                 HorizontalTextAlignment="Center"
                 Text="Chick &amp; Paddy"
-                Style="{x:Static app:Styles.Title5}"
+                Style="{x:Static app:Styles.Heading5}"
                 TextColor="{x:Static app:AppColors.Secondary1}"/>
             <Label
                 HorizontalTextAlignment="Center"
                 Text="{Binding VersionInfo}"
-                Style="{x:Static app:Styles.Subtitle6}"
+                Style="{x:Static app:Styles.SubHeading2Semi}"
                 TextColor="{x:Static app:AppColors.Secondary1}"/>
         </VerticalStackLayout>
     </Grid>

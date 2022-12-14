@@ -1,5 +1,7 @@
 ﻿namespace PetaverseMAUI;
 
-public abstract class BaseModel : ObservableObject
+public partial class BaseModel : ObservableObject
 {
+    [ObservableProperty]
+    string id;
 }

@@ -11,14 +11,15 @@ public static class Dimensions
     public static readonly double SpacingXl = 32;
     public static readonly double SpacingXxl = 48;
 
-    public static readonly double FontSizeT8 = 10;
+    public static readonly double FontSizeT9 = 10;
+    public static readonly double FontSizeT8 = 11;
     public static readonly double FontSizeT7 = 12;
     public static readonly double FontSizeT6 = 14;
     public static readonly double FontSizeT5 = 16;
-    public static readonly double FontSizeT4 = 20;
-    public static readonly double FontSizeT3 = 24;
-    public static readonly double FontSizeT2 = 32;
-    public static readonly double FontSizeT1 = 36;
+    public static readonly double FontSizeT4 = 24;
+    public static readonly double FontSizeT3 = 32;
+    public static readonly double FontSizeT2 = 40;
+    public static readonly double FontSizeT1 = 48;
 
     public static readonly double LineHeightT1 = 48;
     public static readonly double LineHeightT2 = 32;

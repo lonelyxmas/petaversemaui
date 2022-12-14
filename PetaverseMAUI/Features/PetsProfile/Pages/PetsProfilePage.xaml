@@ -5,43 +5,72 @@
               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
               
               x:Class="PetaverseMAUI.PetsProfilePage"
-              Title="PetsProfilePage">
+              x:DataType="app:PetProfilePageViewModel"
+              Title="PetsProfilePage"
+              Padding="10">
     <app:BasePage.Resources>
         <FontImageSource x:Key="AddIcon"
-                         Color="{x:Static app:AppColors.White}"
+                         Color="{x:Static app:AppColors.Black}"
                          FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
                          Glyph="{Static app:FluentUIIcon.Ic_fluent_add_24_regular}"/>
+
+        <DataTemplate x:Key="PetGalleryItemTemplate"
+                      x:DataType="app:PetaverseMediaThumbnail">
+            <app:PetaverseThumbnailContentView ComponentData="{x:Binding}"/>
+        </DataTemplate>
+
+        <GridItemsLayout x:Key="PetGalleryPhoneLayout"
+                         Orientation="Vertical"
+                         Span="2"
+                         HorizontalItemSpacing="5"
+                         VerticalItemSpacing="5"/>
+
+        <DataTemplate x:Key="PetGalleryHeaderTemplate"
+                      x:DataType="app:PetProfilePageViewModel">
+            <Frame Padding="0"
+               BackgroundColor="Transparent"
+               VerticalOptions="Start">
+                <Grid ColumnDefinitions="130, *"
+                  RowDefinitions="*, auto">
+                    <toolkit:AvatarView Margin="5"
+                                        CornerRadius="60"
+                                        WidthRequest="110"
+                                        HeightRequest="110"
+                                        VerticalOptions="Start"
+                                        HorizontalOptions="Start"
+                                        ImageSource="https://i.imgur.com/BhXNGWm.png"/>
+
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label Text="Snow"
+                               FontSize="40"
+                               FontAttributes="Bold"/>
+                        <Frame Padding="30,5,30,5"
+                               HorizontalOptions="Start"
+                               BackgroundColor="#c39550">
+                            <Label Text="Tabby"
+                                   FontSize="24"/>
+                        </Frame>
+                        <Label Text="Beautiful White"
+                           FontSize="18"/>
+                    </VerticalStackLayout>
+                    <app:HorizontalIconButton Margin="10"
+                                              Grid.Row="1"
+                                              Grid.Column="1"
+                                              Text="Add Photos"
+                                              VerticalOptions="End"
+                                              HorizontalOptions="End"
+                                              PrefixIcon="{x:StaticResource AddIcon}"/>
+                </Grid>
+            </Frame>
+        </DataTemplate>
     </app:BasePage.Resources>
     
 
     <Grid>
-        <Frame Padding="0"
-               Margin="10"
-               BackgroundColor="Transparent">
-            <Grid ColumnDefinitions="130, *">
-                <toolkit:AvatarView Margin="5"
-                                    CornerRadius="60"
-                                    WidthRequest="110"
-                                    HeightRequest="110"
-                                    VerticalOptions="Start"
-                                    HorizontalOptions="Start"/>
-
-                <VerticalStackLayout Grid.Column="1">
-                    <Label Text="Snow"
-                           FontSize="40"
-                           FontAttributes="Bold"/>
-                    <Frame Padding="30,5,30,5"
-                           HorizontalOptions="Start"
-                           BackgroundColor="#c39550">
-                        <Label Text="Tabby"
-                               FontSize="24"/>
-                    </Frame>
-                    <Label Text="Beautiful White"
-                           FontSize="18"/>
-                </VerticalStackLayout>
-                <app:HorizontalIconButton PrefixIcon="{x:StaticResource AddIcon}"
-                                          Text="Bruh"/>
-            </Grid>
-        </Frame>
+        <CollectionView Header="{x:Binding}"
+                        HeaderTemplate="{StaticResource PetGalleryHeaderTemplate}"
+                        ItemsSource="{x:Binding FakeThumbnails}"
+                        ItemsLayout="{x:StaticResource PetGalleryPhoneLayout}"
+                        ItemTemplate="{x:StaticResource PetGalleryItemTemplate}"/>
     </Grid>
 </app:BasePage>

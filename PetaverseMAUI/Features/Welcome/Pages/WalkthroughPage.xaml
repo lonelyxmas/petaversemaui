@@ -26,6 +26,7 @@
         <animations:FadeOutAnimation x:Key="FadeOutAnimation"
                                      Target="{x:Reference BackButton}"
                                      Duration="1000"/>
+        
         <FontImageSource x:Key="BackIcon"
                          Color="{x:Static app:AppColors.White}"
                          FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
@@ -54,9 +55,8 @@
                     <Label x:Name="TitleLabel"
                            FontAttributes="Bold"
                            Text="{Binding Title}"
-                           FontFamily="SmoochSansRegular"
                            HorizontalTextAlignment="Center"
-                           Style="{x:Static app:Styles.Title2}"
+                           Style="{x:Static app:Styles.Heading3}"
                            TextColor="{AppThemeBinding Light={x:Static app:AppColors.Black}, Dark={x:Static app:AppColors.White}}">
                         <Label.Triggers>
                             <EventTrigger Event="Loaded">
@@ -66,9 +66,8 @@
                     </Label>
                 <Label x:Name="SubTitleLabel"
                        Text="{Binding Subtitle}"
-                       FontFamily="SmoochSansRegular"
                        HorizontalTextAlignment="Center"
-                       Style="{x:Static app:Styles.Subtitle3}"
+                       Style="{x:Static app:Styles.SubHeading2Semi}"
                        Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg}}"
                        TextColor="{AppThemeBinding Light={x:Static app:AppColors.Black}, Dark={x:Static app:AppColors.White}}">
                         <Label.Triggers>
@@ -120,8 +119,7 @@
                     HorizontalOptions="Center"
                     Command="{Binding MoveCommand}" 
                     IsVisible="{Binding AllowsToContinue}"
-                    Style="{x:Static app:Styles.ButtonPrimary}"
-                    FontSize="{x:Static app:Dimensions.FontSizeT3}">
+                    Style="{x:Static app:Styles.ButtonPrimary}">
                 <Button.CommandParameter>
                     <x:Boolean>False</x:Boolean>
                 </Button.CommandParameter>
@@ -185,7 +183,7 @@
                HorizontalOptions="End"
                MaximumWidthRequest="300"
                HorizontalTextAlignment="End"
-               Style="{x:Static app:Styles.Title2}"
+               Style="{x:Static app:Styles.Heading2}"
                TextColor="{x:Static app:AppColors.Black}"
                Text="Vuốt phải để khám phá các tính năng nổi bật"
                Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingLg},
