@@ -16,21 +16,6 @@ public partial class PetaverseMediaThumbnail : BaseModel
 
     [ObservableProperty]
     DateTime? timeUpload = DateTime.Now;
-
-
-    //public string? MediaName = string.Empty;
-
-
-    //public string? ThumbnailUrl = string.Empty;
-
-
-    //public string? MediaUrl = string.Empty;
-
-
-    //public MediaType? Type = MediaType.Photo;
-
-
-    //public DateTime? TimeUpload = DateTime.Now;
 }
 
 public enum MediaType

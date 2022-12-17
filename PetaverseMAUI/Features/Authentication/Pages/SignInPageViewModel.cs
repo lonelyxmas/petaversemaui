@@ -48,5 +48,5 @@ public partial class SignInPageViewModel : BaseViewModel
     #endregion
 
 
-    Task GoHomeAsync() => AppNavigator.NavigateAsync(AppRoutes.PetProfile);
+    Task GoHomeAsync() => AppNavigator.NavigateAsync(AppRoutes.PetsProfile);
 }

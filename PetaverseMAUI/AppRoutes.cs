@@ -23,7 +23,7 @@ namespace PetaverseMAUI
         public const string SettingsAndHelp = "settings-n-help";
         public const string Settings = "settings";
 
-        public const string PetProfile = "//main/petProfile";
+        public const string PetsProfile = "//main/petsProfile";
         public const string Profile = "//main/profile";
     }
 }

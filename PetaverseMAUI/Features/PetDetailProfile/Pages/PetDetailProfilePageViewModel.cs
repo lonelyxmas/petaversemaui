@@ -1,9 +1,9 @@
 ﻿namespace PetaverseMAUI;
 
-public partial class PetProfilePageViewModel : NavigationAwareBaseViewModel
+public partial class PetDetailProfilePageViewModel : NavigationAwareBaseViewModel
 {
     #region [ Ctor ]
-    public PetProfilePageViewModel(
+    public PetDetailProfilePageViewModel(
         IPetProfileService petProfileService,
         IAppNavigator appNavigator) : base(appNavigator)
     {
@@ -27,6 +27,9 @@ public partial class PetProfilePageViewModel : NavigationAwareBaseViewModel
 
     #region [ RelayCommands ]
 
+    [RelayCommand]
+    Task RefreshAsync()
+        => LoadDataAsync();
     #endregion
 
     #region [ Methods ]

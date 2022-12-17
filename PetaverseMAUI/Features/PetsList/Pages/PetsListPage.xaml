@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:PetaverseMAUI"
+             
+             x:DataType="app:PetsListPageViewModel"
+             x:Class="PetaverseMAUI.PetsListPage"
+             Title="PetsListPage">
+
+    <Shell.SearchHandler>
+        <app:PetsSearchHandler ShowsResults="True"
+                               Placeholder="Search Breeds"
+                               SelectPet="PetHandler_SelectPet"
+                               Pets="{x:Binding FakePetProfileCards}"
+                               QueryIcon="{x:StaticResource SearchIcon}">
+            <app:PetsSearchHandler.ItemTemplate>
+                <DataTemplate x:DataType="app:PetProfileCardModel">
+                    <Grid Margin="5" RowDefinitions="Auto" ColumnDefinitions="40,Auto">
+                        <Image Grid.Row="0" Grid.Column="0" Source="{x:Binding ProfileUrl}" HeightRequest="35" WidthRequest="35" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="{x:Binding Name}" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </app:PetsSearchHandler.ItemTemplate>
+        </app:PetsSearchHandler>
+    </Shell.SearchHandler>
+    <app:BasePage.Resources>
+        <DataTemplate x:Key="PetsCollectionViewItemTemplate"
+                      x:DataType="app:PetProfileCardModel">
+            <app:PetProfileCard ComponentData="{x:Binding}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PetsCollectionViewFooterTemplate"
+                      x:DataType="app:PetsListPageViewModel">
+            <Grid Padding="6" IsVisible="{x:Binding IsBusy}" CompressedLayout.IsHeadless="True">
+                <Grid.Triggers>
+                    <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                        <Setter Property="HeightRequest" Value="0" />
+                    </Trigger>
+                </Grid.Triggers>
+                <Label Text="Getting data" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" />
+            </Grid>
+        </DataTemplate>
+
+        <FontImageSource x:Key="SearchIcon"
+                         Color="{x:Static app:AppColors.Black}"
+                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                         Glyph="{x:Static app:FluentUIIcon.Ic_fluent_search_24_regular}"/>
+
+        <GridItemsLayout x:Key="PetsCollectionViewLayout"
+                         Span="2"
+                         VerticalItemSpacing="2"
+                         HorizontalItemSpacing="2"
+                         Orientation="Vertical"/>
+    </app:BasePage.Resources>
+
+    <!--RemainingItemsThreshold="{x:Binding ItemThreshold}"
+                          RemainingItemsThresholdReachedCommand="{x:Binding IncreamentLoadCommand}"-->
+    <RefreshView Command="{x:Binding RefreshCommand}"
+                 IsRefreshing="{x:Binding IsBusy}">
+        <CollectionView x:Name="PetsCollectionView"
+                          EmptyView="Maybe network is not connected ?"
+                        
+                          ItemsLayout="{x:StaticResource PetsCollectionViewLayout}"
+                        
+                          ItemsSource="{x:Binding FakePetProfileCards}"
+                          ItemTemplate="{x:StaticResource PetsCollectionViewItemTemplate}"
+                            
+                            
+                          Footer="{x:Binding}"
+                          FooterTemplate="{x:StaticResource PetsCollectionViewFooterTemplate}"/>
+    </RefreshView>
+</app:BasePage>

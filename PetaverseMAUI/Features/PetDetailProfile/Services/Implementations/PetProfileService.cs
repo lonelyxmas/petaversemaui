@@ -9,7 +9,7 @@ public class PetProfileService : IPetProfileService
         {
             var faker = new Faker<PetaverseMediaThumbnail>();
             faker.RuleFor(x => x.ThumbnailUrl, setter => setter.Image.LoremFlickrUrl(120, 120, "cat"));
-            return faker.Generate(200).ToList();
+            return faker.Generate(200);
         });
     }
 }

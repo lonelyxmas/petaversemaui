@@ -5,20 +5,21 @@
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     xmlns:app="clr-namespace:PetaverseMAUI"
     x:Class="PetaverseMAUI.SignInPage"
-    BackgroundColor="{x:Static app:AppColors.BrColor}"
-    Shell.NavBarIsVisible="False"
     x:DataType="app:SignInPageViewModel"
-    ios:Page.UseSafeArea="False">
+    
+    ios:Page.UseSafeArea="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{x:Static app:AppColors.BrColor}">
     <app:BasePage.Resources>
         <FontImageSource x:Key="PhoneIcon"
                          Color="{x:Static app:AppColors.Black}"
                          FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                         Glyph="{Static app:FluentUIIcon.Ic_fluent_phone_24_regular}"/>
+                         Glyph="{x:Static app:FluentUIIcon.Ic_fluent_phone_24_regular}"/>
 
         <FontImageSource x:Key="PasswordIcon"
                          Color="{x:Static app:AppColors.Black}"
                          FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                         Glyph="{Static app:FluentUIIcon.Ic_fluent_password_24_regular}"/>
+                         Glyph="{x:Static app:FluentUIIcon.Ic_fluent_password_24_regular}"/>
     </app:BasePage.Resources>
     
     <Grid>

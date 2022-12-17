@@ -41,9 +41,9 @@
         <Tab
             Title="Thú cưng"
             Icon="{StaticResource DogIcon}"
-            Route="petProfile">
+            Route="petsProfile">
             <ShellContent
-                ContentTemplate="{DataTemplate app:PetsProfilePage}" />
+                ContentTemplate="{DataTemplate app:PetsListPage}" />
         </Tab>
         <Tab
             Title="Cá nhân"

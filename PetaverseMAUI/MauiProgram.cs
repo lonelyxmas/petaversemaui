@@ -86,6 +86,7 @@ public static class MauiProgram
         //builder.Services.AddSingleton<IAppSettingsService, AppSettingsService>();
 
         builder.Services.AddTransient<IWelcomeService, WelcomeService>();
+        builder.Services.AddTransient<IPetsListService, FakePetListService>();
         builder.Services.AddTransient<IPetProfileService, PetProfileService>();
 
         return builder;
@@ -99,7 +100,8 @@ public static class MauiProgram
         builder.Services.AddPage<SignUpPage, SignUpPageViewModel>();
         builder.Services.AddPage<ForgotPasswordPage, ForgotPasswordPageViewModel>();
         builder.Services.AddPage<ProfilePage, ProfilePageViewModel>();
-        builder.Services.AddPage<PetsProfilePage, PetProfilePageViewModel>();
+        builder.Services.AddPage<PetsListPage, PetsListPageViewModel>();
+        builder.Services.AddPage<PetDetailProfilePage, PetDetailProfilePageViewModel>();
         return builder;
     }
 

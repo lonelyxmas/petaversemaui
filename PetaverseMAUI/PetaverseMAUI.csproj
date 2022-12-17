@@ -49,6 +49,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="ContentViews\**" />
+	  <AndroidResource Remove="Converters\**" />
+	  <Compile Remove="ContentViews\**" />
+	  <Compile Remove="Converters\**" />
+	  <EmbeddedResource Remove="ContentViews\**" />
+	  <EmbeddedResource Remove="Converters\**" />
+	  <MauiCss Remove="ContentViews\**" />
+	  <MauiCss Remove="Converters\**" />
+	  <MauiXaml Remove="ContentViews\**" />
+	  <MauiXaml Remove="Converters\**" />
+	  <None Remove="ContentViews\**" />
+	  <None Remove="Converters\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
 	  <None Remove="Resources\Fonts\SmoochSans-Bold.ttf" />
 	  <None Remove="Resources\Fonts\SmoochSans-Regular.ttf" />
@@ -73,13 +88,14 @@
 	  <Folder Include="Features\Shared\" />
 	  <Folder Include="Features\Wiki\" />
 	  <Folder Include="Interfaces\" />
-	  <Folder Include="Converters\" />
-	  <Folder Include="ContentViews\" />
 	  <Folder Include="Extensions\" />
 	  <Folder Include="Services\" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Features\PetDetailProfile\Pages\PetDetailProfilePage.xaml.cs">
+	    <DependentUpon>PetDetailProfilePage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Features\Welcome\Pages\WalkthroughPage.xaml.cs">
 	    <DependentUpon>WalkthroughPage.xaml</DependentUpon>
 	  </Compile>
@@ -98,10 +114,16 @@
 	  <MauiXaml Update="Features\Authentication\Pages\SignUpPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Features\PetsProfile\ContentViews\PetaverseThumbnailContentView.xaml">
+	  <MauiXaml Update="Features\PetDetailProfile\ContentViews\PetaverseThumbnailContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Features\PetsProfile\Pages\PetsProfilePage.xaml">
+	  <MauiXaml Update="Features\PetsList\ContentViews\PetProfileCard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\PetDetailProfile\Pages\PetDetailProfilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\PetsList\Pages\PetsListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Profile\Pages\ProfilePage.xaml">
@@ -114,6 +136,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UI\Views\HorizontalIconButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="UI\Views\IconLabel.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UI\Views\RoundedEntry.xaml">

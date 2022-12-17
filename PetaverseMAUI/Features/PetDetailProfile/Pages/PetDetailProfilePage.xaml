@@ -4,9 +4,9 @@
               xmlns:app="clr-namespace:PetaverseMAUI"
               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
               
-              x:Class="PetaverseMAUI.PetsProfilePage"
-              x:DataType="app:PetProfilePageViewModel"
-              Title="PetsProfilePage"
+              x:Class="PetaverseMAUI.PetDetailProfilePage"
+              x:DataType="app:PetDetailProfilePageViewModel"
+              Title="PetDetailProfilePage"
               Padding="10">
     <app:BasePage.Resources>
         <FontImageSource x:Key="AddIcon"
@@ -26,7 +26,7 @@
                          VerticalItemSpacing="5"/>
 
         <DataTemplate x:Key="PetGalleryHeaderTemplate"
-                      x:DataType="app:PetProfilePageViewModel">
+                      x:DataType="app:PetDetailProfilePageViewModel">
             <Frame Padding="0"
                BackgroundColor="Transparent"
                VerticalOptions="Start">

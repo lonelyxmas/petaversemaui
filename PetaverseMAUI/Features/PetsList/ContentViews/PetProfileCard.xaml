@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:app="clr-namespace:PetaverseMAUI"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             
+             x:Name="root"
+             x:DataType="app:PetProfileCard"
+             x:Class="PetaverseMAUI.PetProfileCard"
+             
+             Padding="10">
+
+    <ContentView.Resources>
+        <FontImageSource x:Key="GalleryIcon"
+                         Color="{x:Static app:AppColors.Black}"
+                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                         Glyph="{x:Static app:FluentUIIcon.Ic_fluent_content_view_gallery_28_regular}"/>
+    </ContentView.Resources>
+    
+    <Frame HasShadow="True">
+        <VerticalStackLayout HorizontalOptions="Center">
+            <toolkit:AvatarView CornerRadius="75"
+                                WidthRequest="120"
+                                HeightRequest="120"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                ImageSource="{x:Binding ComponentData.ProfileUrl, Source={x:Reference root}}"/>
+
+            <Label HorizontalOptions="Center"
+                   Text="{x:Binding ComponentData.Name, Source={x:Reference root}}"/>
+
+            <app:IconLabel Text="{x:Binding ComponentData.MediaCount, Source={x:Reference root}}"
+                           PrefixIcon="{x:StaticResource GalleryIcon}"/>
+        </VerticalStackLayout>
+    </Frame>
+</ContentView>
