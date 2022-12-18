@@ -24,6 +24,7 @@ namespace PetaverseMAUI
         public const string Settings = "settings";
 
         public const string PetsProfile = "//main/petsProfile";
+        public const string PetDetailProfile = "petDetailProfile";
         public const string Profile = "//main/profile";
     }
 }

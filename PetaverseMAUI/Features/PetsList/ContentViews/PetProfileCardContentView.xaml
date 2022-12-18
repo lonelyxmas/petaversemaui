@@ -27,6 +27,7 @@
                                 ImageSource="{x:Binding ComponentData.ProfileUrl, Source={x:Reference root}}"/>
 
             <Label HorizontalOptions="Center"
+                   Style="{x:Static app:Styles.SubHeading2Semi}"
                    Text="{x:Binding ComponentData.Name, Source={x:Reference root}}"/>
 
             <app:BreedLabel HorizontalOptions="Center"

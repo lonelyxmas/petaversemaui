@@ -88,7 +88,6 @@
 	  <Folder Include="Features\Shared\" />
 	  <Folder Include="Features\Wiki\" />
 	  <Folder Include="Interfaces\" />
-	  <Folder Include="Extensions\" />
 	  <Folder Include="Services\" />
 	</ItemGroup>
 
@@ -136,6 +135,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Welcome\Pages\WelcomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\FluentIcons.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UI\Views\BreedLabel.xaml">

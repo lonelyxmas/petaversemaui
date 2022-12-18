@@ -8,6 +8,7 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute("signUp", typeof(SignUpPage));
         Routing.RegisterRoute("forgotPassword", typeof(ForgotPasswordPage));
+        Routing.RegisterRoute("petDetailProfile", typeof(PetDetailProfilePage));
     }
     protected override void OnNavigating(ShellNavigatingEventArgs args)
     {

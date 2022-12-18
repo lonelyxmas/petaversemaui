@@ -32,8 +32,13 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
 
     #region [RelayCommands]
     [RelayCommand]
-    Task RefreshAsync() => LoadDataAsync()
-                           .ContinueWith(x => IsBusy = false);
+    private void Refresh() => LoadDataAsync()
+                                .ContinueWith(x => IsBusy = false)
+                                .FireAndForget();
+
+    [RelayCommand]
+    private void NavigateToProfileDetail(PetProfileCardModel petProfileCardModel)
+                            => this.appNavigator.NavigateAsync(AppRoutes.PetDetailProfile, args: petProfileCardModel);
     #endregion
 
     #region [ Methods ]
@@ -53,12 +58,11 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
 
         foreach (var item in items)
         {
-            if (FakePetProfileCards.Any())
+            if (!FakePetProfileCards.SelectMany(x => x).Any(y => y.SpeciesType == item.SpeciesType))
             {
-
+                FakePetProfileCards.Add(new PetProfileCardsGroupModel(item.SpeciesType.ToString(),
+                                                                      items.Where(x => x.SpeciesType == item.SpeciesType).ToList()));
             };
-            FakePetProfileCards.Add(new PetProfileCardsGroupModel(item.SpeciesType.ToString(), 
-                                                                  items.Where(x => x.SpeciesType == item.SpeciesType).ToList()));
         }
 
         IsBusy = false;
@@ -70,7 +74,7 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
     {
         await base.OnAppearingAsync();
 
-        await LoadDataAsync();
+        LoadDataAsync().FireAndForget();
     }
     #endregion
 }

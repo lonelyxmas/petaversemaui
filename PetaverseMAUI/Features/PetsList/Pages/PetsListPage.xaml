@@ -1,32 +1,57 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:app="clr-namespace:PetaverseMAUI"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:app="clr-namespace:PetaverseMAUI"
+              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              
-             x:DataType="app:PetsListPageViewModel"
-             x:Class="PetaverseMAUI.PetsListPage"
-             Title="PetsListPage">
+              x:DataType="app:PetsListPageViewModel"
+              x:Class="PetaverseMAUI.PetsListPage"
+              Title="PetsListPage">
 
     <Shell.SearchHandler>
         <app:PetsSearchHandler ShowsResults="True"
-                               Placeholder="Search Breeds"
+                               Placeholder="Search Pets"
                                SelectPet="PetHandler_SelectPet"
                                Pets="{x:Binding FakePetProfileCards}"
-                               QueryIcon="{x:StaticResource SearchIcon}">
+                               QueryIcon="{x:StaticResource SearchIcon}"
+                               ClearIcon="{x:StaticResource Clear16Icon}">
             <app:PetsSearchHandler.ItemTemplate>
                 <DataTemplate x:DataType="app:PetProfileCardModel">
-                    <Grid Margin="5" RowDefinitions="Auto" ColumnDefinitions="40,Auto">
-                        <Image Grid.Row="0" Grid.Column="0" Source="{x:Binding ProfileUrl}" HeightRequest="35" WidthRequest="35" />
-                        <Label Grid.Row="0" Grid.Column="1" Text="{x:Binding Name}" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Grid Margin="5" 
+                          RowDefinitions="Auto" 
+                          ColumnDefinitions="40,Auto">
+                        <toolkit:AvatarView WidthRequest="35" 
+                                            HeightRequest="35"
+                                            ImageSource="{x:Binding ProfileUrl}"/>
+                        <Label FontSize="18" 
+                               Grid.Column="1"  
+                               Text="{x:Binding Name}"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center" />
                     </Grid>
                 </DataTemplate>
             </app:PetsSearchHandler.ItemTemplate>
         </app:PetsSearchHandler>
     </Shell.SearchHandler>
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem IconImageSource="{x:StaticResource Add12Icon}"/>
+    </app:BasePage.ToolbarItems>
     <app:BasePage.Resources>
         <DataTemplate x:Key="PetsCollectionViewGroupedHeaderTemplate"
                       x:DataType="app:PetProfileCardsGroupModel">
-            <Label FontSize="18" FontAttributes="Bold" BackgroundColor="Gray" Text="{x:Binding SpeciesName}" />
+            <Grid>
+                <Label HorizontalTextAlignment="Start"
+                       Text="{x:Binding SpeciesName}"
+                       Style="{x:Static app:Styles.Heading3}"
+                       Margin="{x:Static app:Dimensions.SpacingSm}"/>
+
+                <ImageButton WidthRequest="50"
+                             HeightRequest="50"
+                             VerticalOptions="Center"
+                             HorizontalOptions="End"
+                             Source="{x:StaticResource Add12Icon}"
+                             Margin="{x:Static app:Dimensions.SpacingSm}"/>
+            </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="PetsCollectionViewItemTemplate"
@@ -48,16 +73,11 @@
             </Grid>
         </DataTemplate>
 
-        <FontImageSource x:Key="SearchIcon"
-                         Color="{x:Static app:AppColors.Black}"
-                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                         Glyph="{x:Static app:FluentUIIcon.Ic_fluent_search_24_regular}"/>
-
         <GridItemsLayout x:Key="PetsCollectionViewLayout"
                          Span="2"
-                         VerticalItemSpacing="2"
-                         HorizontalItemSpacing="2"
-                         Orientation="Vertical"/>
+                         Orientation="Vertical"
+                         VerticalItemSpacing="1"
+                         HorizontalItemSpacing="1"/>
     </app:BasePage.Resources>
 
     <!--RemainingItemsThreshold="{x:Binding ItemThreshold}"

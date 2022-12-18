@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:app="clr-namespace:PetaverseMAUI">
+
+
+    <FontImageSource x:Key="SearchIcon"
+                       Color="{x:Static app:AppColors.Black}"
+                       FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_search_24_regular}"/>
+
+    <FontImageSource x:Key="AddIcon"
+                       Color="{x:Static app:AppColors.Black}"
+                       FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_add_24_regular}"/>
+
+    <FontImageSource x:Key="Add12Icon"
+                       Color="{x:Static app:AppColors.Black}"
+                       FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_add_12_regular}"/>
+
+    <FontImageSource x:Key="Clear16Icon"
+                       Color="{x:Static app:AppColors.Black}"
+                       FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_clear_formatting_16_regular}"/>
+</ResourceDictionary>

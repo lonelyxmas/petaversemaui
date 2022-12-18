@@ -1,23 +1,29 @@
-﻿namespace PetaverseMAUI;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+
+namespace PetaverseMAUI;
 
 public class PetsSearchHandler : SearchHandler
 {
     #region [CTor]
     public PetsSearchHandler()
     {
-        Pets = new();
+        this.Pets = new();
     }
+    #endregion
+
+    #region [Fields]
+    IAppNavigator appNavigator;
     #endregion
 
     #region [Properties]
     public static readonly BindableProperty PetsProperty = BindableProperty.Create(nameof(Pets),
-                                                                        typeof(ObservableCollection<PetProfileCardModel>),
-                                                                        typeof(PetsSearchHandler),
-                                                                        new ObservableCollection<PetProfileCardModel>(),
-                                                                        BindingMode.OneWay);
-    public ObservableCollection<PetProfileCardModel> Pets
+                                                                                   typeof(ObservableCollection<PetProfileCardsGroupModel>),
+                                                                                   typeof(PetsSearchHandler),
+                                                                                   new ObservableCollection<PetProfileCardsGroupModel>(),
+                                                                                   BindingMode.OneWay);
+    public ObservableCollection<PetProfileCardsGroupModel> Pets
     {
-        get => (ObservableCollection<PetProfileCardModel>)GetValue(PetsProperty);
+        get => (ObservableCollection<PetProfileCardsGroupModel>)GetValue(PetsProperty);
         set => SetValue(PetsProperty, value);
     }
     #endregion
@@ -39,7 +45,7 @@ public class PetsSearchHandler : SearchHandler
         }
         else
         {
-            ItemsSource = Pets.Where(pet => pet.Name.ToLower().Contains(newValue.ToLower())).ToList();
+            ItemsSource = Pets.SelectMany(x => x).Where(pet => pet.Name.ToLower().Contains(newValue.ToLower())).ToList();
         }
     }
 
