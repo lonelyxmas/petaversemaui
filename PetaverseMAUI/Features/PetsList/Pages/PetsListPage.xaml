@@ -24,6 +24,11 @@
         </app:PetsSearchHandler>
     </Shell.SearchHandler>
     <app:BasePage.Resources>
+        <DataTemplate x:Key="PetsCollectionViewGroupedHeaderTemplate"
+                      x:DataType="app:PetProfileCardsGroupModel">
+            <Label FontSize="18" FontAttributes="Bold" BackgroundColor="Gray" Text="{x:Binding SpeciesName}" />
+        </DataTemplate>
+
         <DataTemplate x:Key="PetsCollectionViewItemTemplate"
                       x:DataType="app:PetProfileCardModel">
             <app:PetProfileCardContentView ComponentData="{x:Binding}"/>
@@ -60,7 +65,9 @@
     <RefreshView Command="{x:Binding RefreshCommand}"
                  IsRefreshing="{x:Binding IsBusy}">
         <CollectionView x:Name="PetsCollectionView"
+                          IsGrouped="True"
                           EmptyView="Maybe network is not connected ?"
+                          GroupHeaderTemplate="{x:StaticResource PetsCollectionViewGroupedHeaderTemplate}"
                         
                           ItemsLayout="{x:StaticResource PetsCollectionViewLayout}"
                         

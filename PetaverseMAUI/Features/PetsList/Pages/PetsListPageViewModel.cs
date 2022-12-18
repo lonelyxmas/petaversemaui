@@ -1,4 +1,6 @@
-﻿namespace PetaverseMAUI;
+﻿using System.Linq;
+
+namespace PetaverseMAUI;
 
 public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
 {
@@ -18,7 +20,7 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
     bool isBusy;
 
     [ObservableProperty]
-    ObservableCollection<PetProfileCardModel> fakePetProfileCards;
+    ObservableCollection<PetProfileCardsGroupModel> fakePetProfileCards;
     #endregion
 
     #region [Services]
@@ -37,7 +39,7 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
     #region [ Methods ]
     private async Task LoadDataAsync()
     {
-        if (IsBusy) return;
+        //if (IsBusy) return;
 
         IsBusy = true;
 
@@ -45,13 +47,18 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
 
         if (FakePetProfileCards == null)
         {
-            FakePetProfileCards = new ObservableCollection<PetProfileCardModel>(items);
+            FakePetProfileCards = new ObservableCollection<PetProfileCardsGroupModel>();
             return;
         }
 
         foreach (var item in items)
         {
-            FakePetProfileCards.Add(item);
+            if (FakePetProfileCards.Any())
+            {
+
+            };
+            FakePetProfileCards.Add(new PetProfileCardsGroupModel(item.SpeciesType.ToString(), 
+                                                                  items.Where(x => x.SpeciesType == item.SpeciesType).ToList()));
         }
 
         IsBusy = false;
