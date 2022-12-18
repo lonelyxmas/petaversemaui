@@ -6,7 +6,7 @@
              
              x:Name="root"
              x:DataType="app:PetProfileCard"
-             x:Class="PetaverseMAUI.PetProfileCard"
+             x:Class="PetaverseMAUI.PetProfileCardContentView"
              
              Padding="10">
 

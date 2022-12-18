@@ -1,10 +1,10 @@
 namespace PetaverseMAUI;
 
-public partial class PetProfileCard : ContentView
+public partial class PetProfileCardContentView : ContentView
 {
     #region [ CTor ]
 
-    public PetProfileCard()
+    public PetProfileCardContentView()
     {
         InitializeComponent();
     }
@@ -16,7 +16,7 @@ public partial class PetProfileCard : ContentView
     public static readonly BindableProperty ComponentDataProperty = BindableProperty.Create(
         nameof(ComponentData),
         typeof(PetProfileCardModel),
-        typeof(PetProfileCard),
+        typeof(PetProfileCardContentView),
         default(PetProfileCardModel)
         );
     public PetProfileCardModel ComponentData

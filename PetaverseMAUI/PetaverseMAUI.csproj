@@ -96,6 +96,9 @@
 	  <Compile Update="Features\PetDetailProfile\Pages\PetDetailProfilePage.xaml.cs">
 	    <DependentUpon>PetDetailProfilePage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Features\PetsList\ContentViews\PetProfileCardContentView.xaml.cs">
+	    <DependentUpon>PetProfileCardContentView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Features\Welcome\Pages\WalkthroughPage.xaml.cs">
 	    <DependentUpon>WalkthroughPage.xaml</DependentUpon>
 	  </Compile>
@@ -117,7 +120,7 @@
 	  <MauiXaml Update="Features\PetDetailProfile\ContentViews\PetaverseThumbnailContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Features\PetsList\ContentViews\PetProfileCard.xaml">
+	  <MauiXaml Update="Features\PetsList\ContentViews\PetProfileCardContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\PetDetailProfile\Pages\PetDetailProfilePage.xaml">
