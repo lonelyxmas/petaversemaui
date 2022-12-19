@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace PetaverseMAUI;
+﻿namespace PetaverseMAUI;
 
 public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
 {
@@ -11,7 +9,6 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
         ):base(appNavigator)
     {
         this.petsListService = petsListService;
-        this.appNavigator = appNavigator;
     }
     #endregion
 
@@ -26,8 +23,6 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
     #region [Services]
 
     private readonly IPetsListService petsListService;
-
-    private readonly IAppNavigator appNavigator;
     #endregion
 
     #region [RelayCommands]
@@ -38,14 +33,12 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
 
     [RelayCommand]
     private void NavigateToProfileDetail(PetProfileCardModel petProfileCardModel)
-                            => this.appNavigator.NavigateAsync(AppRoutes.PetDetailProfile, args: petProfileCardModel);
+                            => AppNavigator.NavigateAsync(AppRoutes.PetDetailProfile, args: petProfileCardModel);
     #endregion
 
-    #region [ Methods ]
+    #region [Methods]
     private async Task LoadDataAsync()
     {
-        //if (IsBusy) return;
-
         IsBusy = true;
 
         var items = await this.petsListService.GetAll();
@@ -69,7 +62,7 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Override]
+    #region [Overrides]
     public override async Task OnAppearingAsync()
     {
         await base.OnAppearingAsync();

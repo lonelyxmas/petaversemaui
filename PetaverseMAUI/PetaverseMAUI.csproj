@@ -51,16 +51,40 @@
 	<ItemGroup>
 	  <AndroidResource Remove="ContentViews\**" />
 	  <AndroidResource Remove="Converters\**" />
+	  <AndroidResource Remove="Features\Home\**" />
+	  <AndroidResource Remove="Features\Shared\**" />
+	  <AndroidResource Remove="Interfaces\**" />
+	  <AndroidResource Remove="Services\**" />
 	  <Compile Remove="ContentViews\**" />
 	  <Compile Remove="Converters\**" />
+	  <Compile Remove="Features\Home\**" />
+	  <Compile Remove="Features\Shared\**" />
+	  <Compile Remove="Interfaces\**" />
+	  <Compile Remove="Services\**" />
 	  <EmbeddedResource Remove="ContentViews\**" />
 	  <EmbeddedResource Remove="Converters\**" />
+	  <EmbeddedResource Remove="Features\Home\**" />
+	  <EmbeddedResource Remove="Features\Shared\**" />
+	  <EmbeddedResource Remove="Interfaces\**" />
+	  <EmbeddedResource Remove="Services\**" />
 	  <MauiCss Remove="ContentViews\**" />
 	  <MauiCss Remove="Converters\**" />
+	  <MauiCss Remove="Features\Home\**" />
+	  <MauiCss Remove="Features\Shared\**" />
+	  <MauiCss Remove="Interfaces\**" />
+	  <MauiCss Remove="Services\**" />
 	  <MauiXaml Remove="ContentViews\**" />
 	  <MauiXaml Remove="Converters\**" />
+	  <MauiXaml Remove="Features\Home\**" />
+	  <MauiXaml Remove="Features\Shared\**" />
+	  <MauiXaml Remove="Interfaces\**" />
+	  <MauiXaml Remove="Services\**" />
 	  <None Remove="ContentViews\**" />
 	  <None Remove="Converters\**" />
+	  <None Remove="Features\Home\**" />
+	  <None Remove="Features\Shared\**" />
+	  <None Remove="Interfaces\**" />
+	  <None Remove="Services\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -81,14 +105,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Features\Home\Models\" />
-	  <Folder Include="Features\Home\Pages\" />
 	  <Folder Include="Features\Profile\Models\" />
 	  <Folder Include="Features\Profile\Services\" />
-	  <Folder Include="Features\Shared\" />
-	  <Folder Include="Features\Wiki\" />
-	  <Folder Include="Interfaces\" />
-	  <Folder Include="Services\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -137,6 +155,12 @@
 	  <MauiXaml Update="Features\Welcome\Pages\WelcomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Wiki\ContentViews\BreedCardContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Wiki\Pages\WikiPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\FluentIcons.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -155,13 +179,14 @@
 	</ItemGroup>
 
 	<PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
-		<AndroidKeyStore>False</AndroidKeyStore>
+		<!--<AndroidKeyStore>False</AndroidKeyStore>
 		<AndroidSigningKeyStore>myapp.keystore</AndroidSigningKeyStore>
 		<AndroidSigningKeyAlias>key</AndroidSigningKeyAlias>
 		<AndroidSigningKeyPass></AndroidSigningKeyPass>
 		<AndroidSigningStorePass></AndroidSigningStorePass>
 		<AndroidLinkMode>None</AndroidLinkMode>
-		<AndroidDexTool>r8</AndroidDexTool>
+		<AndroidDexTool>r8</AndroidDexTool>-->
+		<AndroidLinkResources>False</AndroidLinkResources>
 	</PropertyGroup>
 
 </Project>

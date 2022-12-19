@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage 
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:PetaverseMAUI"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                
+             x:Class="PetaverseMAUI.WikiPage"
+             x:DataType="app:WikiPageViewModel"
+             Title="WikiPage">
+    <Shell.SearchHandler>
+        <app:WikiSearchHandler ShowsResults="True"
+                               Placeholder="Explore the animal world"
+                               QueryIcon="{x:StaticResource SearchIcon}"
+                               ClearIcon="{x:StaticResource Clear16Icon}"/>
+    </Shell.SearchHandler>
+
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem IconImageSource="{x:StaticResource Add12Icon}"/>
+    </app:BasePage.ToolbarItems>
+
+    <app:BasePage.Resources>
+        <DataTemplate x:Key="SpeciesCollectionViewHeaderTemplate"
+                      x:DataType="app:WikiPageViewModel">
+            
+        </DataTemplate>
+
+        <DataTemplate x:Key="SpeciesCollectionViewItemTemplate"
+                      x:DataType="app:SpeciesPivotModel">
+            
+        </DataTemplate>
+
+        <DataTemplate x:Key="SpeciesCollectionViewFooterTemplate"
+                      x:DataType="app:WikiPageViewModel">
+            
+        </DataTemplate>
+    </app:BasePage.Resources>
+
+    <RefreshView IsRefreshing="{x:Binding IsBusy}">
+        <CollectionView Header="{x:Binding}"
+                        HeaderTemplate="{x:StaticResource SpeciesCollectionViewHeaderTemplate}"
+                         
+                        ItemsSource="{x:Binding Items}"
+                        ItemTemplate="{x:StaticResource SpeciesCollectionViewItemTemplate}"
+            
+                        Footer="{x:Binding}"
+                        FooterTemplate="{x:StaticResource SpeciesCollectionViewFooterTemplate}"/>
+    </RefreshView>
+</app:BasePage>

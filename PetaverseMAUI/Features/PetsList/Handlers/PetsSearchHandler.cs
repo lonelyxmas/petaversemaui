@@ -11,10 +11,6 @@ public class PetsSearchHandler : SearchHandler
     }
     #endregion
 
-    #region [Fields]
-    IAppNavigator appNavigator;
-    #endregion
-
     #region [Properties]
     public static readonly BindableProperty PetsProperty = BindableProperty.Create(nameof(Pets),
                                                                                    typeof(ObservableCollection<PetProfileCardsGroupModel>),
