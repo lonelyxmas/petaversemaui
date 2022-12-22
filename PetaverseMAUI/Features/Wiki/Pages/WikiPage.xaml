@@ -22,7 +22,12 @@
     <app:BasePage.Resources>
         <DataTemplate x:Key="SpeciesCollectionViewHeaderTemplate"
                       x:DataType="app:WikiPageViewModel">
-            
+
+            <HorizontalStackLayout Spacing="20"
+                                   RadioButtonGroup.GroupName="SelectedItem"
+                                   BindableLayout.ItemsSource="{x:Binding Items}"
+                                   RadioButtonGroup.SelectedValue="{Binding SelectedItem, Mode=TwoWay}"
+                                   BindableLayout.ItemTemplate="{x:StaticResource SpeciesPivotItemTemplate}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="SpeciesCollectionViewItemTemplate"
@@ -32,11 +37,13 @@
 
         <DataTemplate x:Key="SpeciesCollectionViewFooterTemplate"
                       x:DataType="app:WikiPageViewModel">
-            
+
         </DataTemplate>
+        
     </app:BasePage.Resources>
 
-    <RefreshView IsRefreshing="{x:Binding IsBusy}">
+    <RefreshView IsRefreshing="{x:Binding IsBusy}"
+                 Command="{x:Binding RefreshCommand}">
         <CollectionView Header="{x:Binding}"
                         HeaderTemplate="{x:StaticResource SpeciesCollectionViewHeaderTemplate}"
                          

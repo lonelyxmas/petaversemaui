@@ -21,22 +21,14 @@ public class WelcomeService : IWelcomeService
                 {
                     Title = "Thế giới rộng lớn về chó và mèo",
                     Subtitle = "Petaverse có thông tin hơn 100 loài chó và 100 lòai mèo đang đợi bạn khám phá, kèm với những kiến thức chuyên sâu đến từ thú y và những người giàu kinh nghiệm",
-                    Image = "walkthrough2.svg",
-                    ImageMargin = new Thickness(Dimensions.SpacingXxl, Dimensions.SpacingMd),
-                },
-            new WalkthroughItemModel
-                {
-                    Title = "Cộng đồng an ninh",
-                    Subtitle = "Petaverse là cộng đồng bảo mật và đáng tin cậy cho các fosterers và người sỡ hữu thú cưng có thể giảm rất nhiều mối lo ngại khi chuyển giao quyền nuôi hoặc hỗ trợ cho những sự kiện kêu gọi",
-                    Image = "walkthrough3.svg",
+                    Image = "walkthrough2.svg"
                 },
                 new WalkthroughItemModel
-                {
-                    Title = "Kho couple game với hơn 1000 trò chơi",
-                    Subtitle = "Chúng tôi có kho dữ liệu khổng lồ với 1000+ mini game đa thể loại giúp 2 bạn tăng tương tác với nhau.",
-                    Image = "walkthrough_01.png",
-                    ImageMargin = new Thickness(Dimensions.SpacingXxl, Dimensions.SpacingMd),
-                },
+                    {
+                        Title = "Cộng đồng an ninh",
+                        Subtitle = "Petaverse là cộng đồng bảo mật và đáng tin cậy cho các fosterers và người sỡ hữu thú cưng có thể giảm rất nhiều mối lo ngại khi chuyển giao quyền nuôi hoặc hỗ trợ cho những sự kiện kêu gọi",
+                        Image = "walkthrough3.svg",
+                    }
             };
     }
 }

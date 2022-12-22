@@ -18,6 +18,7 @@ namespace PetaverseMAUI
         public const string Wiki = "//main/wikiPage";
 
         public const string PetsProfile = "//main/petsProfile";
+        public const string AddPetPopup = "AddPetPopup";
         public const string PetDetailProfile = "petDetailProfile";
 
         public const string Profile = "//main/profile";

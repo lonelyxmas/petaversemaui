@@ -34,7 +34,8 @@
         </app:PetsSearchHandler>
     </Shell.SearchHandler>
     <app:BasePage.ToolbarItems>
-        <ToolbarItem IconImageSource="{x:StaticResource Add12Icon}"/>
+        <ToolbarItem Text="Add pet"
+                     Command="{x:Binding AddPetCommand}"/>
     </app:BasePage.ToolbarItems>
     <app:BasePage.Resources>
         <DataTemplate x:Key="PetsCollectionViewGroupedHeaderTemplate"
@@ -45,12 +46,17 @@
                        Style="{x:Static app:Styles.Heading3}"
                        Margin="{x:Static app:Dimensions.SpacingSm}"/>
 
-                <ImageButton WidthRequest="50"
-                             HeightRequest="50"
-                             VerticalOptions="Center"
-                             HorizontalOptions="End"
-                             Source="{x:StaticResource Add12Icon}"
-                             Margin="{x:Static app:Dimensions.SpacingSm}"/>
+                <Frame Padding="0"
+                       HasShadow="True"
+                       CornerRadius="4"
+                       VerticalOptions="Center"
+                       HorizontalOptions="End"
+                       Margin="{x:Static app:Dimensions.SpacingSm}">
+                    <ImageButton WidthRequest="40"
+                                 HeightRequest="40"
+                                 Margin="3,3,0,0"
+                                 Source="{x:StaticResource Add12Icon}"/>
+                </Frame>
             </Grid>
         </DataTemplate>
 
@@ -86,7 +92,7 @@
                  IsRefreshing="{x:Binding IsBusy}">
         <CollectionView x:Name="PetsCollectionView"
                           IsGrouped="True"
-                          EmptyView="Maybe network is not connected ?"
+                          EmptyView="Fetching data ?"
                           GroupHeaderTemplate="{x:StaticResource PetsCollectionViewGroupedHeaderTemplate}"
                         
                           ItemsLayout="{x:StaticResource PetsCollectionViewLayout}"

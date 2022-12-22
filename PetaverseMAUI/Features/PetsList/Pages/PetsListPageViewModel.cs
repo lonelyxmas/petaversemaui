@@ -34,6 +34,9 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     private void NavigateToProfileDetail(PetProfileCardModel petProfileCardModel)
                             => AppNavigator.NavigateAsync(AppRoutes.PetDetailProfile, args: petProfileCardModel);
+
+    [RelayCommand]
+    private Task AddPetAsync() => AppNavigator.NavigateAsync(AppRoutes.AddPetPopup);
     #endregion
 
     #region [Methods]

@@ -52,18 +52,19 @@
                                      HorizontalOptions="Center"
                                      VerticalOptions="FillAndExpand"
                                      Spacing="{x:Static app:Dimensions.SpacingMd}">-->
-                    <Label x:Name="TitleLabel"
-                           FontAttributes="Bold"
-                           Text="{Binding Title}"
-                           HorizontalTextAlignment="Center"
-                           Style="{x:Static app:Styles.Heading3}"
-                           TextColor="{AppThemeBinding Light={x:Static app:AppColors.Black}, Dark={x:Static app:AppColors.White}}">
-                        <Label.Triggers>
-                            <EventTrigger Event="Loaded">
-                                <triggers:BeginAnimation Animation="{StaticResource FadeInAnimation}"/>
-                            </EventTrigger>
-                        </Label.Triggers>
-                    </Label>
+                <Label x:Name="TitleLabel"
+                        FontAttributes="Bold"
+                        Text="{Binding Title}"
+                        HorizontalTextAlignment="Center"
+                        Style="{x:Static app:Styles.Heading3}"
+                        TextColor="{AppThemeBinding Light={x:Static app:AppColors.Black}, Dark={x:Static app:AppColors.White}}"
+                        Margin="{app:EdgeInsets Right={x:Static app:Dimensions.SpacingSm}, Left={x:Static app:Dimensions.SpacingSm}}">
+                    <Label.Triggers>
+                        <EventTrigger Event="Loaded">
+                            <triggers:BeginAnimation Animation="{StaticResource FadeInAnimation}"/>
+                        </EventTrigger>
+                    </Label.Triggers>
+                </Label>
                 <Label x:Name="SubTitleLabel"
                        Text="{Binding Subtitle}"
                        HorizontalTextAlignment="Center"
@@ -114,7 +115,7 @@
                 SelectedIndicatorColor="#fd853a"
                 IndicatorColor="{x:Static app:AppColors.Grey20}"/>
 
-            <Button
+            <!--<Button
                     Text="Tiếp tục"
                     HorizontalOptions="Center"
                     Command="{Binding MoveCommand}" 
@@ -123,7 +124,7 @@
                 <Button.CommandParameter>
                     <x:Boolean>False</x:Boolean>
                 </Button.CommandParameter>
-            </Button>
+            </Button>-->
             <Button Text="Bắt đầu"
                     HorizontalOptions="Center"
                     BackgroundColor="#fd853a"

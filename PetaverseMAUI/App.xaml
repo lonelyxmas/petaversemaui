@@ -1,7 +1,9 @@
 ﻿<?xml version = "1.0" encoding = "UTF-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:PetaverseMAUI"
+             xmlns:app="clr-namespace:PetaverseMAUI"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             
              x:Class="PetaverseMAUI.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -10,6 +12,66 @@
                 <ResourceDictionary Source="Resources/Styles/FluentIcons.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate x:Key="SpeciesPivotItemTemplate"
+                          x:DataType="app:SpeciesPivotModel">
+
+                <RadioButton Content="{Binding .}" Value="{Binding .}">
+                    <RadioButton.Resources>
+                        <app:HexToSolidColorBrushConverter x:Key="HexToSolidColorBrushConverter"/>
+                    </RadioButton.Resources>
+                    <RadioButton.ControlTemplate>
+                        <ControlTemplate>
+                            <Grid RowDefinitions="45,4">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup x:Name="CheckedStates">
+                                            <VisualState x:Name="Checked">
+                                                <VisualState.Setters>
+                                                    <Setter TargetName="TextLabel"
+                                                    Property="Label.TextColor"
+                                                    Value="{x:Static app:AppColors.PetaversePrimary}"/>
+                                                    <Setter TargetName="Indicator"
+                                                    Property="BoxView.Color"
+                                                    Value="{x:Static app:AppColors.PetaversePrimary}"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                            <VisualState x:Name="Unchecked">
+                                                <VisualState.Setters>
+                                                    <Setter TargetName="TextLabel"
+                                                        Property="Label.TextColor"
+                                                        Value="{x:AppThemeBinding Light={x:Static app:AppColors.Black}, Dark={x:Static app:AppColors.White}}"/>
+                                                    <Setter
+                                                        TargetName="Indicator"
+                                                        Property="BoxView.Color"
+                                                        Value="Transparent"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </VisualStateManager.VisualStateGroups>
+                                <HorizontalStackLayout>
+                                    <Label x:Name="TextLabel"
+                                       FontSize="Large"
+                                       VerticalOptions="Center"
+                                       Text="{TemplateBinding Content.SpeciesName}" />
+                                    <toolkit:AvatarView Margin="5,0,0,0"
+                                                        WidthRequest="30" 
+                                                        HeightRequest="30"
+                                                        VerticalOptions="Center"
+                                                        BorderWidth="1" BorderColor="Black"
+                                                        ImageSource="{TemplateBinding Content.SpeciesImageUrl}"/>
+                                </HorizontalStackLayout>
+                                <BoxView x:Name="Indicator" 
+                                     Grid.Row="1"
+                                     CornerRadius="2"
+                                     Color="Transparent"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </RadioButton.ControlTemplate>
+                </RadioButton>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

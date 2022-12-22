@@ -91,6 +91,8 @@
 	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
 	  <None Remove="Resources\Fonts\SmoochSans-Bold.ttf" />
 	  <None Remove="Resources\Fonts\SmoochSans-Regular.ttf" />
+	  <None Remove="Resources\Images\cat.png" />
+	  <None Remove="Resources\Images\dog.png" />
 	  <None Remove="Resources\Images\microsoft_logo.svg" />
 	  <None Remove="Resources\Images\Walkthrough1.svg" />
 	  <None Remove="Resources\Images\Walkthrough2.svg" />
@@ -144,6 +146,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\PetsList\Pages\PetsListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\PetsList\PopUps\AddPetPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Profile\Pages\ProfilePage.xaml">

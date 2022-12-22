@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePopup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:app="clr-namespace:PetaverseMAUI"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               
+               x:Class="PetaverseMAUI.AddPetPopup"
+               x:DataType="app:AddPetPopupViewModel"
+               Shell.PresentationMode="Modal">
+    <app:BasePopup.Resources>
+        <ControlTemplate x:Key="RadioButtonTemplate">
+            <Frame BorderColor="#F3F2F1"
+                   BackgroundColor="#F3F2F1"
+                   HasShadow="False"
+                   HeightRequest="100"
+                   WidthRequest="100"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"
+                   Padding="0">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CheckedStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderColor"
+                                            Value="#FF3300" />
+                                    <Setter TargetName="check"
+                                            Property="Opacity"
+                                            Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Unchecked">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="#F3F2F1" />
+                                    <Setter Property="BorderColor"
+                                            Value="#F3F2F1" />
+                                    <Setter TargetName="check"
+                                            Property="Opacity"
+                                            Value="0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+                <Grid Margin="4,4,10,4"
+                      WidthRequest="100">
+                    <Grid WidthRequest="18"
+                          HeightRequest="18"
+                          HorizontalOptions="End"
+                          VerticalOptions="Start">
+                        <Ellipse Stroke="Blue"
+                                 Fill="White"
+                                 WidthRequest="16"
+                                 HeightRequest="16"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                        <Ellipse x:Name="check"
+                                 Fill="Blue"
+                                 WidthRequest="8"
+                                 HeightRequest="8"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                    </Grid>
+                    <ContentPresenter />
+                </Grid>
+            </Frame>
+        </ControlTemplate>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="ControlTemplate"
+                    Value="{StaticResource RadioButtonTemplate}" />
+        </Style>
+    </app:BasePopup.Resources>
+
+    <Frame Margin="15">
+        <ScrollView>
+            <VerticalStackLayout>
+                <Label VerticalOptions="Center" 
+                       HorizontalOptions="Center"
+                       Text="COOL! Tell us more about your pet"
+                       Style="{x:Static app:Styles.Heading3}"/>
+
+                <HorizontalStackLayout Spacing="10"
+                                       HorizontalOptions="Center"
+                                       RadioButtonGroup.GroupName="animals"
+                                       Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}">
+                    <RadioButton Value="Cat">
+                        <RadioButton.Content>
+                            <VerticalStackLayout VerticalOptions="Center">
+                                <Image Source="cat.png"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                                <Label Text="Cat"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="End" />
+                                <VerticalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                          Tapped="TapGestureRecognizer_Tapped"/>
+                                </VerticalStackLayout.GestureRecognizers>
+                            </VerticalStackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton Value="Dog">
+                        <RadioButton.Content>
+                            <VerticalStackLayout VerticalOptions="Center">
+                                <Image Source="dog.png"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                                <Label Text="Dog"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="End" />
+                                <VerticalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                          Tapped="TapGestureRecognizer_Tapped"/>
+                                </VerticalStackLayout.GestureRecognizers>
+                            </VerticalStackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout HorizontalOptions="Center"
+                                       Spacing="{x:Static app:Dimensions.SpacingSm}"
+                                       Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}">
+                    <toolkit:AvatarView HeightRequest="100" 
+                                        WidthRequest="100" 
+                                        CornerRadius="50"
+                                        VerticalOptions="Center"/>
+                    <VerticalStackLayout VerticalOptions="Center"
+                                         HorizontalOptions="Center"
+                                         Spacing="{x:Static app:Dimensions.SpacingSm}">
+                        <ImageButton WidthRequest="35" HeightRequest="35"
+                                     Source="{x:StaticResource Camera24Icon}"/>
+                        <ImageButton WidthRequest="35" HeightRequest="35"
+                                     Source="{x:StaticResource FolderUpload24Icon}"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+
+                <app:RoundedEntry Placeholder="Tell us his/her name"
+                                  Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
+
+                <Picker Title="Loài"
+                        Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
+
+                <Editor Placeholder="Mô tả về thú cưng"
+                        Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
+
+                <DatePicker 
+                        Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
+
+                <Label Text="Màu"
+                       Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
+
+                <Picker Title="Bạn nhận bé bằng cách nào ?"
+                        Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
+
+                <Button Text="Tạo"
+                        Command="{Binding DoneCommand}"
+                        Style="{x:Static app:Styles.ButtonPrimarySm}"
+                        Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
+                <Button Text="Hủy"
+                        Command="{Binding DoneCommand}"
+                        Style="{x:Static app:Styles.ButtonSecondarySm}"
+                        Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingSm}, Bottom={x:Static app:Dimensions.SpacingXl}}"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Frame>
+</app:BasePopup>

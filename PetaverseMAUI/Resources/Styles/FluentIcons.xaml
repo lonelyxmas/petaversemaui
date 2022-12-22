@@ -23,4 +23,29 @@
                        Color="{x:Static app:AppColors.Black}"
                        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
                        Glyph="{x:Static app:FluentUIIcon.Ic_fluent_clear_formatting_16_regular}"/>
+
+    <FontImageSource x:Key="Camera24Icon"
+                       Color="{x:Static app:AppColors.Black}"
+                       FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_camera_24_regular}"/>
+
+    <FontImageSource x:Key="Heart24Icon"
+                       Color="{x:Static app:AppColors.Black}"
+                       FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_heart_24_regular}"/>
+
+    <FontImageSource x:Key="New24Icon"
+                       Color="{x:Static app:AppColors.Black}"
+                       FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_new_24_regular}"/>
+
+    <FontImageSource x:Key="Setting24Icon"
+                       Color="{x:Static app:AppColors.Black}"
+                       FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_settings_24_regular}"/>
+
+    <FontImageSource x:Key="FolderUpload24Icon"
+                       Color="{x:Static app:AppColors.Black}"
+                       FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_folder_arrow_up_24_regular}"/>
 </ResourceDictionary>

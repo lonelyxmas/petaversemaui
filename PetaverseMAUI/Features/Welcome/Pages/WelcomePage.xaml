@@ -20,7 +20,7 @@
             VerticalOptions="End">
             <Label
                 HorizontalTextAlignment="Center"
-                Text="Chick &amp; Paddy"
+                Text="Petaverse"
                 Style="{x:Static app:Styles.Heading5}"
                 TextColor="{x:Static app:AppColors.Secondary1}"/>
             <Label

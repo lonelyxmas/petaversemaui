@@ -2,12 +2,17 @@
 
 public partial class WikiPageViewModel : NavigationAwareBaseViewModel
 {
-	#region [CTor]
-	public WikiPageViewModel(
+    #region [Services]
+    private readonly ISpeciesPivotService speciesPivotService;
+    #endregion
+
+    #region [CTor]
+    public WikiPageViewModel(
+        ISpeciesPivotService speciesPivotService,
         IAppNavigator appNavigator) : base(appNavigator)
 	{
-		
-	}
+        this.speciesPivotService = speciesPivotService;
+    }
     #endregion
 
     #region [Properties]
@@ -36,6 +41,7 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [RelayCommands]
+
     [RelayCommand]
     private void Refresh() => LoadDataAsync()
                                 .ContinueWith(x => IsBusy = false)
@@ -48,6 +54,20 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
         if (IsBusy) return;
 
         IsBusy = true;
+
+        if (Items == null)
+        {
+            Items = new ObservableCollection<SpeciesPivotModel>();
+        }
+
+        Items.Clear();
+
+        var items = await speciesPivotService.GetAllSpecies();
+
+        foreach (var item in items)
+        {
+            Items.Add(item);
+        }
 
         IsBusy = false;
     }

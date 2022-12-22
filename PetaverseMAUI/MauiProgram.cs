@@ -37,7 +37,8 @@ public static class MauiProgram
 				essentials.UseVersionTracking();
 			})
             .RegisterServices()
-            .RegisterPages();
+            .RegisterPages()
+            .RegisterPopups();
 
         Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("NoBorderEntry", (handler, view) =>
         {
@@ -76,6 +77,13 @@ public static class MauiProgram
     }
 #endif
 
+    static MauiAppBuilder RegisterPopups(this MauiAppBuilder builder)
+    {
+        builder.Services.AddPopup<AddPetPopup, AddPetPopupViewModel>(AppRoutes.AddPetPopup);
+
+        return builder;
+    }
+
     static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
         builder.Services.AddSingleton<IAppInfo>(AppInfo.Current);
@@ -88,6 +96,7 @@ public static class MauiProgram
         builder.Services.AddTransient<IWelcomeService, WelcomeService>();
         builder.Services.AddTransient<IPetsListService, FakePetListService>();
         builder.Services.AddTransient<IPetProfileService, PetProfileService>();
+        builder.Services.AddTransient<ISpeciesPivotService, SpeciesPivotService>();
 
         return builder;
     }
@@ -102,6 +111,7 @@ public static class MauiProgram
         builder.Services.AddPage<ProfilePage, ProfilePageViewModel>();
         builder.Services.AddPage<PetsListPage, PetsListPageViewModel>();
         builder.Services.AddPage<PetDetailProfilePage, PetDetailProfilePageViewModel>();
+        builder.Services.AddPage<WikiPage, WikiPageViewModel>();
         return builder;
     }
 
@@ -109,6 +119,15 @@ public static class MauiProgram
     where TPage : BasePage where TViewModel : BaseViewModel
     {
         services.AddTransient<TPage>();
+        services.AddTransient<TViewModel>();
+        return services;
+    }
+
+    static IServiceCollection AddPopup<TPopup, TViewModel>(this IServiceCollection services, string name)
+    where TPopup : BasePopup where TViewModel : BaseViewModel
+    {
+        Routing.RegisterRoute(name, typeof(TPopup));
+        services.AddTransient<TPopup>();
         services.AddTransient<TViewModel>();
         return services;
     }
