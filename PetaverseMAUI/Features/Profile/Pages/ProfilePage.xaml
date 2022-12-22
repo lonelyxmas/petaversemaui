@@ -7,7 +7,9 @@
               x:Class="PetaverseMAUI.ProfilePage"
               x:DataType="app:ProfilePageViewModel"
               
-              Shell.NavBarIsVisible="false">
+              Shell.NavBarIsVisible="false"
+              
+              SizeChanged="BasePage_SizeChanged">
     <app:BasePage.Resources>
         <Style x:Key="FollowSwithStyle"
                TargetType="Switch">
@@ -21,93 +23,107 @@
         </Style>
 
         <LinearGradientBrush x:Key="PremiumSubscriptionColor"
-                             EndPoint="0,1">
-            <GradientStop Color="Yellow"
+                             EndPoint="1,0">
+            <GradientStop Color="#1cefff"
                           Offset="0.1" />
-            <GradientStop Color="Green"
+            <GradientStop Color="#c0c0aa"
                           Offset="1.0" />
         </LinearGradientBrush>
     </app:BasePage.Resources>
 
-    <ScrollView Padding="10">
-        <Grid RowSpacing="10"
-              RowDefinitions="auto, 110, *">
-            <Frame Margin="0,50,0,0">
-                <Grid Margin="0,35,0,0"
+    <ScrollView>
+        <Grid toolkit:StateContainer.CurrentState="{x:Binding CurrentDeviceState}">
+            <toolkit:StateContainer.StateViews>
+                <Grid Padding="10"
                       RowSpacing="10"
-                      RowDefinitions="auto,25,25,25,25">
-                    <VerticalStackLayout>
-                        <Label Text="Strypper Vandel Jason"
-                       HorizontalOptions="Center"
-                       HorizontalTextAlignment="Center"/>
-                        <Switch HorizontalOptions="Center"
-                    Style="{StaticResource FollowSwithStyle}"/>
-                    </VerticalStackLayout>
-                    <FlexLayout Grid.Row="1"
-                        Style="{StaticResource InfoFlexLayoutStyle}">
-                        <Label Text="Country" TextColor="White"/>
-                        <Label Text="Viet Nam" TextColor="Black"/>
-                    </FlexLayout>
-                    <FlexLayout Grid.Row="2"
-                            Style="{StaticResource InfoFlexLayoutStyle}">
-                        <Label Text="Phone Number"/>
-                        <Label Text="+84 0348164682"/>
-                    </FlexLayout>
-                    <FlexLayout Grid.Row="3"
-                            Style="{StaticResource InfoFlexLayoutStyle}">
-                        <Label Text="District"/>
-                        <Label Text="District 3"/>
-                    </FlexLayout>
-                    <FlexLayout Grid.Row="4"
-                            Style="{StaticResource InfoFlexLayoutStyle}">
-                        <Label Text="Ward"/>
-                        <Label Text="Vo Thi Sau"/>
-                    </FlexLayout>
-                </Grid>
-            </Frame>
-            <Frame Grid.Row="1">
-                <HorizontalStackLayout HorizontalOptions="Center">
-                    <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"/>
-                    <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"/>
-                    <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"/>
-                    <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"/>
-                </HorizontalStackLayout>
-            </Frame>
-            <Frame Grid.Row="2">
-                <VerticalStackLayout>
-                    <Frame Background="{x:StaticResource PremiumSubscriptionColor}">
-                        <HorizontalStackLayout>
+                      RowDefinitions="auto, 110, *"
+                      toolkit:StateView.StateKey="Phone">
+                    <Frame Margin="0,50,0,0">
+                        <Grid Margin="0,35,0,0"
+                              RowSpacing="10"
+                              RowDefinitions="auto,25,25,25,25">
                             <VerticalStackLayout>
-                                <Label Text="PREMIUM"/>
-                                <Label Text="Get the most for you and your pets"/>
+                                <Label Text="Strypper Vandel Jason"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center"/>
+                                <Switch HorizontalOptions="Center"
+                                        Style="{StaticResource FollowSwithStyle}"/>
                             </VerticalStackLayout>
+                            <FlexLayout Grid.Row="1"
+                                        Style="{StaticResource InfoFlexLayoutStyle}">
+                                <Label Text="Country"/>
+                                <Label Text="Viet Nam"/>
+                            </FlexLayout>
+                            <FlexLayout Grid.Row="2"
+                                        Style="{StaticResource InfoFlexLayoutStyle}">
+                                <Label Text="Phone Number"/>
+                                <Label Text="+84 0348164682"/>
+                            </FlexLayout>
+                            <FlexLayout Grid.Row="3"
+                                        Style="{StaticResource InfoFlexLayoutStyle}">
+                                <Label Text="District"/>
+                                <Label Text="District 3"/>
+                            </FlexLayout>
+                            <FlexLayout Grid.Row="4"
+                                        Style="{StaticResource InfoFlexLayoutStyle}">
+                                <Label Text="Ward"/>
+                                <Label Text="Vo Thi Sau"/>
+                            </FlexLayout>
+                        </Grid>
+                    </Frame>
+                    <Frame Grid.Row="1">
+                        <HorizontalStackLayout HorizontalOptions="Center">
+                            <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"/>
+                            <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"/>
+                            <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"/>
+                            <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"/>
                         </HorizontalStackLayout>
                     </Frame>
-                    <TableView Intent="Menu">
-                        <TableRoot>
-                            <TableSection Title="Cài đặt">
-                                <ImageCell Text="Thông tin cá nhân"
+                    <Frame Grid.Row="2">
+                        <VerticalStackLayout>
+                            <Frame Background="{x:StaticResource PremiumSubscriptionColor}">
+                                <HorizontalStackLayout>
+                                    <VerticalStackLayout>
+                                        <Label Text="PREMIUM"/>
+                                        <Label Text="Get the most for you and your pets"/>
+                                    </VerticalStackLayout>
+                                </HorizontalStackLayout>
+                            </Frame>
+                            <TableView Intent="Menu">
+                                <TableRoot>
+                                    <TableSection Title="Cài đặt">
+                                        <ImageCell Text="Thông tin cá nhân"
                                            Detail="Cá nhân hóa thông tin cá nhân của bạn" 
                                            ImageSource="{x:StaticResource Setting24Icon}"/>
-                                <ImageCell Text="Yêu thích từ cộng đồng"
+                                        <ImageCell Text="Yêu thích từ cộng đồng"
                                            Detail="1,199 bài yêu thích" 
                                            ImageSource="{x:StaticResource Heart24Icon}"/>
-                                <ImageCell Text="Theo dõi từ cộng đồng"
+                                        <ImageCell Text="Theo dõi từ cộng đồng"
                                            Detail="57 tin tức đang được theo dõi" 
                                            ImageSource="{x:StaticResource New24Icon}"/>
-                                <TextCell Text="Đăng xuất" TextColor="Red"/>
-                            </TableSection>
-                        </TableRoot>
-                    </TableView>
-                </VerticalStackLayout>
-            </Frame>
+                                        <TextCell Text="Đăng xuất" TextColor="Red"/>
+                                    </TableSection>
+                                </TableRoot>
+                            </TableView>
+                        </VerticalStackLayout>
+                    </Frame>
 
 
-            <toolkit:AvatarView CornerRadius="50"
+                    <toolkit:AvatarView CornerRadius="50"
                                 WidthRequest="100"
                                 HeightRequest="100"
                                 VerticalOptions="Start"
                                 ImageSource="https://i.imgur.com/vc9FudE.jpg"/>
+                </Grid>
+                <Label Text="TABLET"
+                   TextColor="White"
+                   Style="{x:Static app:Styles.Heading1}"
+                   toolkit:StateView.StateKey="Tablet"/>
+                <Label Text="Desktop"
+                   TextColor="White"
+                   Style="{x:Static app:Styles.Heading1}"
+                   toolkit:StateView.StateKey="Desktop"/>
+            </toolkit:StateContainer.StateViews>
         </Grid>
     </ScrollView>
 </app:BasePage>

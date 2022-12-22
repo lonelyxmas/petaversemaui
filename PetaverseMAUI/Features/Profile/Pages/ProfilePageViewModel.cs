@@ -11,6 +11,9 @@ public partial class ProfilePageViewModel : NavigationAwareBaseViewModel
     [ObservableProperty]
     string phoneNumber;
 
+    [ObservableProperty]
+    string currentDeviceState = "Phone";
+
     [RelayCommand]
     private Task ViewSettings() => AppNavigator.NavigateAsync(AppRoutes.SettingsAndHelp);
 }

@@ -94,6 +94,7 @@
 	  <None Remove="Resources\Images\cat.png" />
 	  <None Remove="Resources\Images\dog.png" />
 	  <None Remove="Resources\Images\microsoft_logo.svg" />
+	  <None Remove="Resources\Images\petaverselogo.svg" />
 	  <None Remove="Resources\Images\Walkthrough1.svg" />
 	  <None Remove="Resources\Images\Walkthrough2.svg" />
 	  <None Remove="Resources\Images\Walkthrough3.svg" />

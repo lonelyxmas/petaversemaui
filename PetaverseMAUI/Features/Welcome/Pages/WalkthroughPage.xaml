@@ -26,7 +26,7 @@
         <animations:FadeOutAnimation x:Key="FadeOutAnimation"
                                      Target="{x:Reference BackButton}"
                                      Duration="1000"/>
-        
+
         <FontImageSource x:Key="BackIcon"
                          Color="{x:Static app:AppColors.White}"
                          FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
@@ -71,12 +71,12 @@
                        Style="{x:Static app:Styles.SubHeading2Semi}"
                        Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg}}"
                        TextColor="{AppThemeBinding Light={x:Static app:AppColors.Black}, Dark={x:Static app:AppColors.White}}">
-                        <Label.Triggers>
-                            <EventTrigger Event="Loaded">
-                                <triggers:BeginAnimation Animation="{StaticResource FadeInAnimation}"/>
-                            </EventTrigger>
-                        </Label.Triggers>
-                    </Label>
+                    <Label.Triggers>
+                        <EventTrigger Event="Loaded">
+                            <triggers:BeginAnimation Animation="{StaticResource FadeInAnimation}"/>
+                        </EventTrigger>
+                    </Label.Triggers>
+                </Label>
                 <!--</VerticalStackLayout>-->
             </VerticalStackLayout>
         </DataTemplate>
@@ -85,14 +85,11 @@
           HorizontalOptions="FillAndExpand">
         <CarouselView Loop="False"
                       IsSwipeEnabled="True"
-                      MaximumWidthRequest="400"
-                      MinimumHeightRequest="650"
-                      HorizontalOptions="Center"
                       IndicatorView="indicatorView"
                       ItemsSource="{Binding Items}"
-                      VerticalOptions="StartAndExpand"
-                      HorizontalScrollBarVisibility="Never"
-                      Position="{Binding ItemPosition, Mode=TwoWay}"
+                      VerticalOptions="FillAndExpand"
+                      HorizontalOptions="FillAndExpand"
+                      Position="{Binding ItemPosition}"
                       ItemTemplate="{StaticResource WalkthroughCarouselTemplate}">
             <CarouselView.Triggers>
                 <EventTrigger Event="PositionChanged">
@@ -100,12 +97,10 @@
                 </EventTrigger>
             </CarouselView.Triggers>
         </CarouselView>
-        <StackLayout
-            Padding="{app:EdgeInsets
-                Top={x:Static app:Dimensions.SpacingLg},
-                Bottom={x:Static app:Dimensions.SpacingMd}
-            }"
-            VerticalOptions="End">
+        <VerticalStackLayout VerticalOptions="End"
+                             Padding="{app:EdgeInsets
+                                        Top={x:Static app:Dimensions.SpacingLg},
+                                        Bottom={x:Static app:Dimensions.SpacingMd}}">
             <IndicatorView
                 Margin="{app:EdgeInsets
                     Bottom={x:Static app:Dimensions.SpacingMd}
@@ -115,16 +110,6 @@
                 SelectedIndicatorColor="#fd853a"
                 IndicatorColor="{x:Static app:AppColors.Grey20}"/>
 
-            <!--<Button
-                    Text="Tiếp tục"
-                    HorizontalOptions="Center"
-                    Command="{Binding MoveCommand}" 
-                    IsVisible="{Binding AllowsToContinue}"
-                    Style="{x:Static app:Styles.ButtonPrimary}">
-                <Button.CommandParameter>
-                    <x:Boolean>False</x:Boolean>
-                </Button.CommandParameter>
-            </Button>-->
             <Button Text="Bắt đầu"
                     HorizontalOptions="Center"
                     BackgroundColor="#fd853a"
@@ -151,7 +136,7 @@
                     </DataTrigger>
                 </Button.Triggers>
             </Button>
-        </StackLayout>
+        </VerticalStackLayout>
 
         <Button x:Name="BackButton"
                 WidthRequest="47"

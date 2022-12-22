@@ -9,7 +9,7 @@
               Title="WelcomePages">
     <Grid>
         <Image
-            Source="cap_logo"
+            Source="petaverselogo"
             SemanticProperties.Description="Petaverse"
             HeightRequest="200"
             VerticalOptions="Center"

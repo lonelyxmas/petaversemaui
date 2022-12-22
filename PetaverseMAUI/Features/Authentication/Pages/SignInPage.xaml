@@ -25,11 +25,11 @@
     <Grid>
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout Spacing="0">
-                <Image Source="cap_icon"
-                       HeightRequest="48"
+                <Image Source="petaverselogo"
+                       HeightRequest="100"
                        HorizontalOptions="Center" 
                        SemanticProperties.Description="Petaverse"
-                       Margin="{app:EdgeInsets Top=118, Bottom={x:Static app:Dimensions.SpacingMd}}"/>
+                       Margin="{app:EdgeInsets Top=40, Bottom={x:Static app:Dimensions.SpacingMd}}"/>
                 <Label
                     Text="Đăng nhập" 
                     HorizontalTextAlignment="Center"
