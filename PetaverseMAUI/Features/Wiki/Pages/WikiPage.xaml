@@ -23,23 +23,42 @@
         <DataTemplate x:Key="SpeciesCollectionViewHeaderTemplate"
                       x:DataType="app:WikiPageViewModel">
 
-            <HorizontalStackLayout Spacing="20"
-                                   RadioButtonGroup.GroupName="SelectedItem"
-                                   BindableLayout.ItemsSource="{x:Binding Items}"
-                                   RadioButtonGroup.SelectedValue="{Binding SelectedItem, Mode=TwoWay}"
-                                   BindableLayout.ItemTemplate="{x:StaticResource SpeciesPivotItemTemplate}"/>
+            <Frame HasShadow="True"
+                   Margin="{app:EdgeInsets All={x:Static app:Dimensions.SpacingMd}}">
+                <VerticalStackLayout Spacing="{x:Static app:Dimensions.SpacingSm}">
+                    <Label Text="Species"
+                           Style="{x:Static app:Styles.Heading3}"/>
+                    <HorizontalStackLayout RadioButtonGroup.GroupName="SelectedItem"
+                                           Spacing="{x:Static app:Dimensions.SpacingSm}"
+                                           BindableLayout.ItemsSource="{x:Binding Items}"
+                                           RadioButtonGroup.SelectedValue="{Binding SelectedItem, Mode=TwoWay}"
+                                           BindableLayout.ItemTemplate="{x:StaticResource SpeciesPivotItemTemplate}"/>
+                    <Label Text="Filter"
+                           Style="{x:Static app:Styles.Heading4}"/>
+                    <HorizontalStackLayout Spacing="{x:Static app:Dimensions.SpacingSm}">
+                        <Picker Title="Size"/>
+                        <Picker Title="Coat"/>
+                        <Picker Title="Shedding"/>
+                        <Picker Title="Energy"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame> 
         </DataTemplate>
 
         <DataTemplate x:Key="SpeciesCollectionViewItemTemplate"
-                      x:DataType="app:SpeciesPivotModel">
-            
+                      x:DataType="app:BreedCardModel">
+            <app:BreedCardContentView ComponentData="{x:Binding}"
+                                      Margin="{app:EdgeInsets All={x:Static app:Dimensions.SpacingMd}}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="SpeciesCollectionViewFooterTemplate"
                       x:DataType="app:WikiPageViewModel">
 
         </DataTemplate>
-        
+
+        <LinearItemsLayout x:Key="BreedLayout"
+                           Orientation="Vertical" />
+
     </app:BasePage.Resources>
 
     <RefreshView IsRefreshing="{x:Binding IsBusy}"
@@ -47,6 +66,8 @@
         <CollectionView Header="{x:Binding}"
                         HeaderTemplate="{x:StaticResource SpeciesCollectionViewHeaderTemplate}"
                          
+                        ItemsLayout="{x:StaticResource BreedLayout}"
+                        
                         ItemsSource="{x:Binding Items}"
                         ItemTemplate="{x:StaticResource SpeciesCollectionViewItemTemplate}"
             

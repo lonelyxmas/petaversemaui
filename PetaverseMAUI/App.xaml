@@ -22,51 +22,46 @@
                     </RadioButton.Resources>
                     <RadioButton.ControlTemplate>
                         <ControlTemplate>
-                            <Grid RowDefinitions="45,4">
+                            <Grid x:Name="SpeciesBadge" BackgroundColor="Transparent">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroupList>
                                         <VisualStateGroup x:Name="CheckedStates">
                                             <VisualState x:Name="Checked">
                                                 <VisualState.Setters>
-                                                    <Setter TargetName="TextLabel"
-                                                    Property="Label.TextColor"
-                                                    Value="{x:Static app:AppColors.PetaversePrimary}"/>
-                                                    <Setter TargetName="Indicator"
-                                                    Property="BoxView.Color"
-                                                    Value="{x:Static app:AppColors.PetaversePrimary}"/>
+                                                    <Setter TargetName="SpeciesBadge"
+                                                            Property="Grid.Opacity"
+                                                            Value="1"/>
                                                 </VisualState.Setters>
                                             </VisualState>
 
                                             <VisualState x:Name="Unchecked">
                                                 <VisualState.Setters>
-                                                    <Setter TargetName="TextLabel"
-                                                        Property="Label.TextColor"
-                                                        Value="{x:AppThemeBinding Light={x:Static app:AppColors.Black}, Dark={x:Static app:AppColors.White}}"/>
-                                                    <Setter
-                                                        TargetName="Indicator"
-                                                        Property="BoxView.Color"
-                                                        Value="Transparent"/>
+                                                    <Setter TargetName="SpeciesBadge"
+                                                            Property="Grid.Opacity"
+                                                            Value="0.5"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                         </VisualStateGroup>
                                     </VisualStateGroupList>
                                 </VisualStateManager.VisualStateGroups>
-                                <HorizontalStackLayout>
+                                <BoxView x:Name="SpeciesBoxView"
+                                           Opacity="0.5"
+                                           CornerRadius="30"
+                                           Color="{x:Static app:AppColors.PetaversePrimary}"/>
+                                <HorizontalStackLayout VerticalOptions="Center"
+                                                       HorizontalOptions="Center"
+                                                       Margin="15,0,15,0">
                                     <Label x:Name="TextLabel"
-                                       FontSize="Large"
-                                       VerticalOptions="Center"
-                                       Text="{TemplateBinding Content.SpeciesName}" />
-                                    <toolkit:AvatarView Margin="5,0,0,0"
-                                                        WidthRequest="30" 
+                                            VerticalOptions="Center"
+                                            Text="{TemplateBinding Content.SpeciesName}" 
+                                            Style="{x:Static app:Styles.SubHeading1Semi}"
+                                            Margin="{app:EdgeInsets Right={x:Static app:Dimensions.SpacingXs}}"/>
+                                    <toolkit:AvatarView WidthRequest="30" 
                                                         HeightRequest="30"
                                                         VerticalOptions="Center"
                                                         BorderWidth="1" BorderColor="Black"
                                                         ImageSource="{TemplateBinding Content.SpeciesImageUrl}"/>
                                 </HorizontalStackLayout>
-                                <BoxView x:Name="Indicator" 
-                                     Grid.Row="1"
-                                     CornerRadius="2"
-                                     Color="Transparent"/>
                             </Grid>
                         </ControlTemplate>
                     </RadioButton.ControlTemplate>

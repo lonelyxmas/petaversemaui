@@ -34,7 +34,7 @@
 
         <DataTemplate x:Key="WalkthroughCarouselTemplate"
                       x:DataType="app:WalkthroughItemModel">
-            <VerticalStackLayout>
+            <VerticalStackLayout Spacing="{x:Static app:Dimensions.SpacingSm}">
                 <VerticalStackLayout.Resources>
                     <animations:FadeInAnimation x:Key="FadeInAnimation"
                                                 Target="{x:Reference TitleLabel, SubTitleLabel}"

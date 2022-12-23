@@ -3,14 +3,18 @@
 public partial class WikiPageViewModel : NavigationAwareBaseViewModel
 {
     #region [Services]
+    private readonly IWikiService wikiService;
+
     private readonly ISpeciesPivotService speciesPivotService;
     #endregion
 
     #region [CTor]
     public WikiPageViewModel(
+        IWikiService wikiService,
         ISpeciesPivotService speciesPivotService,
         IAppNavigator appNavigator) : base(appNavigator)
 	{
+        this.wikiService = wikiService;
         this.speciesPivotService = speciesPivotService;
     }
     #endregion
@@ -24,6 +28,9 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     ObservableCollection<SpeciesPivotModel> items;
+
+    [ObservableProperty]
+    ObservableCollection<BreedCardModel> fakeBreedCards;
     #endregion
 
     #region [Overrides]
@@ -64,9 +71,16 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
 
         var items = await speciesPivotService.GetAllSpecies();
 
+        var fakeBreed = await wikiService.GetAll();
+
         foreach (var item in items)
         {
             Items.Add(item);
+        }
+
+        foreach (var item in fakeBreed)
+        {
+            FakeBreedCards.Add(item);
         }
 
         IsBusy = false;

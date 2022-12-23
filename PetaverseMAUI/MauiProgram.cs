@@ -94,6 +94,7 @@ public static class MauiProgram
         //builder.Services.AddSingleton<IAppSettingsService, AppSettingsService>();
 
         builder.Services.AddTransient<IWelcomeService, WelcomeService>();
+        builder.Services.AddTransient<IWikiService, FakeWikiService>();
         builder.Services.AddTransient<IPetsListService, FakePetListService>();
         builder.Services.AddTransient<IPetProfileService, PetProfileService>();
         builder.Services.AddTransient<ISpeciesPivotService, SpeciesPivotService>();
