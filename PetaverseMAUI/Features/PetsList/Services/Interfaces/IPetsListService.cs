@@ -2,5 +2,5 @@
 
 public interface IPetsListService
 {
-    Task<List<PetProfileCardModel>> GetAll();
+    Task<IEnumerable<PetProfileCardModel>> GetAll();
 }

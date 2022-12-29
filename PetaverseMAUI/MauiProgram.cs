@@ -6,18 +6,18 @@ namespace PetaverseMAUI;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
-	{
-		var builder = MauiApp.CreateBuilder();
-		builder
-			.UseMauiApp<App>()
-			.UseMauiCommunityToolkit()
-			.ConfigureFonts(fonts =>
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
+            .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("FluentSystemIcons-Regular.ttf", FontNames.FluentSystemIconsRegular);
 
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 
                 fonts.AddFont("SmoochSans-Bold.ttf", FontNames.SmoochSansBold);
                 fonts.AddFont("SmoochSans-Regular.ttf", FontNames.SmoochSansRegular);
@@ -32,15 +32,34 @@ public static class MauiProgram
                 fonts.AddFont("Inter-SemiBold.ttf", FontNames.InterSemiBold);
                 fonts.AddFont("Inter-Thin.ttf", FontNames.InterThin);
             })
-			.ConfigureEssentials(essentials =>
-			{
-				essentials.UseVersionTracking();
-			})
+            .ConfigureEssentials(essentials =>
+            {
+                essentials.UseVersionTracking();
+            })
             .RegisterServices()
             .RegisterPages()
             .RegisterPopups();
 
-        Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("NoBorderEntry", (handler, view) =>
+//#if ANDROID
+//        ImageHandler.Mapper.AppendToMapping(nameof(ImageView.Drawable), async (handler, view) =>
+//        {
+//            if (view.Source is UriImageSource uriImageSource)
+//                try
+//                {
+//                    byte[] imageData;
+//                    using (var response = await _httpClient.GetAsync(uriImageSource.Uri))
+//                    {
+//                        imageData = await response.Content.ReadAsByteArrayAsync();
+//                    }
+//                    handler.PlatformView.SetImageDrawable(new BitmapDrawable(BitmapFactory.DecodeByteArray(imageData, 0, imageData.Length)));
+//                }
+//                catch
+//                {
+//                };
+//        });
+//#endif
+
+        EntryHandler.Mapper.AppendToMapping("NoBorderEntry", (handler, view) =>
         {
 #if ANDROID
             handler.PlatformView.SetBackgroundColor(Colors.Transparent.ToPlatform());
@@ -52,7 +71,7 @@ public static class MauiProgram
 #endif
         });
 
-        Microsoft.Maui.Handlers.PageHandler.Mapper.AppendToMapping("Popup", (handler, view) =>
+        PageHandler.Mapper.AppendToMapping("Popup", (handler, view) =>
         {
 #if ANDROID
             //handler.PlatformView.SetBackgroundColor(Colors.Transparent.ToPlatform());
@@ -68,7 +87,7 @@ public static class MauiProgram
 
 
         return builder.Build();
-	}
+    }
 
 #if __ANDROID__
     public static void PrependToMappingImageSource(IImageHandler handler, Microsoft.Maui.IImage image)
@@ -77,7 +96,9 @@ public static class MauiProgram
     }
 #endif
 
-    static MauiAppBuilder RegisterPopups(this MauiAppBuilder builder)
+
+
+static MauiAppBuilder RegisterPopups(this MauiAppBuilder builder)
     {
         builder.Services.AddPopup<AddPetPopup, AddPetPopupViewModel>(AppRoutes.AddPetPopup);
 
@@ -97,7 +118,6 @@ public static class MauiProgram
         builder.Services.AddTransient<IWikiService, FakeWikiService>();
         builder.Services.AddTransient<IPetsListService, FakePetListService>();
         builder.Services.AddTransient<IPetProfileService, PetProfileService>();
-        builder.Services.AddTransient<ISpeciesPivotService, SpeciesPivotService>();
 
         return builder;
     }

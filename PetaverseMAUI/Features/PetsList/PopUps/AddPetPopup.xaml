@@ -137,6 +137,7 @@
                 </HorizontalStackLayout>
 
                 <app:RoundedEntry Placeholder="Tell us his/her name"
+                                  Text="{x:Binding PetForm.PetName}"
                                   Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
 
                 <Picker Title="Loài"
@@ -145,8 +146,8 @@
                 <Editor Placeholder="Mô tả về thú cưng"
                         Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
 
-                <DatePicker 
-                        Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
+                <DatePicker Date="{x:Binding PetForm.DateOfBirth}"
+                            Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
 
                 <Label Text="Màu"
                        Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
@@ -155,11 +156,11 @@
                         Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
 
                 <Button Text="Tạo"
-                        Command="{Binding DoneCommand}"
+                        Command="{x:Binding CreateCommand}"
                         Style="{x:Static app:Styles.ButtonPrimarySm}"
                         Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
                 <Button Text="Hủy"
-                        Command="{Binding DoneCommand}"
+                        Command="{Binding CancelCommand}"
                         Style="{x:Static app:Styles.ButtonSecondarySm}"
                         Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingSm}, Bottom={x:Static app:Dimensions.SpacingXl}}"/>
             </VerticalStackLayout>

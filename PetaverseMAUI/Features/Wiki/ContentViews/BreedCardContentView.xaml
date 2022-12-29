@@ -2,6 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:app="clr-namespace:PetaverseMAUI"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              
              x:Name="root"
              x:DataType="app:BreedCardContentView"
@@ -10,8 +11,8 @@
            HasShadow="True"
            HeightRequest="170"
            BackgroundColor="#7cd4fd">
-        <Grid>
-            <Ellipse Margin="0,-75,-75,0"
+        <Grid IsClippedToBounds="True">
+            <Ellipse Margin="0,-105,-105,0"
                      Grid.RowSpan="2"
                      Grid.ColumnSpan="2"
                      WidthRequest="300"
@@ -34,29 +35,25 @@
                 <VerticalStackLayout VerticalOptions="Start"
                                  HorizontalOptions="Start"
                                  Spacing="{x:Static app:Dimensions.SpacingSm}">
-                    <!--<Label Text="{x:Binding ComponentData.BreedName}"
-                       Style="{x:Static app:Styles.SubHeading1}"/>
-                <Label Text="{x:Binding ComponentData.BreedDetail}"
-                       Style="{x:Static app:Styles.BodySmall}"/>-->
-
-                    <Label Text="Tabby"
-                       Style="{x:Static app:Styles.Heading3Small}"/>
-
-                    <Label Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-                       Style="{x:Static app:Styles.BodySmall}" MaxLines="3"/>
+                    <Label Text="{x:Binding ComponentData.BreedName, Source={x:Reference root}}"
+                           Style="{x:Static app:Styles.SubHeading1}"/>
+                    <Label MaxLines="3"
+                           Text="{x:Binding ComponentData.BreedDetail, Source={x:Reference root}}"
+                           Style="{x:Static app:Styles.BodySmall}"/>
 
                 </VerticalStackLayout>
 
                 <Button Text="Chi tiết"
-                    Grid.Row="1"
-                    VerticalOptions="End"
-                    HorizontalOptions="Start"/>
+                        Grid.Row="1"
+                        VerticalOptions="End"
+                        HorizontalOptions="Start"/>
 
                 <Image Grid.Column="1"
                        Grid.RowSpan="2"
+                       Aspect="AspectFit"
                        HeightRequest="230"
                        VerticalOptions="Center"
-                       Source="https://i.imgur.com/9tI01tJ.png"/>
+                       Source="{x:Binding ComponentData.BreedImageUrl, Mode=OneWay, Source={x:Reference root}}"/>
             </Grid>
         </Grid>
     </Frame>

@@ -62,5 +62,12 @@ public partial class PetDetailProfilePageViewModel : NavigationAwareBaseViewMode
 
         await LoadDataAsync();
     }
+
+    protected override void OnInit(IDictionary<string, object> query)
+    {
+        base.OnInit(query);
+
+        var pet = query.GetData<CreatePetFormModel>();
+    }
     #endregion
 }

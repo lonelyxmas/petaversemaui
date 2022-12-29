@@ -18,7 +18,8 @@
     </ContentView.Resources>
     
     <Frame HasShadow="True">
-        <VerticalStackLayout HorizontalOptions="Center">
+        <VerticalStackLayout HorizontalOptions="Center"
+                             Spacing="{x:Static app:Dimensions.SpacingSm}">
             <toolkit:AvatarView CornerRadius="75"
                                 WidthRequest="120"
                                 HeightRequest="120"

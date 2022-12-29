@@ -13,8 +13,12 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [Fields]
+
     [ObservableProperty]
     bool isBusy;
+
+    [ObservableProperty]
+    string currentDeviceState = "Phone";
 
     [ObservableProperty]
     ObservableCollection<PetProfileCardsGroupModel> fakePetProfileCards;

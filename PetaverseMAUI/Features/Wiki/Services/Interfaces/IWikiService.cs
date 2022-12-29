@@ -2,5 +2,5 @@
 
 public interface IWikiService
 {
-    Task<List<BreedCardModel>> GetAll();
+    Task<IEnumerable<SpeciesPivotModel>> GetAllSpecies();
 }

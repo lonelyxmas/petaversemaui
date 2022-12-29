@@ -2,7 +2,7 @@
 
 public class FakePetListService : IPetsListService
 {
-    public Task<List<PetProfileCardModel>> GetAll()
+    public Task<IEnumerable<PetProfileCardModel>> GetAll()
     {
         return Task.Run(() =>
         {
@@ -14,7 +14,7 @@ public class FakePetListService : IPetsListService
             faker.RuleFor(x => x.ProfileUrl, (f, model) => f.Image.LoremFlickrUrl(120, 120, model.SpeciesType == SpeciesType.Cat ? "cat" 
                                                                                                                                  : model.SpeciesType == SpeciesType.Dog ? "dog"
                                                                                                                                                                         : "fish"));
-            return faker.Generate(10).ToList();
+            return faker.Generate(10).AsEnumerable();
         });
     }
 }

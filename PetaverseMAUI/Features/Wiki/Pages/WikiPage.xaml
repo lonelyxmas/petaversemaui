@@ -31,7 +31,7 @@
                     <HorizontalStackLayout RadioButtonGroup.GroupName="SelectedItem"
                                            Spacing="{x:Static app:Dimensions.SpacingSm}"
                                            BindableLayout.ItemsSource="{x:Binding Items}"
-                                           RadioButtonGroup.SelectedValue="{Binding SelectedItem, Mode=TwoWay}"
+                                           RadioButtonGroup.SelectedValue="{x:Binding SelectedItem, Mode=TwoWay}"
                                            BindableLayout.ItemTemplate="{x:StaticResource SpeciesPivotItemTemplate}"/>
                     <Label Text="Filter"
                            Style="{x:Static app:Styles.Heading4}"/>
@@ -68,7 +68,7 @@
                          
                         ItemsLayout="{x:StaticResource BreedLayout}"
                         
-                        ItemsSource="{x:Binding Items}"
+                        ItemsSource="{x:Binding SelectedItem.BreedCards}"
                         ItemTemplate="{x:StaticResource SpeciesCollectionViewItemTemplate}"
             
                         Footer="{x:Binding}"

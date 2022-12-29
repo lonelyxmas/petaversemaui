@@ -6,7 +6,7 @@
              x:Name="root"
              x:Class="PetaverseMAUI.IconLabel"
              x:DataType="app:IconLabel">
-    <HorizontalStackLayout>
+    <HorizontalStackLayout Spacing="{x:Static app:Dimensions.SpacingXs}">
         <Image WidthRequest="28"
                HeightRequest="28"
                Source="{Binding PrefixIcon, Source={x:Reference root}}"

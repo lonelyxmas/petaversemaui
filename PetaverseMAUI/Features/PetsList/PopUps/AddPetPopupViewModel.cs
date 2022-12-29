@@ -10,25 +10,38 @@ public partial class AddPetPopupViewModel : BaseViewModel
     [ObservableProperty]
     SpeciesPivotModel selectedSpecies;
 
+    public CreatePetFormModel PetForm { get; init; }
+
     #endregion
 
     #region [CTor]
-    public AddPetPopupViewModel(ISpeciesPivotService speciesPivotService, 
-                                IAppNavigator appNavigator) : base(appNavigator)
+    public AddPetPopupViewModel(IAppNavigator appNavigator) : base(appNavigator)
 	{
-        this.speciesPivotService = speciesPivotService;
+        PetForm = new();
 	}
     #endregion
 
     #region [Services]
 
-    private readonly ISpeciesPivotService speciesPivotService;
     #endregion
 
     #region [RelayCommand]
 
     [RelayCommand]
-    private Task Done(object obj) => AppNavigator.NavigateAsync(AppRoutes.PetsProfile);
+    async Task Create()
+    {
+        var isValid = PetForm.IsValid();
+        if (!isValid)
+        {
+            await Task.CompletedTask;
+        }
+
+        AppNavigator.NavigateAsync(AppRoutes.PetsProfile, true, args: PetForm)
+                    .FireAndForget();
+    }
+
+    [RelayCommand]
+    Task Cancel() => AppNavigator.GoBackAsync();
 
     [RelayCommand]
     private Task Retry(object obj) => AppNavigator.GoBackAsync(true);
@@ -37,17 +50,11 @@ public partial class AddPetPopupViewModel : BaseViewModel
     #region [Methods]
     private async Task LoadDataAsync()
     {
-        var items = await this.speciesPivotService.GetAllSpecies();
 
         if(SpeciesPivots == null)
         {
             SpeciesPivots = new List<SpeciesPivotModel>();
             //return;
-        }
-
-        foreach (var item in items)
-        {
-            SpeciesPivots.Add(item);
         }
     }
     #endregion

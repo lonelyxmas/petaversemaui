@@ -9,7 +9,7 @@ public partial class BreedCardModel : BaseModel
     string breedDetail;
 
     [ObservableProperty]
-    string breedImageUrl;
+    ImageSource breedImageUrl;
 
     [ObservableProperty]
     string color;

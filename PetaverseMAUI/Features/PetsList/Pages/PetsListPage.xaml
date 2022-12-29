@@ -43,20 +43,8 @@
             <Grid>
                 <Label HorizontalTextAlignment="Start"
                        Text="{x:Binding SpeciesName}"
-                       Style="{x:Static app:Styles.Heading3}"
+                       Style="{x:Static app:Styles.Heading3Small}"
                        Margin="{x:Static app:Dimensions.SpacingSm}"/>
-
-                <Frame Padding="0"
-                       HasShadow="True"
-                       CornerRadius="4"
-                       VerticalOptions="Center"
-                       HorizontalOptions="End"
-                       Margin="{x:Static app:Dimensions.SpacingSm}">
-                    <ImageButton WidthRequest="40"
-                                 HeightRequest="40"
-                                 Margin="3,3,0,0"
-                                 Source="{x:StaticResource Add12Icon}"/>
-                </Frame>
             </Grid>
         </DataTemplate>
 
@@ -92,7 +80,7 @@
                  IsRefreshing="{x:Binding IsBusy}">
         <CollectionView x:Name="PetsCollectionView"
                           IsGrouped="True"
-                          EmptyView="Fetching data ?"
+                          EmptyView="Fetching data"
                           GroupHeaderTemplate="{x:StaticResource PetsCollectionViewGroupedHeaderTemplate}"
                         
                           ItemsLayout="{x:StaticResource PetsCollectionViewLayout}"
