@@ -8,7 +8,6 @@
               x:DataType="app:ProfilePageViewModel"
               
               Shell.NavBarIsVisible="false"
-              
               SizeChanged="BasePage_SizeChanged">
     <app:BasePage.Resources>
         <Style x:Key="FollowSwithStyle"
@@ -47,6 +46,7 @@
                                        HorizontalOptions="Center"
                                        HorizontalTextAlignment="Center"/>
                                 <Switch HorizontalOptions="Center"
+                                        MinimumWidthRequest="0"
                                         Style="{StaticResource FollowSwithStyle}"/>
                             </VerticalStackLayout>
                             <FlexLayout Grid.Row="1"
@@ -71,36 +71,49 @@
                             </FlexLayout>
                         </Grid>
                     </Frame>
-                    <Frame Grid.Row="1">
-                        <HorizontalStackLayout HorizontalOptions="Center">
-                            <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"/>
-                            <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"/>
-                            <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"/>
-                            <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"/>
+                    <Frame Grid.Row="1"
+                           HasShadow="True">
+                        <HorizontalStackLayout Spacing="10"
+                                               HorizontalOptions="Center">
+                            <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"
+                                                ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Bravo.png"/>
+                            <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"
+                                                ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Lucky.png"/>
+                            <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"
+                                                ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Snow.png"/>
+                            <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"
+                                                ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Yummi.png"/>
                         </HorizontalStackLayout>
                     </Frame>
-                    <Frame Grid.Row="2">
+                    <Frame Grid.Row="2"
+                           HasShadow="True">
                         <VerticalStackLayout>
                             <Frame Background="{x:StaticResource PremiumSubscriptionColor}">
-                                <HorizontalStackLayout>
-                                    <VerticalStackLayout>
-                                        <Label Text="PREMIUM"/>
-                                        <Label Text="Get the most for you and your pets"/>
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image Source="{x:StaticResource Flash28Icon}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"/>
+                                    <VerticalStackLayout Spacing="5">
+                                        <Label Text="PREMIUM"
+                                               TextColor="{x:Static app:AppColors.LightYellow}"
+                                               FontAttributes="Bold"/>
+                                        <Label Text="Get the most for you and your pets"
+                                               TextColor="{x:Static app:AppColors.Black}"/>
                                     </VerticalStackLayout>
                                 </HorizontalStackLayout>
                             </Frame>
-                            <TableView Intent="Menu">
+                            <TableView Intent="Settings">
                                 <TableRoot>
                                     <TableSection Title="Cài đặt">
                                         <ImageCell Text="Thông tin cá nhân"
-                                           Detail="Cá nhân hóa thông tin cá nhân của bạn" 
-                                           ImageSource="{x:StaticResource Setting24Icon}"/>
+                                                   Detail="Kiểm soát tài khoản của bạn" 
+                                                   ImageSource="settingicon.png"/>
                                         <ImageCell Text="Yêu thích từ cộng đồng"
-                                           Detail="1,199 bài yêu thích" 
-                                           ImageSource="{x:StaticResource Heart24Icon}"/>
+                                                   Detail="1,199 bài yêu thích" 
+                                                   ImageSource="likeicon.png"/>
                                         <ImageCell Text="Theo dõi từ cộng đồng"
-                                           Detail="57 tin tức đang được theo dõi" 
-                                           ImageSource="{x:StaticResource New24Icon}"/>
+                                                   Detail="57 tin tức đang được theo dõi" 
+                                                   ImageSource="followicon.png"/>
                                         <TextCell Text="Đăng xuất" TextColor="Red"/>
                                     </TableSection>
                                 </TableRoot>
@@ -110,10 +123,10 @@
 
 
                     <toolkit:AvatarView CornerRadius="50"
-                                WidthRequest="100"
-                                HeightRequest="100"
-                                VerticalOptions="Start"
-                                ImageSource="https://i.imgur.com/vc9FudE.jpg"/>
+                                        WidthRequest="100"
+                                        HeightRequest="100"
+                                        VerticalOptions="Start"
+                                        ImageSource="https://i.imgur.com/vc9FudE.jpg"/>
                 </Grid>
                 <Label Text="TABLET"
                    TextColor="White"

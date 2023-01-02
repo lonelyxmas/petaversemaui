@@ -48,4 +48,9 @@
                        Color="{x:Static app:AppColors.Black}"
                        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
                        Glyph="{x:Static app:FluentUIIcon.Ic_fluent_folder_arrow_up_24_regular}"/>
+
+    <FontImageSource x:Key="Flash28Icon"
+                       Color="{x:Static app:AppColors.LightYellow}"
+                       FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_flash_28_regular}"/>
 </ResourceDictionary>

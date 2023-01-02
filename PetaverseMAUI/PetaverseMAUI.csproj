@@ -93,8 +93,11 @@
 	  <None Remove="Resources\Fonts\SmoochSans-Regular.ttf" />
 	  <None Remove="Resources\Images\cat.png" />
 	  <None Remove="Resources\Images\dog.png" />
+	  <None Remove="Resources\Images\followicon.png" />
+	  <None Remove="Resources\Images\likeicon.png" />
 	  <None Remove="Resources\Images\microsoft_logo.svg" />
 	  <None Remove="Resources\Images\petaverselogo.svg" />
+	  <None Remove="Resources\Images\settingicon.png" />
 	  <None Remove="Resources\Images\Walkthrough1.svg" />
 	  <None Remove="Resources\Images\Walkthrough2.svg" />
 	  <None Remove="Resources\Images\Walkthrough3.svg" />
@@ -103,7 +106,7 @@
 	<ItemGroup>
 		<PackageReference Include="Bogus" Version="34.0.2" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="3.1.0" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0-preview2" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0-preview3" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 

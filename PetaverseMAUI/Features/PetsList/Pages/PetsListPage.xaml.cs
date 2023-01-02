@@ -8,7 +8,9 @@ public partial class PetsListPage
 		InitializeComponent();
 
 		BindingContext = viewModel = vm;
-	}
+
+        PetsCollectionView.ItemsLayout = new GridItemsLayout(2, ItemsLayoutOrientation.Vertical);
+    }
 
     private void BasePage_SizeChanged(object sender, EventArgs e)
     {
@@ -18,7 +20,7 @@ public partial class PetsListPage
             {
                 viewModel.CurrentDeviceState = "Phone";
 
-                //PetsCollectionView.ItemsLayout = this.Resources["PetsCollectionViewTabletLayout"] as ItemsLayout;
+                PetsCollectionView.ItemsLayout = new GridItemsLayout(2, ItemsLayoutOrientation.Vertical);
             }
         }
         else if (Window.Width < 900)
@@ -26,8 +28,8 @@ public partial class PetsListPage
             if (viewModel is not null)
             {
                 viewModel.CurrentDeviceState = "Tablet";
-
-                //PetsCollectionView.ItemsLayout = this.Resources["PetsCollectionViewTabletLayout"] as ItemsLayout;
+                //viewModel.Span = 3;
+                PetsCollectionView.ItemsLayout = new GridItemsLayout(3, ItemsLayoutOrientation.Vertical);
             }
         }
         else if (Window.Width < 2000)
@@ -35,15 +37,15 @@ public partial class PetsListPage
             if (viewModel is not null)
             {
                 viewModel.CurrentDeviceState = "Desktop";
-
-                //PetsCollectionView.ItemsLayout = this.Resources["PetsCollectionViewDesktopLayout"] as ItemsLayout;
+                //viewModel.Span = 4;
+                PetsCollectionView.ItemsLayout = new GridItemsLayout(4, ItemsLayoutOrientation.Vertical);
             }
         }
     }
 
     private void PetHandler_SelectPet(PetProfileCardModel pet)
     {
-		PetsCollectionView.ScrollTo(pet, animate: true);
+		//PetsCollectionView.ScrollTo(pet, animate: true);
 		viewModel.NavigateToProfileDetailCommand.Execute(pet);
     }
 }

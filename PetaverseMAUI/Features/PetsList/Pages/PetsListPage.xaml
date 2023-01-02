@@ -6,13 +6,14 @@
              
               x:DataType="app:PetsListPageViewModel"
               x:Class="PetaverseMAUI.PetsListPage"
-              Title="PetsListPage">
+              
+              SizeChanged="BasePage_SizeChanged">
 
     <Shell.SearchHandler>
         <app:PetsSearchHandler ShowsResults="True"
                                Placeholder="Search Pets"
                                SelectPet="PetHandler_SelectPet"
-                               Pets="{x:Binding FakePetProfileCards}"
+                               Pets="{x:Binding Items}"
                                QueryIcon="{x:StaticResource SearchIcon}"
                                ClearIcon="{x:StaticResource Clear16Icon}">
             <app:PetsSearchHandler.ItemTemplate>
@@ -67,8 +68,20 @@
             </Grid>
         </DataTemplate>
 
-        <GridItemsLayout x:Key="PetsCollectionViewLayout"
+        <GridItemsLayout x:Key="PetsCollectionViewPhoneLayout"
                          Span="2"
+                         Orientation="Vertical"
+                         VerticalItemSpacing="1"
+                         HorizontalItemSpacing="1"/>
+
+        <GridItemsLayout x:Key="PetsCollectionViewTabletLayout"
+                         Span="3"
+                         Orientation="Vertical"
+                         VerticalItemSpacing="1"
+                         HorizontalItemSpacing="1"/>
+
+        <GridItemsLayout x:Key="PetsCollectionViewDesktopLayout"
+                         Span="4"
                          Orientation="Vertical"
                          VerticalItemSpacing="1"
                          HorizontalItemSpacing="1"/>
@@ -76,16 +89,73 @@
 
     <!--RemainingItemsThreshold="{x:Binding ItemThreshold}"
                           RemainingItemsThresholdReachedCommand="{x:Binding IncreamentLoadCommand}"-->
+    <!--<VerticalStackLayout toolkit:StateContainer.CurrentState="{x:Binding CurrentDeviceState}">
+        <toolkit:StateContainer.StateViews>
+            <RefreshView Command="{x:Binding RefreshCommand}"
+                         IsRefreshing="{x:Binding IsBusy}"
+                         toolkit:StateView.StateKey="Phone">
+                <CollectionView x:Name="PetsCollectionView"
+                          IsGrouped="True"
+                          EmptyView="Fetching data"
+                          GroupHeaderTemplate="{x:StaticResource PetsCollectionViewGroupedHeaderTemplate}"
+                        
+                          ItemsLayout="{x:StaticResource PetsCollectionViewPhoneLayout}"
+                        
+                          ItemsSource="{x:Binding Items}"
+                          ItemTemplate="{x:StaticResource PetsCollectionViewItemTemplate}"
+                            
+                            
+                          Footer="{x:Binding}"
+                          FooterTemplate="{x:StaticResource PetsCollectionViewFooterTemplate}"/>
+            </RefreshView>
+
+            <RefreshView Command="{x:Binding RefreshCommand}"
+                         IsRefreshing="{x:Binding IsBusy}"
+                         toolkit:StateView.StateKey="Tablet">
+                <CollectionView x:Name="PetsCollectionViewTablet"
+                          IsGrouped="True"
+                          EmptyView="Fetching data"
+                          GroupHeaderTemplate="{x:StaticResource PetsCollectionViewGroupedHeaderTemplate}"
+                        
+                          ItemsLayout="{x:StaticResource PetsCollectionViewTabletLayout}"
+                        
+                          ItemsSource="{x:Binding Items}"
+                          ItemTemplate="{x:StaticResource PetsCollectionViewItemTemplate}"
+                            
+                            
+                          Footer="{x:Binding}"
+                          FooterTemplate="{x:StaticResource PetsCollectionViewFooterTemplate}"/>
+            </RefreshView>
+
+            <RefreshView Command="{x:Binding RefreshCommand}"
+                         IsRefreshing="{x:Binding IsBusy}"
+                         toolkit:StateView.StateKey="Desktop">
+                <CollectionView x:Name="PetsCollectionViewDesktop"
+                          IsGrouped="True"
+                          EmptyView="Fetching data"
+                          GroupHeaderTemplate="{x:StaticResource PetsCollectionViewGroupedHeaderTemplate}"
+                        
+                          ItemsLayout="{x:StaticResource PetsCollectionViewDesktopLayout}"
+                        
+                          ItemsSource="{x:Binding Items}"
+                          ItemTemplate="{x:StaticResource PetsCollectionViewItemTemplate}"
+                            
+                            
+                          Footer="{x:Binding}"
+                          FooterTemplate="{x:StaticResource PetsCollectionViewFooterTemplate}"/>
+            </RefreshView>
+        </toolkit:StateContainer.StateViews>
+    </VerticalStackLayout>-->
+
     <RefreshView Command="{x:Binding RefreshCommand}"
-                 IsRefreshing="{x:Binding IsBusy}">
+                         IsRefreshing="{x:Binding IsBusy}">
         <CollectionView x:Name="PetsCollectionView"
                           IsGrouped="True"
                           EmptyView="Fetching data"
                           GroupHeaderTemplate="{x:StaticResource PetsCollectionViewGroupedHeaderTemplate}"
                         
-                          ItemsLayout="{x:StaticResource PetsCollectionViewLayout}"
                         
-                          ItemsSource="{x:Binding FakePetProfileCards}"
+                          ItemsSource="{x:Binding Items}"
                           ItemTemplate="{x:StaticResource PetsCollectionViewItemTemplate}"
                             
                             

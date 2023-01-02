@@ -36,6 +36,9 @@ public partial class WalkthroughPageViewModel : NavigationAwareBaseViewModel
     [NotifyPropertyChangedFor(nameof(AllowsToSkip))]
     int itemPosition;
 
+    [ObservableProperty]
+    string deviceState;
+
     public bool AllowsToGoback => itemPosition > 0;
     public bool AllowsToContinue => itemPosition < items?.Count - 1;
     public bool AllowsToStart => itemPosition == items?.Count - 1;

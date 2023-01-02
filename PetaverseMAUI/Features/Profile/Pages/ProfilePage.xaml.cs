@@ -19,16 +19,13 @@ public partial class ProfilePage
     {
         if(Window.Width < 500)
         {
-            if(viewModel is not null)
-                viewModel.CurrentDeviceState = "Phone";
+            viewModel.CurrentDeviceState = "Phone";
         }else if(Window.Width < 900)
         {
-            if (viewModel is not null)
-                viewModel.CurrentDeviceState = "Tablet";
+            viewModel.CurrentDeviceState = "Tablet";
         }else if (Window.Width < 2000)
         {
-            if (viewModel is not null)
-                viewModel.CurrentDeviceState = "Desktop";
+            viewModel.CurrentDeviceState = "Desktop";
         }
     }
 }

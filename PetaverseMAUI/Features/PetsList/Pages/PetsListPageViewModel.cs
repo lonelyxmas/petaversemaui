@@ -15,13 +15,16 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
     #region [Fields]
 
     [ObservableProperty]
+    int span = 2;
+
+    [ObservableProperty]
     bool isBusy;
 
     [ObservableProperty]
-    string currentDeviceState = "Phone";
+    string currentDeviceState;
 
     [ObservableProperty]
-    ObservableCollection<PetProfileCardsGroupModel> fakePetProfileCards;
+    ObservableCollection<PetProfileCardsGroupModel> items;
     #endregion
 
     #region [Services]
@@ -50,17 +53,17 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
 
         var items = await this.petsListService.GetAll();
 
-        if (FakePetProfileCards == null)
+        if (Items == null)
         {
-            FakePetProfileCards = new ObservableCollection<PetProfileCardsGroupModel>();
+            Items = new ObservableCollection<PetProfileCardsGroupModel>();
             return;
         }
 
         foreach (var item in items)
         {
-            if (!FakePetProfileCards.SelectMany(x => x).Any(y => y.SpeciesType == item.SpeciesType))
+            if (!Items.SelectMany(x => x).Any(y => y.SpeciesType == item.SpeciesType))
             {
-                FakePetProfileCards.Add(new PetProfileCardsGroupModel(item.SpeciesType.ToString(),
+                Items.Add(new PetProfileCardsGroupModel(item.SpeciesType.ToString(),
                                                                       items.Where(x => x.SpeciesType == item.SpeciesType).ToList()));
             };
         }

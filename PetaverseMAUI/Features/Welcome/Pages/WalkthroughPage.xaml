@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:PetaverseMAUI"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:triggers="clr-namespace:PetaverseMAUI.Triggers"
     xmlns:animations="clr-namespace:PetaverseMAUI.Animations"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
@@ -81,64 +82,69 @@
             </VerticalStackLayout>
         </DataTemplate>
     </app:BasePage.Resources>
-    <Grid VerticalOptions="FillAndExpand"
-          HorizontalOptions="FillAndExpand">
-        <CarouselView Loop="False"
-                      IsSwipeEnabled="True"
-                      IndicatorView="indicatorView"
-                      ItemsSource="{Binding Items}"
-                      VerticalOptions="FillAndExpand"
+
+    <ScrollView>
+        <Grid toolkit:StateContainer.CurrentState="{x:Binding DeviceState}">
+            <toolkit:StateContainer.StateViews>
+                <Grid VerticalOptions="FillAndExpand"
                       HorizontalOptions="FillAndExpand"
-                      Position="{Binding ItemPosition}"
-                      ItemTemplate="{StaticResource WalkthroughCarouselTemplate}">
-            <CarouselView.Triggers>
-                <EventTrigger Event="PositionChanged">
-                    <triggers:BeginAnimation Animation="{StaticResource FadeToAnimation}"/>
-                </EventTrigger>
-            </CarouselView.Triggers>
-        </CarouselView>
-        <VerticalStackLayout VerticalOptions="End"
+                      toolkit:StateView.StateKey="Phone">
+                    <CarouselView Loop="False"
+                                  IsSwipeEnabled="True"
+                                  IndicatorView="indicatorView"
+                                  ItemsSource="{Binding Items}"
+                                  VerticalOptions="FillAndExpand"
+                                  HorizontalOptions="FillAndExpand"
+                                  Position="{Binding ItemPosition}"
+                                  ItemTemplate="{StaticResource WalkthroughCarouselTemplate}">
+                        <CarouselView.Triggers>
+                            <EventTrigger Event="PositionChanged">
+                                <triggers:BeginAnimation Animation="{StaticResource FadeToAnimation}"/>
+                            </EventTrigger>
+                        </CarouselView.Triggers>
+                    </CarouselView>
+                    <VerticalStackLayout VerticalOptions="End"
                              Padding="{app:EdgeInsets
                                         Top={x:Static app:Dimensions.SpacingLg},
                                         Bottom={x:Static app:Dimensions.SpacingMd}}">
-            <IndicatorView
+                        <IndicatorView
                 Margin="{app:EdgeInsets
                     Bottom={x:Static app:Dimensions.SpacingMd}
                 }"
                 x:Name="indicatorView"
                 HorizontalOptions="Center" 
-                SelectedIndicatorColor="#fd853a"
+                SelectedIndicatorColor="{x:StaticResource Primary}"
                 IndicatorColor="{x:Static app:AppColors.Grey20}"/>
 
-            <Button Text="Bắt đầu"
+                        <Button Text="Bắt đầu"
                     HorizontalOptions="Center"
-                    BackgroundColor="#fd853a"
+                    BackgroundColor="{x:StaticResource Primary}"
                     Command="{Binding StartCommand}"
                     IsVisible="{Binding AllowsToStart}"
                     Style="{x:Static app:Styles.ButtonAccent}"/>
-            <Button Text="Bỏ qua"
+                        <Button Text="Bỏ qua"
                     HorizontalOptions="Center"
                     Command="{Binding SkipCommand}" 
                     Style="{x:Static app:Styles.ButtonFlat}"
                     Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingSm}}">
-                <Button.Triggers>
-                    <DataTrigger
+                            <Button.Triggers>
+                                <DataTrigger
                         TargetType="Button"
                         Binding="{Binding AllowsToSkip}"
                         Value="True">
-                        <Setter Property="Opacity" Value="1" />
-                    </DataTrigger>
-                    <DataTrigger
+                                    <Setter Property="Opacity" Value="1" />
+                                </DataTrigger>
+                                <DataTrigger
                         TargetType="Button"
                         Binding="{Binding AllowsToSkip}"
                         Value="False">
-                        <Setter Property="Opacity" Value="0.01" />
-                    </DataTrigger>
-                </Button.Triggers>
-            </Button>
-        </VerticalStackLayout>
+                                    <Setter Property="Opacity" Value="0.01" />
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    </VerticalStackLayout>
 
-        <Button x:Name="BackButton"
+                    <Button x:Name="BackButton"
                 WidthRequest="47"
                 HeightRequest="47"
                 VerticalOptions="Start"
@@ -150,10 +156,10 @@
                 Margin="{app:EdgeInsets
                             Top={x:Static app:Dimensions.SpacingLg},
                             Left={x:Static app:Dimensions.SpacingMd}}">
-            <Button.CommandParameter>
-                <x:Boolean>True</x:Boolean>
-            </Button.CommandParameter>
-            <!--<Button.Triggers>
+                        <Button.CommandParameter>
+                            <x:Boolean>True</x:Boolean>
+                        </Button.CommandParameter>
+                        <!--<Button.Triggers>
                 <EventTrigger Event="Loaded">
                     <triggers:BeginAnimation Animation="{StaticResource FadeInAnimation}"/>
                 </EventTrigger>
@@ -161,9 +167,9 @@
                     <triggers:BeginAnimation Animation="{StaticResource FadeOutAnimation}"/>
                 </EventTrigger>
             </Button.Triggers>-->
-        </Button>
+                    </Button>
 
-        <Label x:Name="SwipeInstructionLabel"
+                    <Label x:Name="SwipeInstructionLabel"
                Opacity="0"
                VerticalOptions="Start"
                HorizontalOptions="End"
@@ -174,11 +180,16 @@
                Text="Vuốt phải để khám phá các tính năng nổi bật"
                Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingLg},
                                        Right={x:Static app:Dimensions.SpacingMd}}">
-            <Label.Triggers>
-                <EventTrigger Event="Loaded">
-                    <triggers:BeginAnimation Animation="{StaticResource FadeInAnimation}"/>
-                </EventTrigger>
-            </Label.Triggers>
-        </Label>
-    </Grid>
+                        <Label.Triggers>
+                            <EventTrigger Event="Loaded">
+                                <triggers:BeginAnimation Animation="{StaticResource FadeInAnimation}"/>
+                            </EventTrigger>
+                        </Label.Triggers>
+                    </Label>
+                </Grid>
+                <Label toolkit:StateView.StateKey="Tablet" Text="Success!" />
+                <Label toolkit:StateView.StateKey="Desktop" Text="Default Content" />
+            </toolkit:StateContainer.StateViews>
+        </Grid>
+    </ScrollView>
 </app:BasePage>
