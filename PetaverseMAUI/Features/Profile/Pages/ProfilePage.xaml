@@ -28,6 +28,35 @@
             <GradientStop Color="#c0c0aa"
                           Offset="1.0" />
         </LinearGradientBrush>
+
+        <DataTemplate x:Key="ActivitiesHeaderTemplate"
+                      x:DataType="x:String">
+            <Label Text="{x:Binding}"
+                   FontSize="Title"
+                   FontAttributes="Bold"/>
+        </DataTemplate>
+
+        <x:Array x:Key="FakeActivities"
+                 Type="{x:Type x:String}">
+            <x:String>14/07/2022 - Save Lucky</x:String>
+            <x:String>02/08/2022 - Create Iron Shield</x:String>
+            <x:String>31/08/2022 - Donate to pet charity</x:String>
+            <x:String>05/09/2022 - Start a secure community</x:String>
+            <x:String>14/07/2022 - Save Lucky</x:String>
+            <x:String>02/08/2022 - Create Iron Shield</x:String>
+            <x:String>31/08/2022 - Donate to pet charity</x:String>
+            <x:String>05/09/2022 - Start a secure community</x:String>
+            <x:String>14/07/2022 - Save Lucky</x:String>
+            <x:String>02/08/2022 - Create Iron Shield</x:String>
+            <x:String>31/08/2022 - Donate to pet charity</x:String>
+            <x:String>05/09/2022 - Start a secure community</x:String>
+            <x:String>31/08/2022 - Donate to pet charity</x:String>
+            <x:String>05/09/2022 - Start a secure community</x:String>
+            <x:String>14/07/2022 - Save Lucky</x:String>
+            <x:String>02/08/2022 - Create Iron Shield</x:String>
+            <x:String>31/08/2022 - Donate to pet charity</x:String>
+            <x:String>05/09/2022 - Start a secure community</x:String>
+        </x:Array>
     </app:BasePage.Resources>
 
     <ScrollView>
@@ -128,14 +157,156 @@
                                         VerticalOptions="Start"
                                         ImageSource="https://i.imgur.com/vc9FudE.jpg"/>
                 </Grid>
-                <Label Text="TABLET"
-                   TextColor="White"
-                   Style="{x:Static app:Styles.Heading1}"
-                   toolkit:StateView.StateKey="Tablet"/>
+                
+                <!--Tablet-->
+                <Grid Padding="10" 
+                      RowSpacing="10"
+                      RowDefinitions="2*, 0.6*, 1.5*"
+                      ColumnSpacing="10"
+                      ColumnDefinitions="1.4*, *"
+                      toolkit:StateView.StateKey="Tablet">
+                    <Frame>
+                        <Grid RowSpacing="10"
+                              RowDefinitions="auto, *, auto">
+                            <HorizontalStackLayout Spacing="10">
+                                <toolkit:AvatarView CornerRadius="50"
+                                                    WidthRequest="100"
+                                                    HeightRequest="100"
+                                                    ImageSource="https://i.imgur.com/vc9FudE.jpg"/>
+
+                                <VerticalStackLayout>
+                                    <Label Text="Strypper Vandel Jason"/>
+                                    <Switch/>
+                                    <HorizontalStackLayout Spacing="20">
+                                        <VerticalStackLayout Spacing="5">
+                                            <Label Text="Followers"
+                                                   FontSize="Subtitle"
+                                                   HorizontalOptions="Center"/>
+                                            <Label Text="191k"
+                                                   FontSize="Medium"
+                                                   FontAttributes="Bold"
+                                                   HorizontalOptions="Center"/>
+                                        </VerticalStackLayout>
+
+                                        <VerticalStackLayout Spacing="5">
+                                            <Label Text="Donate"
+                                                   FontSize="Subtitle"
+                                                   HorizontalOptions="Center"/>
+                                            <Label Text="2,5M VND"
+                                                   FontSize="Medium"
+                                                   FontAttributes="Bold"
+                                                   HorizontalOptions="Center"/>
+                                        </VerticalStackLayout>
+
+                                        <VerticalStackLayout Spacing="5">
+                                            <Label Text="Pets"
+                                                   FontSize="Subtitle"
+                                                   HorizontalOptions="Center"/>
+                                            <Label Text="5"
+                                                   FontSize="Medium"
+                                                   FontAttributes="Bold"
+                                                   HorizontalOptions="Center"/>
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+
+                            <Label Grid.Row="1"
+                               Text="{x:StaticResource Lorem}"
+                                   LineHeight="1.4"/>
+
+                            <Grid ColumnDefinitions="*,*,*"
+                                  ColumnSpacing="10"
+                                  Grid.Row="2"
+                                  HorizontalOptions="Fill">
+                                <Button ImageSource="{x:StaticResource Call24Icon}"
+                                        Text="Call"
+                                        HorizontalOptions="Fill"/>
+
+                                <Button ImageSource="{x:StaticResource Mail24Icon}"
+                                        Text="Email"
+                                        Grid.Column="1"
+                                        HorizontalOptions="Fill"/>
+
+                                <Button ImageSource="{x:StaticResource Chat24Icon}"
+                                        Text="Send SMS"
+                                        Grid.Column="2"
+                                        HorizontalOptions="Fill"/>
+                            </Grid>
+                        </Grid>
+                    </Frame>
+
+                    <!--Favorite Pets-->
+                    <Frame Grid.Row="1">
+                        <Grid>
+                            <HorizontalStackLayout Spacing="10"
+                                               HorizontalOptions="Center">
+                                <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"
+                                                ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Bravo.png"/>
+                                <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"
+                                                ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Lucky.png"/>
+                                <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"
+                                                ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Snow.png"/>
+                                <toolkit:AvatarView HeightRequest="70" WidthRequest="70" CornerRadius="35"
+                                                ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Yummi.png"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Frame>
+
+                    <Frame Grid.Row="2">
+                        <Grid RowDefinitions="0.7*, 0.3*"
+                              ColumnDefinitions="*,*">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="Petaverse" 
+                                       FontAttributes="Bold"
+                                       FontSize="Title"/>
+                                <Label Text="Rescue team"/>
+                                <Label Text="Role: CTO"/>
+                                <Label Text="Sectors: 2"/>
+                                <Label Text="Operate: Hybrid"/>
+                            </VerticalStackLayout>
+
+                            <Image Grid.Column="1"
+                               WidthRequest="150"
+                               HeightRequest="150"
+                               Source="petaverselogo.png"/>
+
+                            <HorizontalStackLayout Spacing="20"
+                                                   Grid.Row="1"
+                                                   Grid.ColumnSpan="2"
+                                                   VerticalOptions="End"
+                                                   HorizontalOptions="End">
+                                <VerticalStackLayout>
+                                    <Label Text="Donate"/>
+                                    <Label Text="20 MILLIONS"
+                                           FontAttributes="Bold"
+                                           FontSize="Title"/>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout>
+                                    <Label Text="Saves"/>
+                                    <Label Text="150 CASES"
+                                           FontAttributes="Bold"
+                                           FontSize="Title"/>
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Frame>
+
+                    <Frame Grid.Column="1"
+                           Grid.RowSpan="3">
+                        <Grid>
+                            <CollectionView Header="Activities"
+                                            HeaderTemplate="{x:StaticResource ActivitiesHeaderTemplate}"
+                                            SelectionMode="Single"
+                                            ItemsSource="{x:StaticResource FakeActivities}"/>
+                        </Grid>
+                    </Frame>
+                </Grid>
                 <Label Text="Desktop"
-                   TextColor="White"
-                   Style="{x:Static app:Styles.Heading1}"
-                   toolkit:StateView.StateKey="Desktop"/>
+                       TextColor="White"
+                       Style="{x:Static app:Styles.Heading1}"
+                       toolkit:StateView.StateKey="Desktop"/>
             </toolkit:StateContainer.StateViews>
         </Grid>
     </ScrollView>

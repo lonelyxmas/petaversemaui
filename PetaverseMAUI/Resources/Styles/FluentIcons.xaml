@@ -19,10 +19,10 @@
                        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
                        Glyph="{x:Static app:FluentUIIcon.Ic_fluent_add_12_regular}"/>
 
-    <FontImageSource x:Key="Clear16Icon"
+    <FontImageSource x:Key="Clear24Icon"
                        Color="{x:Static app:AppColors.Black}"
                        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_clear_formatting_16_regular}"/>
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_dismiss_circle_24_regular}"/>
 
     <FontImageSource x:Key="Camera24Icon"
                        Color="{x:Static app:AppColors.Black}"
@@ -49,8 +49,24 @@
                        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
                        Glyph="{x:Static app:FluentUIIcon.Ic_fluent_folder_arrow_up_24_regular}"/>
 
-    <FontImageSource x:Key="Flash28Icon"
+    <FontImageSource x:Key="Mail24Icon"
+                       Color="{x:Static app:AppColors.Black}"
+                       FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_mail_24_regular}"/>
+
+    <FontImageSource x:Key="Call24Icon"
+                       Color="{x:Static app:AppColors.Black}"
+                       FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_call_24_regular}"/>
+    
+    <FontImageSource x:Key="Chat24Icon"
                        Color="{x:Static app:AppColors.LightYellow}"
                        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_chat_24_regular}"/>
+
+    <FontImageSource x:Key="Flash28Icon"
+                       Color="{x:Static app:AppColors.Black}"
+                       FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
                        Glyph="{x:Static app:FluentUIIcon.Ic_fluent_flash_28_regular}"/>
+
 </ResourceDictionary>
