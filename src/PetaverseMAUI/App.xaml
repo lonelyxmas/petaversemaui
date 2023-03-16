@@ -1,0 +1,74 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:PetaverseMAUI"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             
+             x:Class="PetaverseMAUI.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/FluentIcons.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+
+                <ResourceDictionary Source="Features/Profile/Styles/ProfileStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate x:Key="SpeciesPivotItemTemplate"
+                          x:DataType="app:SpeciesPivotModel">
+
+                <RadioButton Content="{Binding .}" Value="{Binding .}">
+                    <RadioButton.Resources>
+                        <app:HexToSolidColorBrushConverter x:Key="HexToSolidColorBrushConverter"/>
+                    </RadioButton.Resources>
+                    <RadioButton.ControlTemplate>
+                        <ControlTemplate>
+                            <Grid x:Name="SpeciesBadge" BackgroundColor="Transparent">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup x:Name="CheckedStates">
+                                            <VisualState x:Name="Checked">
+                                                <VisualState.Setters>
+                                                    <Setter TargetName="SpeciesBadge"
+                                                            Property="Grid.Opacity"
+                                                            Value="1"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                            <VisualState x:Name="Unchecked">
+                                                <VisualState.Setters>
+                                                    <Setter TargetName="SpeciesBadge"
+                                                            Property="Grid.Opacity"
+                                                            Value="0.5"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </VisualStateManager.VisualStateGroups>
+                                <BoxView x:Name="SpeciesBoxView"
+                                           Opacity="0.5"
+                                           CornerRadius="30"
+                                           Color="{x:Static app:AppColors.PetaversePrimary}"/>
+                                <HorizontalStackLayout VerticalOptions="Center"
+                                                       HorizontalOptions="Center"
+                                                       Margin="15,0,15,0">
+                                    <Label x:Name="TextLabel"
+                                            VerticalOptions="Center"
+                                            Text="{TemplateBinding Content.SpeciesName}" 
+                                            Style="{x:Static app:Styles.SubHeading1Semi}"
+                                            Margin="{app:EdgeInsets Right={x:Static app:Dimensions.SpacingXs}}"/>
+                                    <toolkit:AvatarView WidthRequest="30" 
+                                                        HeightRequest="30"
+                                                        VerticalOptions="Center"
+                                                        BorderWidth="1" BorderColor="Black"
+                                                        ImageSource="{TemplateBinding Content.SpeciesImageUrl}"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </ControlTemplate>
+                    </RadioButton.ControlTemplate>
+                </RadioButton>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

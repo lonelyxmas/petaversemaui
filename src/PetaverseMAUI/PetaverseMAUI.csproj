@@ -1,0 +1,214 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>PetaverseMAUI</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>PetaverseMAUI</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.petaversemaui</ApplicationId>
+		<ApplicationIdGuid>317ec941-3967-4353-80f3-ff96bc0d5f45</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidResource Remove="ContentViews\**" />
+	  <AndroidResource Remove="Converters\**" />
+	  <AndroidResource Remove="Features\Home\**" />
+	  <AndroidResource Remove="Features\Shared\**" />
+	  <AndroidResource Remove="Interfaces\**" />
+	  <AndroidResource Remove="Services\**" />
+	  <Compile Remove="ContentViews\**" />
+	  <Compile Remove="Converters\**" />
+	  <Compile Remove="Features\Home\**" />
+	  <Compile Remove="Features\Shared\**" />
+	  <Compile Remove="Interfaces\**" />
+	  <Compile Remove="Services\**" />
+	  <EmbeddedResource Remove="ContentViews\**" />
+	  <EmbeddedResource Remove="Converters\**" />
+	  <EmbeddedResource Remove="Features\Home\**" />
+	  <EmbeddedResource Remove="Features\Shared\**" />
+	  <EmbeddedResource Remove="Interfaces\**" />
+	  <EmbeddedResource Remove="Services\**" />
+	  <MauiCss Remove="ContentViews\**" />
+	  <MauiCss Remove="Converters\**" />
+	  <MauiCss Remove="Features\Home\**" />
+	  <MauiCss Remove="Features\Shared\**" />
+	  <MauiCss Remove="Interfaces\**" />
+	  <MauiCss Remove="Services\**" />
+	  <MauiXaml Remove="ContentViews\**" />
+	  <MauiXaml Remove="Converters\**" />
+	  <MauiXaml Remove="Features\Home\**" />
+	  <MauiXaml Remove="Features\Shared\**" />
+	  <MauiXaml Remove="Interfaces\**" />
+	  <MauiXaml Remove="Services\**" />
+	  <None Remove="ContentViews\**" />
+	  <None Remove="Converters\**" />
+	  <None Remove="Features\Home\**" />
+	  <None Remove="Features\Shared\**" />
+	  <None Remove="Interfaces\**" />
+	  <None Remove="Services\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
+	  <None Remove="Resources\Fonts\SmoochSans-Bold.ttf" />
+	  <None Remove="Resources\Fonts\SmoochSans-Regular.ttf" />
+	  <None Remove="Resources\Images\cat.png" />
+	  <None Remove="Resources\Images\dog.png" />
+	  <None Remove="Resources\Images\followicon.png" />
+	  <None Remove="Resources\Images\likeicon.png" />
+	  <None Remove="Resources\Images\microsoft_logo.svg" />
+	  <None Remove="Resources\Images\petaverselogo.svg" />
+	  <None Remove="Resources\Images\settingicon.png" />
+	  <None Remove="Resources\Images\Walkthrough1.svg" />
+	  <None Remove="Resources\Images\Walkthrough2.svg" />
+	  <None Remove="Resources\Images\Walkthrough3.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Bogus" Version="34.0.2" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="3.1.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0-preview3" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Features\Profile\Models\" />
+	  <Folder Include="Features\Profile\ViewCells\" />
+	  <Folder Include="Features\Profile\Services\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Features\PetDetailProfile\Pages\PetDetailProfilePage.xaml.cs">
+	    <DependentUpon>PetDetailProfilePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\PetsList\ContentViews\PetProfileCardContentView.xaml.cs">
+	    <DependentUpon>PetProfileCardContentView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\Welcome\Pages\WalkthroughPage.xaml.cs">
+	    <DependentUpon>WalkthroughPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\Welcome\Pages\WelcomePage.xaml.cs">
+	    <DependentUpon>WelcomePage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Features\Authentication\Pages\ForgotPasswordPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Authentication\Pages\SignInPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Authentication\Pages\SignUpPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\PetDetailProfile\ContentViews\PetaverseThumbnailContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\PetsList\ContentViews\PetProfileCardContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\PetDetailProfile\Pages\PetDetailProfilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\PetsList\Pages\PetsListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\PetsList\PopUps\AddPetPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Profile\ContentViews\ProfilePageDesktopModeContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Profile\ContentViews\ProfilePagePhoneModeContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Profile\ContentViews\ProfilePageTabletModeContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Profile\Pages\ProfilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Profile\Styles\ProfileStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Welcome\Pages\WalkthroughPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Welcome\Pages\WelcomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Wiki\ContentViews\BreedCardContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Wiki\Pages\WikiPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\FluentIcons.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="UI\Views\BreedLabel.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="UI\Views\HorizontalIconButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="UI\Views\IconLabel.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="UI\Views\RoundedEntry.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+		<!--<AndroidKeyStore>False</AndroidKeyStore>
+		<AndroidSigningKeyStore>myapp.keystore</AndroidSigningKeyStore>
+		<AndroidSigningKeyAlias>key</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass></AndroidSigningKeyPass>
+		<AndroidSigningStorePass></AndroidSigningStorePass>
+		<AndroidLinkMode>None</AndroidLinkMode>
+		<AndroidDexTool>r8</AndroidDexTool>-->
+		<AndroidLinkResources>False</AndroidLinkResources>
+	</PropertyGroup>
+
+</Project>

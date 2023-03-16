@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="PetaverseMAUI.ProfilePageTabletModeContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:PetaverseMAUI"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+
+    <Grid
+        Padding="10"
+        ColumnDefinitions="1.4*, *"
+        ColumnSpacing="10"
+        RowDefinitions="2*, 0.6*, 1.5*"
+        RowSpacing="10">
+        <Frame Padding="15,15,15,0">
+            <Grid RowDefinitions="120, auto, auto" RowSpacing="10">
+                <HorizontalStackLayout Spacing="10">
+                    <toolkit:AvatarView
+                        CornerRadius="50"
+                        HeightRequest="100"
+                        ImageSource="https://i.imgur.com/vc9FudE.jpg"
+                        WidthRequest="100" />
+
+                    <VerticalStackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            Text="Strypper Vandel Jason" />
+                        <Switch HorizontalOptions="Start" />
+                        <HorizontalStackLayout Spacing="20">
+                            <VerticalStackLayout Spacing="5">
+                                <Label
+                                    FontSize="Subtitle"
+                                    HorizontalOptions="Center"
+                                    Text="Followers" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    HorizontalOptions="Center"
+                                    Text="191k" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Spacing="5">
+                                <Label
+                                    FontSize="Subtitle"
+                                    HorizontalOptions="Center"
+                                    Text="Donate" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    HorizontalOptions="Center"
+                                    Text="2,5M VND" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Spacing="5">
+                                <Label
+                                    FontSize="Subtitle"
+                                    HorizontalOptions="Center"
+                                    Text="Pets" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    HorizontalOptions="Center"
+                                    Text="5" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+
+                <Label
+                    Grid.Row="1"
+                    LineBreakMode="WordWrap"
+                    LineHeight="1.3"
+                    MaxLines="4"
+                    Text="{x:StaticResource Lorem}" />
+
+                <Grid
+                    Grid.Row="2"
+                    ColumnDefinitions="*,*,*"
+                    ColumnSpacing="10"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="End">
+                    <Button
+                        BackgroundColor="Transparent"
+                        BorderColor="{x:StaticResource Primary}"
+                        BorderWidth="2"
+                        HorizontalOptions="Fill"
+                        ImageSource="{x:StaticResource ProfilePageTabletCall24Icon}"
+                        Text="Call"
+                        TextColor="{x:StaticResource Primary}"
+                        VerticalOptions="Center" />
+
+                    <Button
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        BorderColor="{x:StaticResource Primary}"
+                        BorderWidth="2"
+                        HorizontalOptions="Fill"
+                        ImageSource="{x:StaticResource ProfilePageTabletMail24Icon}"
+                        Text="Email"
+                        TextColor="{x:StaticResource Primary}"
+                        VerticalOptions="Center" />
+
+                    <Button
+                        Grid.Column="2"
+                        BackgroundColor="Transparent"
+                        BorderColor="{x:StaticResource Primary}"
+                        BorderWidth="2"
+                        HorizontalOptions="Fill"
+                        ImageSource="{x:StaticResource ProfilePageTabletChat24Icon}"
+                        Text="Send SMS"
+                        TextColor="{x:StaticResource Primary}"
+                        VerticalOptions="Center" />
+                </Grid>
+            </Grid>
+        </Frame>
+
+        <!--  Favorite Pets  -->
+        <Frame Grid.Row="1" Padding="15">
+            <Grid>
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                    <toolkit:AvatarView
+                        CornerRadius="35"
+                        HeightRequest="65"
+                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Bravo.png"
+                        WidthRequest="65" />
+                    <toolkit:AvatarView
+                        CornerRadius="35"
+                        HeightRequest="65"
+                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Lucky.png"
+                        WidthRequest="65" />
+                    <toolkit:AvatarView
+                        CornerRadius="35"
+                        HeightRequest="65"
+                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Snow.png"
+                        WidthRequest="65" />
+                    <toolkit:AvatarView
+                        CornerRadius="35"
+                        HeightRequest="65"
+                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Yummi.png"
+                        WidthRequest="65" />
+                </HorizontalStackLayout>
+            </Grid>
+        </Frame>
+
+        <Frame Grid.Row="2" Padding="15">
+            <Grid ColumnDefinitions="*,*" RowDefinitions="0.7*, 0.3*">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Title"
+                        Text="Petaverse" />
+                    <Label Text="Rescue team" />
+                    <Label Text="Role: CTO" />
+                    <Label Text="Sectors: 2" />
+                    <Label Text="Operate: Hybrid" />
+                </VerticalStackLayout>
+
+                <Image
+                    Grid.Column="1"
+                    HeightRequest="140"
+                    Source="petaverselogo.png"
+                    WidthRequest="140" />
+
+                <HorizontalStackLayout
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Margin="0,40,0,0"
+                    HorizontalOptions="End"
+                    Spacing="20"
+                    VerticalOptions="End">
+                    <VerticalStackLayout>
+                        <Label Text="Donate" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Title"
+                            Text="20 MILLIONS" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout>
+                        <Label Text="Saves" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Title"
+                            Text="150 CASES" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Grid>
+        </Frame>
+
+        <Frame
+            Grid.RowSpan="3"
+            Grid.Column="1"
+            Padding="15">
+            <Grid RowDefinitions="110, *">
+                <Frame Background="{x:StaticResource PremiumSubscriptionColor}">
+                    <HorizontalStackLayout Spacing="10">
+                        <Image
+                            HorizontalOptions="Center"
+                            Source="{x:StaticResource ProfilePageTabletFlash28Icon}"
+                            VerticalOptions="Center" />
+                        <VerticalStackLayout MaximumWidthRequest="160" Spacing="5">
+                            <Label
+                                FontAttributes="Bold"
+                                Text="PREMIUM"
+                                TextColor="{x:Static app:AppColors.LightYellow}" />
+                            <Label
+                                LineBreakMode="WordWrap"
+                                Text="Get the most for you and your pets"
+                                TextColor="{x:Static app:AppColors.Black}" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </Frame>
+                <TableView Grid.Row="1" Intent="Settings">
+                    <TableSection Title="General">
+
+                        <ViewCell>
+                            <HorizontalStackLayout Spacing="5">
+                                <Image
+                                    Margin="10"
+                                    Source="{x:StaticResource Heart24Icon}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="Loved posts"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </ViewCell>
+
+                        <ViewCell>
+                            <HorizontalStackLayout Spacing="5">
+                                <Image
+                                    Margin="10"
+                                    Source="{x:StaticResource PeopleTeam24Icon}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="Clubs"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </ViewCell>
+
+                        <ViewCell>
+                            <HorizontalStackLayout Spacing="5">
+                                <Image
+                                    Margin="10"
+                                    Source="{x:StaticResource PersonFeedback24Icon}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="Feedback"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </ViewCell>
+
+                        <ViewCell>
+                            <HorizontalStackLayout Spacing="5">
+                                <Image
+                                    Margin="10"
+                                    Source="{x:StaticResource AppGeneric24Icon}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="Manage posts"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </ViewCell>
+
+
+                    </TableSection>
+
+                    <TableSection Title="Others">
+
+                        <ViewCell>
+                            <HorizontalStackLayout Spacing="5">
+                                <Image
+                                    Margin="10"
+                                    Source="{x:StaticResource Setting24Icon}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="Setting"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </ViewCell>
+
+
+                        <ViewCell>
+                            <HorizontalStackLayout Spacing="5">
+                                <Image
+                                    Margin="10"
+                                    Source="{x:StaticResource Alert24Icon}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="Notifications"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </ViewCell>
+
+                        <ViewCell>
+                            <HorizontalStackLayout Spacing="5">
+                                <Image
+                                    Margin="10"
+                                    Source="{x:StaticResource BookInfo24Icon}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="Terms and Policies"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </ViewCell>
+
+                        <ViewCell>
+                            <Grid>
+                                <HorizontalStackLayout Spacing="5" VerticalOptions="Center">
+                                    <Image
+                                        Margin="10"
+                                        Source="{x:StaticResource WeatherMoon24Icon}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontAttributes="Bold"
+                                        Text="Dark mode"
+                                        VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+
+                                <Switch HorizontalOptions="End" VerticalOptions="Center" />
+                            </Grid>
+                        </ViewCell>
+
+                        <ViewCell>
+                            <HorizontalStackLayout Spacing="5">
+                                <Image
+                                    Margin="10"
+                                    Source="{x:StaticResource ProfilePageTabletPower24Icon}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="Log out"
+                                    TextColor="{x:Static app:AppColors.Red}"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </ViewCell>
+                    </TableSection>
+                </TableView>
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentView>

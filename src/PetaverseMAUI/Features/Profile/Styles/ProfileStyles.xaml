@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:app="clr-namespace:PetaverseMAUI">
+
+
+    <Style x:Key="InfoFlexLayoutStyle"
+             TargetType="FlexLayout">
+        <Setter Property="AlignItems" Value="Stretch"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="JustifyContent" Value="SpaceBetween"/>
+    </Style>
+    
+    <LinearGradientBrush x:Key="PremiumSubscriptionColor"
+                           EndPoint="1,0">
+        <GradientStop Color="#1cefff"
+                      Offset="0.1" />
+        <GradientStop Color="#c0c0aa"
+                      Offset="1.0" />
+    </LinearGradientBrush>
+
+
+    <FontImageSource x:Key="ProfilePageTabletCall24Icon"
+                       Color="{x:StaticResource Primary}"
+                       FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_call_24_regular}"/>
+
+    <FontImageSource x:Key="ProfilePageTabletMail24Icon"
+                        Color="{x:StaticResource Primary}"
+                        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                        Glyph="{x:Static app:FluentUIIcon.Ic_fluent_mail_24_regular}"/>
+
+    <FontImageSource x:Key="ProfilePageTabletChat24Icon"
+                        Color="{x:StaticResource Primary}"
+                        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                        Glyph="{x:Static app:FluentUIIcon.Ic_fluent_chat_24_regular}"/>
+
+    <FontImageSource x:Key="ProfilePageTabletPower24Icon"
+                        Color="{x:Static app:AppColors.Red}"
+                        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                        Glyph="{x:Static app:FluentUIIcon.Ic_fluent_power_24_regular}"/>
+
+    <FontImageSource x:Key="ProfilePageTabletFlash28Icon"
+                       Color="{x:Static app:AppColors.LightYellow}"
+                       FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                       Glyph="{x:Static app:FluentUIIcon.Ic_fluent_flash_28_regular}"/>
+
+
+
+    <x:String x:Key="Lorem">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+        It has survived not only five centuries, but also the leap into electronic typesetting, 
+        remaining essentially unchanged. It was popularised in the 1960s with the release of 
+        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software 
+        like Aldus PageMaker including versions of Lorem Ipsum.
+    </x:String>
+
+</ResourceDictionary>
