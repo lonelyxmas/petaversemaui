@@ -1,94 +1,104 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:app="clr-namespace:PetaverseMAUI"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"             
-             
-             x:Class="PetaverseMAUI.ProfilePagePhoneModeContentView">
+<ContentView
+    x:Class="PetaverseMAUI.ProfilePagePhoneModeContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:PetaverseMAUI"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
 
-    <Grid Padding="10"
-          RowSpacing="10"
-          RowDefinitions="auto, 110, *">
+    <Grid
+        Padding="10"
+        RowDefinitions="auto, 110, *"
+        RowSpacing="10">
         <Frame Margin="0,50,0,0">
-            <Grid Margin="0,35,0,0"
-                  RowSpacing="10"
-                  RowDefinitions="auto,25,25,25,25">
+            <Grid
+                Margin="0,35,0,0"
+                RowDefinitions="auto,25,25,25,25"
+                RowSpacing="10">
                 <VerticalStackLayout>
-                    <Label Text="Strypper Vandel Jason"
-                                       HorizontalOptions="Center"
-                                       HorizontalTextAlignment="Center"/>
-                    <Switch HorizontalOptions="Center"
-                                        MinimumWidthRequest="0"
-                                        Style="{StaticResource FollowSwithStyle}"/>
+                    <Label
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="Strypper Vandel Jason" />
+                    <Switch HorizontalOptions="Center" MinimumWidthRequest="0" />
                 </VerticalStackLayout>
-                <FlexLayout Grid.Row="1"
-                            Style="{StaticResource InfoFlexLayoutStyle}">
-                    <Label Text="Country"/>
-                    <Label Text="Viet Nam"/>
+                <FlexLayout Grid.Row="1" Style="{StaticResource InfoFlexLayoutStyle}">
+                    <Label Text="Country" />
+                    <Label Text="Viet Nam" />
                 </FlexLayout>
-                <FlexLayout Grid.Row="2"
-                            Style="{StaticResource InfoFlexLayoutStyle}">
-                    <Label Text="Phone Number"/>
-                    <Label Text="+84 0348164682"/>
+                <FlexLayout Grid.Row="2" Style="{StaticResource InfoFlexLayoutStyle}">
+                    <Label Text="Phone Number" />
+                    <Label Text="+84 0348164682" />
                 </FlexLayout>
-                <FlexLayout Grid.Row="3"
-                                        Style="{StaticResource InfoFlexLayoutStyle}">
-                    <Label Text="District"/>
-                    <Label Text="District 3"/>
+                <FlexLayout Grid.Row="3" Style="{StaticResource InfoFlexLayoutStyle}">
+                    <Label Text="District" />
+                    <Label Text="District 3" />
                 </FlexLayout>
-                <FlexLayout Grid.Row="4"
-                                        Style="{StaticResource InfoFlexLayoutStyle}">
-                    <Label Text="Ward"/>
-                    <Label Text="Vo Thi Sau"/>
+                <FlexLayout Grid.Row="4" Style="{StaticResource InfoFlexLayoutStyle}">
+                    <Label Text="Ward" />
+                    <Label Text="Vo Thi Sau" />
                 </FlexLayout>
             </Grid>
         </Frame>
-        <Frame Grid.Row="1"
-               HasShadow="True">
+        <Frame Grid.Row="1" HasShadow="True">
             <ScrollView>
-                <HorizontalStackLayout Spacing="10"
-                                       HorizontalOptions="Center">
-                    <toolkit:AvatarView HeightRequest="65" WidthRequest="65" CornerRadius="35"
-                                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Bravo.png"/>
-                    <toolkit:AvatarView HeightRequest="65" WidthRequest="65" CornerRadius="35"
-                                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Lucky.png"/>
-                    <toolkit:AvatarView HeightRequest="65" WidthRequest="65" CornerRadius="35"
-                                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Snow.png"/>
-                    <toolkit:AvatarView HeightRequest="65" WidthRequest="65" CornerRadius="35"
-                                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Yummi.png"/>
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                    <toolkit:AvatarView
+                        CornerRadius="35"
+                        HeightRequest="65"
+                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Bravo.png"
+                        WidthRequest="65" />
+                    <toolkit:AvatarView
+                        CornerRadius="35"
+                        HeightRequest="65"
+                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Lucky.png"
+                        WidthRequest="65" />
+                    <toolkit:AvatarView
+                        CornerRadius="35"
+                        HeightRequest="65"
+                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Snow.png"
+                        WidthRequest="65" />
+                    <toolkit:AvatarView
+                        CornerRadius="35"
+                        HeightRequest="65"
+                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Yummi.png"
+                        WidthRequest="65" />
                 </HorizontalStackLayout>
             </ScrollView>
         </Frame>
-        <Frame Grid.Row="2"
-                           HasShadow="True">
+        <Frame Grid.Row="2" HasShadow="True">
             <VerticalStackLayout>
                 <Frame Background="{x:StaticResource PremiumSubscriptionColor}">
                     <HorizontalStackLayout Spacing="10">
-                        <Image Source="{x:StaticResource Flash28Icon}"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="Center"/>
+                        <Image
+                            HorizontalOptions="Center"
+                            Source="{x:StaticResource Flash28Icon}"
+                            VerticalOptions="Center" />
                         <VerticalStackLayout Spacing="5">
-                            <Label Text="PREMIUM"
-                                   TextColor="{x:Static app:AppColors.LightYellow}"
-                                   FontAttributes="Bold"/>
-                            <Label Text="Get the most for you and your pets"
-                                               TextColor="{x:Static app:AppColors.Black}"/>
+                            <Label
+                                FontAttributes="Bold"
+                                Text="PREMIUM"
+                                TextColor="{x:Static app:AppColors.LightYellow}" />
+                            <Label Text="Get the most for you and your pets" TextColor="{x:Static app:AppColors.Black}" />
                         </VerticalStackLayout>
                     </HorizontalStackLayout>
                 </Frame>
                 <TableView Intent="Settings">
                     <TableRoot>
                         <TableSection Title="Cài đặt">
-                            <ImageCell Text="Thông tin cá nhân"
-                                       Detail="Kiểm soát tài khoản của bạn" 
-                                       ImageSource="settingicon.png"/>
-                            <ImageCell Text="Yêu thích từ cộng đồng"
-                                       Detail="1,199 bài yêu thích" 
-                                       ImageSource="likeicon.png"/>
-                            <ImageCell Text="Theo dõi từ cộng đồng"
-                                       Detail="57 tin tức đang được theo dõi" 
-                                       ImageSource="followicon.png"/>
-                            <TextCell Text="Đăng xuất" TextColor="Red"/>
+                            <ImageCell
+                                Detail="Kiểm soát tài khoản của bạn"
+                                ImageSource="settingicon.png"
+                                Text="Thông tin cá nhân" />
+                            <ImageCell
+                                Detail="1,199 bài yêu thích"
+                                ImageSource="likeicon.png"
+                                Text="Yêu thích từ cộng đồng" />
+                            <ImageCell
+                                Detail="57 tin tức đang được theo dõi"
+                                ImageSource="followicon.png"
+                                Text="Theo dõi từ cộng đồng" />
+                            <TextCell Text="Đăng xuất" TextColor="Red" />
                         </TableSection>
                     </TableRoot>
                 </TableView>
@@ -96,10 +106,11 @@
         </Frame>
 
 
-        <toolkit:AvatarView CornerRadius="50"
-                            WidthRequest="100"
-                            HeightRequest="100"
-                            VerticalOptions="Start"
-                            ImageSource="https://i.imgur.com/vc9FudE.jpg"/>
+        <toolkit:AvatarView
+            CornerRadius="50"
+            HeightRequest="100"
+            ImageSource="https://i.imgur.com/vc9FudE.jpg"
+            VerticalOptions="Start"
+            WidthRequest="100" />
     </Grid>
 </ContentView>

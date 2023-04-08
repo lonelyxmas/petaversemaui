@@ -1,94 +1,86 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<app:BasePage 
-             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:app="clr-namespace:PetaverseMAUI"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-                
-             x:Class="PetaverseMAUI.WikiPage"
-             x:DataType="app:WikiPageViewModel"
-    
-             Title="WikiPage"
-             SizeChanged="BasePage_SizeChanged">
+<app:BasePage
+    x:Class="PetaverseMAUI.WikiPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:PetaverseMAUI"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="WikiPage"
+    x:DataType="app:WikiPageViewModel"
+    SizeChanged="BasePage_SizeChanged">
     <Shell.SearchHandler>
-        <app:WikiSearchHandler ShowsResults="True"
-                               Placeholder="Explore the animal world"
-                               QueryIcon="{x:StaticResource SearchIcon}"
-                               ClearIcon="{x:StaticResource Clear16Icon}"/>
+        <app:WikiSearchHandler
+            ClearIcon="{x:StaticResource Clear24Icon}"
+            Placeholder="Explore the animal world"
+            QueryIcon="{x:StaticResource SearchIcon}"
+            ShowsResults="True" />
     </Shell.SearchHandler>
 
     <app:BasePage.ToolbarItems>
-        <ToolbarItem IconImageSource="{x:StaticResource WikiScanCameraIcon}"/>
+        <ToolbarItem IconImageSource="{x:StaticResource WikiScanCameraIcon}" />
     </app:BasePage.ToolbarItems>
 
     <app:BasePage.Resources>
 
-        <DataTemplate x:Key="SpeciesCollectionViewHeaderTemplate"
-                      x:DataType="app:WikiPageViewModel">
+        <DataTemplate x:Key="SpeciesCollectionViewHeaderTemplate" x:DataType="app:WikiPageViewModel">
 
-            <Frame HasShadow="True"
-                   Margin="{app:EdgeInsets All={x:Static app:Dimensions.SpacingMd}}">
+            <Frame Margin="{app:EdgeInsets All={x:Static app:Dimensions.SpacingMd}}" HasShadow="True">
                 <Grid ColumnDefinitions="*, auto">
                     <VerticalStackLayout Spacing="{x:Static app:Dimensions.SpacingSm}">
-                        <Label Text="Species"
-                           Style="{x:Static app:Styles.Heading3}"/>
-                        <HorizontalStackLayout RadioButtonGroup.GroupName="SelectedItem"
-                                           Spacing="{x:Static app:Dimensions.SpacingSm}"
-                                           BindableLayout.ItemsSource="{x:Binding Items}"
-                                           RadioButtonGroup.SelectedValue="{x:Binding SelectedItem, Mode=TwoWay}"
-                                           BindableLayout.ItemTemplate="{x:StaticResource SpeciesPivotItemTemplate}"/>
-                        <Label Text="Filter"
-                           Style="{x:Static app:Styles.Heading4}"/>
+                        <Label Style="{x:Static app:Styles.Heading3}" Text="Species" />
+                        <HorizontalStackLayout
+                            BindableLayout.ItemTemplate="{x:StaticResource SpeciesPivotItemTemplate}"
+                            BindableLayout.ItemsSource="{x:Binding Items}"
+                            RadioButtonGroup.GroupName="SelectedItem"
+                            RadioButtonGroup.SelectedValue="{x:Binding SelectedItem,
+                                                                       Mode=TwoWay}"
+                            Spacing="{x:Static app:Dimensions.SpacingSm}" />
+                        <Label Style="{x:Static app:Styles.Heading4}" Text="Filter" />
                         <HorizontalStackLayout Spacing="{x:Static app:Dimensions.SpacingSm}">
-                            <Picker Title="Size"/>
-                            <Picker Title="Coat"/>
-                            <Picker Title="Shedding"/>
-                            <Picker Title="Energy"/>
+                            <Picker Title="Size" />
+                            <Picker Title="Coat" />
+                            <Picker Title="Shedding" />
+                            <Picker Title="Energy" />
                         </HorizontalStackLayout>
                     </VerticalStackLayout>
 
-                    <Frame Grid.Column="1"
-                           HasShadow="True"
-                           HorizontalOptions="End"
-                           BackgroundColor="{x:StaticResource Primary}"
-                           IsVisible="{x:Binding IsSpeciesFrameInfoVisible}">
-                        <Label TextColor="White"
-                               LineBreakMode="WordWrap"
-                               MaximumWidthRequest="280"
-                               Text="Your cat is cute – you know it, and they know it. With such a large community of feline enthusiasts online, comes a long list of cute cate quotes only cat lovers will understand. We’ve gathered 30 of the cutest cat quotes perfect to put on your personalized home decor – a practical and stylish solution that will help you to integrate your love for cats in your home décor that doesn’t scream “crazy cat lady”"/>
+                    <Frame
+                        Grid.Column="1"
+                        BackgroundColor="{x:StaticResource Primary}"
+                        HasShadow="True"
+                        HorizontalOptions="End"
+                        IsVisible="{x:Binding IsSpeciesFrameInfoVisible}">
+                        <Label
+                            LineBreakMode="WordWrap"
+                            MaximumWidthRequest="280"
+                            Text="Your cat is cute – you know it, and they know it. With such a large community of feline enthusiasts online, comes a long list of cute cate quotes only cat lovers will understand. We’ve gathered 30 of the cutest cat quotes perfect to put on your personalized home decor – a practical and stylish solution that will help you to integrate your love for cats in your home décor that doesn’t scream “crazy cat lady”"
+                            TextColor="White" />
                     </Frame>
                 </Grid>
-            </Frame> 
+            </Frame>
         </DataTemplate>
 
-        <DataTemplate x:Key="SpeciesCollectionViewItemTemplate"
-                      x:DataType="app:BreedCardModel">
-            <app:BreedCardContentView ComponentData="{x:Binding}"
-                                      Margin="{app:EdgeInsets All={x:Static app:Dimensions.SpacingMd}}"/>
+        <DataTemplate x:Key="SpeciesCollectionViewItemTemplate" x:DataType="app:BreedCardModel">
+            <app:BreedCardContentView Margin="{app:EdgeInsets All={x:Static app:Dimensions.SpacingMd}}" ComponentData="{x:Binding}" />
         </DataTemplate>
 
-        <DataTemplate x:Key="SpeciesCollectionViewFooterTemplate"
-                      x:DataType="app:WikiPageViewModel">
+        <DataTemplate x:Key="SpeciesCollectionViewFooterTemplate" x:DataType="app:WikiPageViewModel" />
 
-        </DataTemplate>
-
-        <GridItemsLayout x:Key="BreedLayout"
-                         Span="{x:Binding Span}"  
-                         Orientation="Vertical" />
+        <GridItemsLayout
+            x:Key="BreedLayout"
+            Orientation="Vertical"
+            Span="{x:Binding Span}" />
 
     </app:BasePage.Resources>
 
-    <RefreshView IsRefreshing="{x:Binding IsBusy}"
-                 Command="{x:Binding RefreshCommand}">
-        <CollectionView Header="{x:Binding}"
-                        HeaderTemplate="{x:StaticResource SpeciesCollectionViewHeaderTemplate}"
-                         
-                        ItemsLayout="{x:StaticResource BreedLayout}"
-                        
-                        ItemsSource="{x:Binding SelectedItem.BreedCards}"
-                        ItemTemplate="{x:StaticResource SpeciesCollectionViewItemTemplate}"
-            
-                        Footer="{x:Binding}"
-                        FooterTemplate="{x:StaticResource SpeciesCollectionViewFooterTemplate}"/>
+    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy}">
+        <CollectionView
+            Footer="{x:Binding}"
+            FooterTemplate="{x:StaticResource SpeciesCollectionViewFooterTemplate}"
+            Header="{x:Binding}"
+            HeaderTemplate="{x:StaticResource SpeciesCollectionViewHeaderTemplate}"
+            ItemTemplate="{x:StaticResource SpeciesCollectionViewItemTemplate}"
+            ItemsLayout="{x:StaticResource BreedLayout}"
+            ItemsSource="{x:Binding SelectedItem.BreedCards}" />
     </RefreshView>
 </app:BasePage>

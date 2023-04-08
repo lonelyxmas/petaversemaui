@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
+using System.Reflection;
 
 namespace PetaverseMAUI;
 
@@ -40,24 +41,24 @@ public static class MauiProgram
             .RegisterPages()
             .RegisterPopups();
 
-//#if ANDROID
-//        ImageHandler.Mapper.AppendToMapping(nameof(ImageView.Drawable), async (handler, view) =>
-//        {
-//            if (view.Source is UriImageSource uriImageSource)
-//                try
-//                {
-//                    byte[] imageData;
-//                    using (var response = await _httpClient.GetAsync(uriImageSource.Uri))
-//                    {
-//                        imageData = await response.Content.ReadAsByteArrayAsync();
-//                    }
-//                    handler.PlatformView.SetImageDrawable(new BitmapDrawable(BitmapFactory.DecodeByteArray(imageData, 0, imageData.Length)));
-//                }
-//                catch
-//                {
-//                };
-//        });
-//#endif
+        //#if ANDROID
+        //        ImageHandler.Mapper.AppendToMapping(nameof(ImageView.Drawable), async (handler, view) =>
+        //        {
+        //            if (view.Source is UriImageSource uriImageSource)
+        //                try
+        //                {
+        //                    byte[] imageData;
+        //                    using (var response = await _httpClient.GetAsync(uriImageSource.Uri))
+        //                    {
+        //                        imageData = await response.Content.ReadAsByteArrayAsync();
+        //                    }
+        //                    handler.PlatformView.SetImageDrawable(new BitmapDrawable(BitmapFactory.DecodeByteArray(imageData, 0, imageData.Length)));
+        //                }
+        //                catch
+        //                {
+        //                };
+        //        });
+        //#endif
 
         EntryHandler.Mapper.AppendToMapping("NoBorderEntry", (handler, view) =>
         {
@@ -98,7 +99,7 @@ public static class MauiProgram
 
 
 
-static MauiAppBuilder RegisterPopups(this MauiAppBuilder builder)
+    static MauiAppBuilder RegisterPopups(this MauiAppBuilder builder)
     {
         builder.Services.AddPopup<AddPetPopup, AddPetPopupViewModel>(AppRoutes.AddPetPopup);
 
@@ -122,27 +123,26 @@ static MauiAppBuilder RegisterPopups(this MauiAppBuilder builder)
         return builder;
     }
 
-    static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
+    static MauiAppBuilder RegisterPages(this MauiAppBuilder builder, string pattern = "Page")
     {
-        builder.Services.AddPage<WelcomePage, WelcomePageViewModel>();
-        builder.Services.AddPage<WalkthroughPage, WalkthroughPageViewModel>();
-        builder.Services.AddPage<SignInPage, SignInPageViewModel>();
-        builder.Services.AddPage<SignUpPage, SignUpPageViewModel>();
-        builder.Services.AddPage<ForgotPasswordPage, ForgotPasswordPageViewModel>();
-        builder.Services.AddPage<ProfilePage, ProfilePageViewModel>();
-        builder.Services.AddPage<PetsListPage, PetsListPageViewModel>();
-        builder.Services.AddPage<PetDetailProfilePage, PetDetailProfilePageViewModel>();
-        builder.Services.AddPage<WikiPage, WikiPageViewModel>();
+        var assemblies = new Assembly[] { typeof(MauiProgram).Assembly };
+        var pageTypes = assemblies.SelectMany(a => a.GetTypes().Where(a => a.Name.EndsWith(pattern) && !a.IsAbstract && !a.IsInterface));
+        foreach (var pageType in pageTypes)
+        {
+            var viewModelFullName = $"{pageType.FullName}ViewModel";
+            var viewModelType = Type.GetType(viewModelFullName);
+
+            builder.Services.AddTransient(pageType);
+
+            if (viewModelType != null)
+                builder.Services.AddTransient(viewModelType);
+
+            Routing.RegisterRoute(pageType.FullName, pageType);
+        }
+
         return builder;
     }
 
-    static IServiceCollection AddPage<TPage, TViewModel>(this IServiceCollection services)
-    where TPage : BasePage where TViewModel : BaseViewModel
-    {
-        services.AddTransient<TPage>();
-        services.AddTransient<TViewModel>();
-        return services;
-    }
 
     static IServiceCollection AddPopup<TPopup, TViewModel>(this IServiceCollection services, string name)
     where TPopup : BasePopup where TViewModel : BaseViewModel

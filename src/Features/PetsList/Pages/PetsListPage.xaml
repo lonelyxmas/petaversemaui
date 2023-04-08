@@ -1,99 +1,99 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:app="clr-namespace:PetaverseMAUI"
-              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             
-              x:DataType="app:PetsListPageViewModel"
-              x:Class="PetaverseMAUI.PetsListPage"
-              
-              SizeChanged="BasePage_SizeChanged">
+<app:BasePage
+    x:Class="PetaverseMAUI.PetsListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:PetaverseMAUI"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:DataType="app:PetsListPageViewModel"
+    SizeChanged="BasePage_SizeChanged">
 
     <Shell.SearchHandler>
-        <app:PetsSearchHandler ShowsResults="True"
-                               Placeholder="Search Pets"
-                               SelectPet="PetHandler_SelectPet"
-                               Pets="{x:Binding Items}"
-                               QueryIcon="{x:StaticResource SearchIcon}"
-                               ClearIcon="{x:StaticResource Clear16Icon}">
+        <app:PetsSearchHandler
+            ClearIcon="{x:StaticResource Clear24Icon}"
+            Pets="{x:Binding Items}"
+            Placeholder="Search Pets"
+            QueryIcon="{x:StaticResource SearchIcon}"
+            SelectPet="PetHandler_SelectPet"
+            ShowsResults="True">
             <app:PetsSearchHandler.ItemTemplate>
                 <DataTemplate x:DataType="app:PetProfileCardModel">
-                    <Grid Margin="5" 
-                          RowDefinitions="Auto" 
-                          ColumnDefinitions="40,Auto">
-                        <toolkit:AvatarView WidthRequest="35" 
-                                            HeightRequest="35"
-                                            ImageSource="{x:Binding ProfileUrl}"/>
-                        <Label FontSize="18" 
-                               Grid.Column="1"  
-                               Text="{x:Binding Name}"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Center" />
+                    <Grid
+                        Margin="5"
+                        ColumnDefinitions="40,Auto"
+                        RowDefinitions="Auto">
+                        <toolkit:AvatarView
+                            HeightRequest="35"
+                            ImageSource="{x:Binding ProfileUrl}"
+                            WidthRequest="35" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="18"
+                            HorizontalTextAlignment="Center"
+                            Text="{x:Binding Name}"
+                            VerticalTextAlignment="Center" />
                     </Grid>
                 </DataTemplate>
             </app:PetsSearchHandler.ItemTemplate>
         </app:PetsSearchHandler>
     </Shell.SearchHandler>
     <app:BasePage.ToolbarItems>
-        <ToolbarItem IconImageSource="{x:StaticResource PetListAddIcon}"
-                     Command="{x:Binding AddPetCommand}"/>
+        <ToolbarItem Command="{x:Binding AddPetCommand}" IconImageSource="{x:StaticResource PetListAddIcon}" />
 
-        <ToolbarItem IconImageSource="{x:StaticResource PetListCameraIcon}"
-                     Command="{x:Binding AddPetCommand}"/>
+        <ToolbarItem Command="{x:Binding AddPetCommand}" IconImageSource="{x:StaticResource PetListCameraIcon}" />
     </app:BasePage.ToolbarItems>
     <app:BasePage.Resources>
 
 
-        <DataTemplate x:Key="PetsCollectionViewGroupedHeaderTemplate"
-                      x:DataType="app:PetProfileCardsGroupModel">
+        <DataTemplate x:Key="PetsCollectionViewGroupedHeaderTemplate" x:DataType="app:PetProfileCardsGroupModel">
             <Grid>
-                <Label HorizontalTextAlignment="Start"
-                       Text="{x:Binding SpeciesName}"
-                       Style="{x:Static app:Styles.Heading3Small}"
-                       Margin="{x:Static app:Dimensions.SpacingSm}"/>
+                <Label
+                    Margin="{x:Static app:Dimensions.SpacingSm}"
+                    HorizontalTextAlignment="Start"
+                    Style="{x:Static app:Styles.Heading3Small}"
+                    Text="{x:Binding SpeciesName}" />
             </Grid>
         </DataTemplate>
 
-        <DataTemplate x:Key="PetsCollectionViewItemTemplate"
-                      x:DataType="app:PetProfileCardModel">
-            <app:PetProfileCardContentView ComponentData="{x:Binding}"/>
+        <DataTemplate x:Key="PetsCollectionViewItemTemplate" x:DataType="app:PetProfileCardModel">
+            <app:PetProfileCardContentView ComponentData="{x:Binding}" />
         </DataTemplate>
 
-        <DataTemplate x:Key="PetsCollectionViewFooterTemplate"
-                      x:DataType="app:PetsListPageViewModel">
-            <Grid Padding="6" IsVisible="{x:Binding IsBusy}" CompressedLayout.IsHeadless="True">
+        <DataTemplate x:Key="PetsCollectionViewFooterTemplate" x:DataType="app:PetsListPageViewModel">
+            <Grid
+                Padding="6"
+                CompressedLayout.IsHeadless="True"
+                IsVisible="{x:Binding IsBusy}">
                 <Grid.Triggers>
                     <Trigger TargetType="Grid" Property="IsVisible" Value="False">
                         <Setter Property="HeightRequest" Value="0" />
                     </Trigger>
                 </Grid.Triggers>
-                <Label Text="Getting data" 
-                       VerticalOptions="Center" 
-                       HorizontalOptions="Center" />
+                <Label
+                    HorizontalOptions="Center"
+                    Text="Getting data"
+                    VerticalOptions="Center" />
             </Grid>
         </DataTemplate>
 
-        <GridItemsLayout x:Key="PetsCollectionViewPhoneLayout"
-                         Span="{x:Binding Span}"
-                         Orientation="Vertical"
-                         VerticalItemSpacing="1"
-                         HorizontalItemSpacing="1"/>
+        <GridItemsLayout
+            x:Key="PetsCollectionViewPhoneLayout"
+            HorizontalItemSpacing="1"
+            Orientation="Vertical"
+            Span="{x:Binding Span}"
+            VerticalItemSpacing="1" />
     </app:BasePage.Resources>
 
-    <RefreshView Command="{x:Binding RefreshCommand}"
-                         IsRefreshing="{x:Binding IsBusy}">
-        <CollectionView x:Name="PetsCollectionView"
-                          IsGrouped="True"
-                          EmptyView="Fetching data"
-                          GroupHeaderTemplate="{x:StaticResource PetsCollectionViewGroupedHeaderTemplate}"
-                            
-                          ItemsLayout="{x:StaticResource PetsCollectionViewPhoneLayout}"
-                        
-                          ItemsSource="{x:Binding Items}"
-                          ItemTemplate="{x:StaticResource PetsCollectionViewItemTemplate}"
-                            
-                            
-                          Footer="{x:Binding}"
-                          FooterTemplate="{x:StaticResource PetsCollectionViewFooterTemplate}"/>
+    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy}">
+        <CollectionView
+            x:Name="PetsCollectionView"
+            EmptyView="Fetching data"
+            Footer="{x:Binding}"
+            FooterTemplate="{x:StaticResource PetsCollectionViewFooterTemplate}"
+            GroupHeaderTemplate="{x:StaticResource PetsCollectionViewGroupedHeaderTemplate}"
+            IsGrouped="True"
+            ItemTemplate="{x:StaticResource PetsCollectionViewItemTemplate}"
+            ItemsLayout="{x:StaticResource PetsCollectionViewPhoneLayout}"
+            ItemsSource="{x:Binding Items}" />
     </RefreshView>
 </app:BasePage>
