@@ -1,155 +1,169 @@
 <app:BasePage
+    x:Class="PetaverseMAUI.SignUpPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:PetaverseMAUI"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-    x:Class="PetaverseMAUI.SignUpPage"
-    BackgroundColor="{x:Static app:AppColors.BrColor}"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     ios:Page.UseSafeArea="False"
-    Shell.NavBarIsVisible="False"
-    x:DataType="app:SignUpPageViewModel">
-    
+    x:DataType="app:SignUpPageViewModel"
+    BackgroundColor="{x:Static app:AppColors.BrColor}"
+    Shell.NavBarIsVisible="False">
+
     <app:BasePage.Resources>
-        <FontImageSource x:Key="PersonIcon"
-                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                         Color="{x:Static app:AppColors.Black}"
-                         Glyph="{Static app:FluentUIIcon.Ic_fluent_person_24_regular}"/>
+        <FontImageSource
+            x:Key="PersonIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_person_24_regular}"
+            Color="{x:Static app:AppColors.Black}" />
 
-        <FontImageSource x:Key="PhoneIcon"
-                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                         Color="{x:Static app:AppColors.Black}"
-                         Glyph="{Static app:FluentUIIcon.Ic_fluent_phone_24_regular}"/>
+        <FontImageSource
+            x:Key="PhoneIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_phone_24_regular}"
+            Color="{x:Static app:AppColors.Black}" />
 
-        <FontImageSource x:Key="MailIcon"
-                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                         Color="{x:Static app:AppColors.Black}"
-                         Glyph="{Static app:FluentUIIcon.Ic_fluent_mail_24_regular}"/>
+        <FontImageSource
+            x:Key="MailIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_mail_24_regular}"
+            Color="{x:Static app:AppColors.Black}" />
 
-        <FontImageSource x:Key="PasswordIcon"
-                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                         Color="{x:Static app:AppColors.Black}"
-                         Glyph="{Static app:FluentUIIcon.Ic_fluent_password_24_regular}"/>
+        <FontImageSource
+            x:Key="PasswordIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_password_24_regular}"
+            Color="{x:Static app:AppColors.Black}" />
     </app:BasePage.Resources>
-    
-    
+
+
     <Grid>
         <ScrollView VerticalScrollBarVisibility="Never">
-            <StackLayout
-                Spacing="0">
-                <Image
-                    Source="cap_icon"
+            <VerticalStackLayout Spacing="0">
+                <!--<Image
+                    Margin="{app:EdgeInsets Top=80,
+                                            Bottom={x:Static app:Dimensions.SpacingMd}}"
                     HeightRequest="48"
-                    HorizontalOptions="Center" 
+                    HorizontalOptions="Center"
                     SemanticProperties.Description="Petaverse"
-                    Margin="{app:EdgeInsets Top=80, Bottom={x:Static app:Dimensions.SpacingMd}}"/>
+                    Source="cap_icon" />-->
                 <Label
                     Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingMd}}"
+                    HorizontalTextAlignment="Center"
                     Style="{x:Static app:Styles.Heading3}"
-                    TextColor="{x:Static app:AppColors.Black}"
-                    HorizontalTextAlignment="Center"
-                    Text="Đăng ký" />
+                    Text="Đăng ký"
+                    TextColor="{x:Static app:AppColors.Black}" />
                 <Label
-                    Margin="{app:EdgeInsets
-                        Top={x:Static app:Dimensions.SpacingSm},
-                        Bottom={x:Static app:Dimensions.SpacingLg},
-                        Horizontal={x:Static app:Dimensions.SpacingXxl}
-                    }"
-                    Style="{x:Static app:Styles.SubHeading2Semi}"
-                    TextColor="{x:Static app:AppColors.Grey50}"
+                    Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingSm},
+                                            Bottom={x:Static app:Dimensions.SpacingLg},
+                                            Horizontal={x:Static app:Dimensions.SpacingXxl}}"
                     HorizontalTextAlignment="Center"
-                    Text="Chúng tôi sẽ gửi OTP ở bước kế tiếp, Vui lòng hoàn tất thông tin của bạn." />
+                    Style="{x:Static app:Styles.SubHeading2Semi}"
+                    Text="Chúng tôi sẽ gửi OTP ở bước kế tiếp, Vui lòng hoàn tất thông tin của bạn."
+                    TextColor="{x:Static app:AppColors.Grey50}" />
 
-                <app:RoundedEntry 
-                    Margin="{app:EdgeInsets
-                        Horizontal={x:Static app:Dimensions.SpacingLg},
-                        Bottom={x:Static app:Dimensions.SpacingSm}}"
-                    PrefixIcon="{StaticResource PersonIcon}"
-                    Text="{Binding Form.FullName}"
+                <HorizontalStackLayout
+                    Margin="{app:EdgeInsets Top=40,
+                                            Bottom={x:Static app:Dimensions.SpacingMd}}"
+                    HorizontalOptions="Center"
+                    Spacing="10"
+                    VerticalOptions="Start">
+                    <toolkit:AvatarView
+                        CornerRadius="40"
+                        HeightRequest="80"
+                        ImageSource="{x:Binding AvatarImageSource}"
+                        VerticalOptions="Start"
+                        WidthRequest="80" />
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <ImageButton
+                            BackgroundColor="Transparent"
+                            BorderColor="{x:StaticResource Primary}"
+                            Source="{x:StaticResource Camera24Icon}" />
+                        <ImageButton
+                            BackgroundColor="Transparent"
+                            BorderColor="{x:StaticResource Primary}"
+                            Command="{x:Binding OpenFileCommand}"
+                            Source="{x:StaticResource FolderUpload24Icon}" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+
+                <app:RoundedEntry
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg},
+                                            Bottom={x:Static app:Dimensions.SpacingSm}}"
                     IsValid="{Binding Form.FullNameValid}"
                     Placeholder="Tên của bạn"
-                    />
-                <app:RoundedEntry 
-                    Margin="{app:EdgeInsets
-                        Horizontal={x:Static app:Dimensions.SpacingLg},
-                        Bottom={x:Static app:Dimensions.SpacingSm}}"
-                    PrefixIcon="{StaticResource PhoneIcon}"
-                    Text="{Binding Form.PhoneNumber}"
+                    PrefixIcon="{StaticResource PersonIcon}"
+                    Text="{Binding Form.FullName}" />
+                <app:RoundedEntry
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg},
+                                            Bottom={x:Static app:Dimensions.SpacingSm}}"
                     IsValid="{Binding Form.PhoneNumberValid}"
-                    Placeholder="Số điện thoại"
                     Keyboard="Telephone"
-                    />
-                <app:RoundedEntry 
-                    Margin="{app:EdgeInsets
-                        Horizontal={x:Static app:Dimensions.SpacingLg},
-                        Bottom={x:Static app:Dimensions.SpacingSm}}"
-                    PrefixIcon="{StaticResource MailIcon}"
-                    Text="{Binding Form.Email}"
+                    Placeholder="Số điện thoại"
+                    PrefixIcon="{StaticResource PhoneIcon}"
+                    Text="{Binding Form.PhoneNumber}" />
+                <app:RoundedEntry
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg},
+                                            Bottom={x:Static app:Dimensions.SpacingSm}}"
                     IsValid="{Binding Form.Email}"
-                    Placeholder="Địa chỉ mail"
                     Keyboard="Email"
-                    />
-                <app:RoundedEntry 
-                    Margin="{app:EdgeInsets
-                        Horizontal={x:Static app:Dimensions.SpacingLg},
-                        Bottom={x:Static app:Dimensions.SpacingSm}}"
-                    PrefixIcon="{StaticResource PasswordIcon}"
-                    Text="{Binding Form.Password}"
+                    Placeholder="Địa chỉ mail"
+                    PrefixIcon="{StaticResource MailIcon}"
+                    Text="{Binding Form.Email}" />
+                <app:RoundedEntry
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg},
+                                            Bottom={x:Static app:Dimensions.SpacingSm}}"
+                    IsPassword="True"
                     IsValid="{Binding Form.PasswordValid}"
                     Placeholder="Nhập mật khẩu"
+                    PrefixIcon="{x:StaticResource PasswordIcon}"
+                    Text="{Binding Form.Password}" />
+                <app:RoundedEntry
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg}}"
                     IsPassword="True"
-                    />
-                <app:RoundedEntry 
-                    Margin="{app:EdgeInsets
-                        Horizontal={x:Static app:Dimensions.SpacingLg}
-                    }"
-                    PrefixIcon="{StaticResource PasswordIcon}"
-                    Text="{Binding Form.ConfirmPassword}"
                     IsValid="{Binding Form.ConfirmPasswordValid}"
                     Placeholder="Nhập lại mật khẩu"
-                    IsPassword="True"
-                    />
+                    PrefixIcon="{StaticResource PasswordIcon}"
+                    Text="{Binding Form.ConfirmPassword}" />
 
                 <Label
-                    Margin="{app:EdgeInsets
-                        Horizontal={x:Static app:Dimensions.SpacingLg},
-                        Top={x:Static app:Dimensions.SpacingXl}}"
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg},
+                                            Top={x:Static app:Dimensions.SpacingXl}}"
                     HorizontalTextAlignment="Center"
                     Style="{x:Static app:Styles.BodySmall}"
-                    TextColor="{x:Static app:AppColors.Red}" >
+                    TextColor="{x:Static app:AppColors.Red}">
                     <Label.Opacity>
                         <MultiBinding Converter="{Static app:AppConverters.AnyFalseToOpacity}">
-                            <Binding Path="Form.FullNameValid"/>
-                            <Binding Path="Form.PhoneNumberValid"/>
-                            <Binding Path="Form.PasswordValid"/>
-                            <Binding Path="Form.ConfirmPasswordValid"/>
+                            <Binding Path="Form.FullNameValid" />
+                            <Binding Path="Form.PhoneNumberValid" />
+                            <Binding Path="Form.PasswordValid" />
+                            <Binding Path="Form.ConfirmPasswordValid" />
                         </MultiBinding>
                     </Label.Opacity>
                     <Label.Text>
                         <MultiBinding Converter="{Static app:AppConverters.FirstItem}">
-                            <Binding Path="Form.FullNameInvalidMessage"/>
-                            <Binding Path="Form.PhoneNumberInvalidMessage"/>
-                            <Binding Path="Form.PasswordInvalidMessage"/>
-                            <Binding Path="Form.ConfirmPasswordInvalidMessage"/>
+                            <Binding Path="Form.FullNameInvalidMessage" />
+                            <Binding Path="Form.PhoneNumberInvalidMessage" />
+                            <Binding Path="Form.PasswordInvalidMessage" />
+                            <Binding Path="Form.ConfirmPasswordInvalidMessage" />
                         </MultiBinding>
                     </Label.Text>
                 </Label>
 
                 <Button
                     Margin="{app:EdgeInsets Vertical={x:Static app:Dimensions.SpacingLg}}"
+                    Command="{Binding SignUpCommand}"
                     HorizontalOptions="Center"
                     Style="{x:Static app:Styles.ButtonPrimary}"
-                    Text="Đăng ký"
-                    Command="{Binding SignUpCommand}" />
-            </StackLayout>
+                    Text="Đăng ký" />
+            </VerticalStackLayout>
         </ScrollView>
         <ImageButton
-            Margin="{app:EdgeInsets
-                Top={x:Static app:Dimensions.SpacingLg},
-                Left={x:Static app:Dimensions.SpacingMd}
-            }"
-            VerticalOptions="Start"
+            Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingLg},
+                                    Left={x:Static app:Dimensions.SpacingMd}}"
+            Command="{Binding BackCommand}"
             HorizontalOptions="Start"
             Source="ic_back.png"
-            Command="{Binding BackCommand}" />
+            VerticalOptions="Start" />
     </Grid>
 </app:BasePage>

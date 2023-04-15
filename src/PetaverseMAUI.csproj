@@ -31,6 +31,10 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
+	  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -106,15 +110,18 @@
 
 	<ItemGroup>
 		<PackageReference Include="Bogus" Version="34.0.2" />
+		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.0-preview2" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.0.0" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0-preview1" />
+		<PackageReference Include="CommunityToolkit.Maui.Core" Version="5.0.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0-preview2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Refit" Version="6.3.2" />
+		<PackageReference Include="Refit.HttpClientFactory" Version="6.3.2" />
+		<PackageReference Include="Refit.Newtonsoft.Json" Version="6.3.2" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Features\Profile\Models\" />
 	  <Folder Include="Features\Profile\ViewCells\" />
-	  <Folder Include="Features\Profile\Services\" />
 	</ItemGroup>
 
 	<ItemGroup>

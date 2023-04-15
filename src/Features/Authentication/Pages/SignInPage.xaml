@@ -43,11 +43,11 @@
                 <app:RoundedEntry
                     Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg},
                                             Bottom={x:Static app:Dimensions.SpacingSm}}"
-                    IsValid="{x:Binding Form.UserNameValid}"
+                    IsValid="{x:Binding Form.PhoneNumberValid}"
                     Keyboard="Telephone"
                     Placeholder="Nhập số điện thoại của bạn"
                     PrefixIcon="{x:StaticResource PhoneIcon}"
-                    Text="{x:Binding Form.UserName}" />
+                    Text="{x:Binding Form.PhoneNumber}" />
                 <app:RoundedEntry
                     Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg}}"
                     IsPassword="True"

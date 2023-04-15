@@ -4,7 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:PetaverseMAUI"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:DataType="app:ProfilePageViewModel"
+    Loaded="ContentView_Loaded">
 
     <Grid
         Padding="10"
@@ -19,7 +21,7 @@
                     <Label
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="Center"
-                        Text="Strypper Vandel Jason" />
+                        Text="{x:Binding UserProfile.UserName}" />
                     <Switch HorizontalOptions="Center" MinimumWidthRequest="0" />
                 </VerticalStackLayout>
                 <FlexLayout Grid.Row="1" Style="{StaticResource InfoFlexLayoutStyle}">
@@ -28,19 +30,20 @@
                 </FlexLayout>
                 <FlexLayout Grid.Row="2" Style="{StaticResource InfoFlexLayoutStyle}">
                     <Label Text="Phone Number" />
-                    <Label Text="+84 0348164682" />
+                    <Label Text="{x:Binding UserProfile.PhoneNumber}" />
                 </FlexLayout>
                 <FlexLayout Grid.Row="3" Style="{StaticResource InfoFlexLayoutStyle}">
-                    <Label Text="District" />
-                    <Label Text="District 3" />
+                    <Label Text="Country" />
+                    <Label Text="{x:Binding UserProfile.CountryName}" />
                 </FlexLayout>
                 <FlexLayout Grid.Row="4" Style="{StaticResource InfoFlexLayoutStyle}">
-                    <Label Text="Ward" />
-                    <Label Text="Vo Thi Sau" />
+                    <Label Text="City" />
+                    <Label Text="{x:Binding UserProfile.City}" />
                 </FlexLayout>
             </Grid>
         </Frame>
         <Frame Grid.Row="1" HasShadow="True">
+            <!--  Make this as collectionview scroll horizontal  -->
             <ScrollView>
                 <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
                     <toolkit:AvatarView
@@ -98,7 +101,11 @@
                                 Detail="57 tin tức đang được theo dõi"
                                 ImageSource="followicon.png"
                                 Text="Theo dõi từ cộng đồng" />
-                            <TextCell Text="Đăng xuất" TextColor="Red" />
+                            <!--  Tapped="{x:Binding LogOutCommand}"  -->
+                            <TextCell
+                                Tapped="Logout_Tapped"
+                                Text="Đăng xuất"
+                                TextColor="Red" />
                         </TableSection>
                     </TableRoot>
                 </TableView>
@@ -109,7 +116,7 @@
         <toolkit:AvatarView
             CornerRadius="50"
             HeightRequest="100"
-            ImageSource="https://i.imgur.com/vc9FudE.jpg"
+            ImageSource="{x:Binding UserProfile.AvatarUrl}"
             VerticalOptions="Start"
             WidthRequest="100" />
     </Grid>
