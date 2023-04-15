@@ -10,6 +10,7 @@ public partial class WikiPage
         BindingContext = viewModel = vm;
     }
 
+    #region [Event Handler]
     private void BasePage_SizeChanged(object sender, EventArgs e)
     {
         if (Window.Width < 500)
@@ -40,4 +41,11 @@ public partial class WikiPage
             }
         }
     }
+
+    private void BreedHandler_SelectBreedList(BreedCardModel breed)
+    {
+        //PetsCollectionView.ScrollTo(pet, animate: true);
+        viewModel.NavigateToBreedDetailCommand.Execute(breed);
+    }
+    #endregion
 }

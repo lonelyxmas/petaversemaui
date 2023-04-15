@@ -3,7 +3,7 @@
 public partial class BreedCardModel : BaseModel
 {
     [ObservableProperty]
-    string breedName;
+    string breedName = string.Empty;
 
     [ObservableProperty]
     string breedDetail;

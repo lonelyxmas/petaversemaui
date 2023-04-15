@@ -32,6 +32,15 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
     private readonly IPetsListService petsListService;
     #endregion
 
+    #region [Overrides]
+    public override async Task OnAppearingAsync()
+    {
+        await base.OnAppearingAsync();
+
+        LoadDataAsync().FireAndForget();
+    }
+    #endregion
+
     #region [RelayCommands]
     [RelayCommand]
     private void Refresh() => LoadDataAsync()
@@ -69,15 +78,6 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
         }
 
         IsBusy = false;
-    }
-    #endregion
-
-    #region [Overrides]
-    public override async Task OnAppearingAsync()
-    {
-        await base.OnAppearingAsync();
-
-        LoadDataAsync().FireAndForget();
     }
     #endregion
 }

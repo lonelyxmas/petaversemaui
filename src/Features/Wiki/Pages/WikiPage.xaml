@@ -11,9 +11,31 @@
     <Shell.SearchHandler>
         <app:WikiSearchHandler
             ClearIcon="{x:StaticResource Clear24Icon}"
+            BreedList="{x:Binding Species}"
             Placeholder="Explore the animal world"
             QueryIcon="{x:StaticResource SearchIcon}"
-            ShowsResults="True" />
+            SelectBreedList="BreedHandler_SelectBreedList"
+            ShowsResults="True">
+            <app:WikiSearchHandler.ItemTemplate>
+                <DataTemplate x:DataType="app:BreedCardModel">
+                    <Grid
+                        Margin="5"
+                        ColumnDefinitions="40,Auto"
+                        RowDefinitions="Auto">
+                        <toolkit:AvatarView
+                            HeightRequest="35"
+                            ImageSource="{x:Binding BreedImageUrl}"
+                            WidthRequest="35" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="18"
+                            HorizontalTextAlignment="Center"
+                            Text="{x:Binding BreedName}"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </app:WikiSearchHandler.ItemTemplate>
+        </app:WikiSearchHandler>
     </Shell.SearchHandler>
 
     <app:BasePage.ToolbarItems>
@@ -30,10 +52,9 @@
                         <Label Style="{x:Static app:Styles.Heading3}" Text="Species" />
                         <HorizontalStackLayout
                             BindableLayout.ItemTemplate="{x:StaticResource SpeciesPivotItemTemplate}"
-                            BindableLayout.ItemsSource="{x:Binding Items}"
+                            BindableLayout.ItemsSource="{x:Binding Species}"
                             RadioButtonGroup.GroupName="SelectedItem"
-                            RadioButtonGroup.SelectedValue="{x:Binding SelectedItem,
-                                                                       Mode=TwoWay}"
+                            RadioButtonGroup.SelectedValue="{x:Binding SelectedSpecie, Mode=TwoWay}"
                             Spacing="{x:Static app:Dimensions.SpacingSm}" />
                         <Label Style="{x:Static app:Styles.Heading4}" Text="Filter" />
                         <HorizontalStackLayout Spacing="{x:Static app:Dimensions.SpacingSm}">
@@ -81,6 +102,6 @@
             HeaderTemplate="{x:StaticResource SpeciesCollectionViewHeaderTemplate}"
             ItemTemplate="{x:StaticResource SpeciesCollectionViewItemTemplate}"
             ItemsLayout="{x:StaticResource BreedLayout}"
-            ItemsSource="{x:Binding SelectedItem.BreedCards}" />
+            ItemsSource="{x:Binding SelectedSpecie.BreedCards}" />
     </RefreshView>
 </app:BasePage>
