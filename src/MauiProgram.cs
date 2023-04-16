@@ -12,7 +12,7 @@ public static class MauiProgram
     {
         var builder = MauiApp.CreateBuilder();
 
-        var isLocal = true;
+        var isLocal = false;
 
         builder
             .UseMauiApp<App>()
@@ -41,9 +41,9 @@ public static class MauiProgram
             {
                 essentials.UseVersionTracking();
             })
-            .RegisterServices()
             .RegisterPages()
             .RegisterPopups()
+            .RegisterServices()
             .RegisterRefitApi(isLocal);
 
         //#if ANDROID
@@ -115,12 +115,12 @@ public static class MauiProgram
     {
         builder.Services.AddRefitClient<IPetaverseAPIAuthenticationRefit>()
                         .ConfigureHttpClient(c => c.BaseAddress = new Uri(!isLocal
-                                                                          ? "https://intranetcloud.azurewebsites.net/api"
+                                                                          ? "https://petaverserestapi.azurewebsites.net/api"
                                                                           : "https://localhost:54781/api"));
 
         builder.Services.AddRefitClient<IPetaverseAPIUserProfileRefit>()
                 .ConfigureHttpClient(c => c.BaseAddress = new Uri(!isLocal
-                                                                  ? "https://intranetcloud.azurewebsites.net/api"
+                                                                  ? "https://petaverserestapi.azurewebsites.net/api"
                                                                   : "https://localhost:54781/api"));
         return builder;
     }
@@ -138,9 +138,9 @@ public static class MauiProgram
         builder.Services.AddTransient<IFilePicker, FilePicker>();
         builder.Services.AddTransient<IWikiService, FakeWikiService>();
         builder.Services.AddTransient<IWelcomeService, WelcomeService>();
-        builder.Services.AddTransient<IProfileService, MockProfileService>();
         builder.Services.AddTransient<IPetsListService, FakePetListService>();
         builder.Services.AddTransient<IPetProfileService, PetProfileService>();
+        builder.Services.AddTransient<IProfileService, PetaverseAPIUserProfileRefit>();
         builder.Services.AddTransient<IAuthenticationService, PetaverseAPIAuthenticationRefit>();
         return builder;
     }

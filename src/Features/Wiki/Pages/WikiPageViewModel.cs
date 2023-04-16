@@ -10,7 +10,7 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
     public WikiPageViewModel(
         IWikiService wikiService,
         IAppNavigator appNavigator) : base(appNavigator)
-	{
+    {
         this.wikiService = wikiService;
     }
     #endregion
@@ -23,7 +23,7 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
     bool isSpeciesFrameInfoVisible;
 
     [ObservableProperty]
-    SpeciesPivotModel selectedSpecie;
+    SpeciesPivotModel selectedSpecies;
 
     [ObservableProperty]
     ObservableCollection<SpeciesPivotModel> species;
@@ -80,7 +80,7 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
             Species.Add(item);
         }
 
-        SelectedSpecie = Species.FirstOrDefault();
+        SelectedSpecies = Species.FirstOrDefault();
 
         IsBusy = false;
     }

@@ -32,7 +32,12 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
-	  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+	  <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+	  <DebugSymbols>True</DebugSymbols>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
+	  <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -111,8 +116,8 @@
 	<ItemGroup>
 		<PackageReference Include="Bogus" Version="34.0.2" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.0-preview2" />
-		<PackageReference Include="CommunityToolkit.Maui" Version="5.0.0" />
-		<PackageReference Include="CommunityToolkit.Maui.Core" Version="5.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
+		<PackageReference Include="CommunityToolkit.Maui.Core" Version="5.1.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0-preview2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Refit" Version="6.3.2" />

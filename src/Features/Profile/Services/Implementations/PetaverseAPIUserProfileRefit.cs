@@ -13,8 +13,8 @@ public class PetaverseAPIUserProfileRefit : IProfileService
 
     #region [ CTor ]
     public PetaverseAPIUserProfileRefit(IAppNavigator appNavigator,
-                                    ISecureStorageService secureStorageService,
-                                    IPetaverseAPIUserProfileRefit petaverseAPIUserProfileRefit)
+                                        ISecureStorageService secureStorageService,
+                                        IPetaverseAPIUserProfileRefit petaverseAPIUserProfileRefit)
     {
         _appNavigator = appNavigator;
         _secureStorageService = secureStorageService;
@@ -37,7 +37,7 @@ public class PetaverseAPIUserProfileRefit : IProfileService
             UserName = refitUserInfoDTO.userName,
             Email = refitUserInfoDTO.email,
             PhoneNumber = refitUserInfoDTO.phoneNumber,
-            AvatarUrl = refitUserInfoDTO.profilePic
+            AvatarUrl = refitUserInfoDTO.petaverseProfileImageUrl
         };
     }
 
@@ -59,7 +59,7 @@ public class PetaverseAPIUserProfileRefit : IProfileService
             UserName = refitUserInfoDTO.userName,
             Email = refitUserInfoDTO.email,
             PhoneNumber = refitUserInfoDTO.phoneNumber,
-            AvatarUrl = refitUserInfoDTO.profilePic
+            AvatarUrl = refitUserInfoDTO.petaverseProfileImageUrl
         };
     }
 

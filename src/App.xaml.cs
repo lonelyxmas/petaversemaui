@@ -11,7 +11,8 @@ public partial class App : Application
 
         MainPage = new AppShell();
 
-        MauiExceptions.UnhandledException += (sender, args) => HandleException(args);
+        //MauiExceptions.UnhandledException += (sender, args) => HandleException(args);
+        AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
     }
 
     //Connect to a logging system
@@ -29,5 +30,10 @@ public partial class App : Application
         };
         var snackbar = Snackbar.Make("Exception", null, "OK", TimeSpan.FromSeconds(5), options);
         return snackbar.Show();
+    }
+
+    private void CurrentDomain_FirstChanceException(object sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e)
+    {
+        System.Diagnostics.Debug.WriteLine($"********************************** UNHANDLED EXCEPTION! Details: {e.Exception.ToString()}");
     }
 }

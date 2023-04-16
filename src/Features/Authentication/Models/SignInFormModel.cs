@@ -6,7 +6,7 @@ public partial class SignInFormModel : BaseFormModel
     [Required(ErrorMessage = "Please enter your phone number")]
     [Phone(ErrorMessage = "Please enter a valid phone number")]
     [NotifyPropertyChangedFor(nameof(PhoneNumberValid), nameof(PhoneNumberInvalidMessage))]
-    string phoneNumber;
+    string phoneNumber = "0348164682";
 
     [ObservableProperty]
     [Required(ErrorMessage = "Please enter a password")]
@@ -19,7 +19,7 @@ public partial class SignInFormModel : BaseFormModel
         ErrorMessage = "Please enter a strong password: from 8 characters, 1 upper, 1 lower, 1 digit, 1 special character"
     )]
     [NotifyPropertyChangedFor(nameof(PasswordValid), nameof(PasswordInvalidMessage))]
-    string password;
+    string password = "Welkom112!!@";
 
     public bool PhoneNumberValid => GetErrors(nameof(PhoneNumber)).Any() == false;
     public string PhoneNumberInvalidMessage => GetErrors(nameof(PhoneNumber)).FirstOrDefault()?.ErrorMessage;

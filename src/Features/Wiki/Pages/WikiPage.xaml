@@ -5,13 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:PetaverseMAUI"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    Title="WikiPage"
     x:DataType="app:WikiPageViewModel"
     SizeChanged="BasePage_SizeChanged">
     <Shell.SearchHandler>
         <app:WikiSearchHandler
-            ClearIcon="{x:StaticResource Clear24Icon}"
             BreedList="{x:Binding Species}"
+            ClearIcon="{x:StaticResource Clear24Icon}"
             Placeholder="Explore the animal world"
             QueryIcon="{x:StaticResource SearchIcon}"
             SelectBreedList="BreedHandler_SelectBreedList"
@@ -22,9 +21,9 @@
                         Margin="5"
                         ColumnDefinitions="40,Auto"
                         RowDefinitions="Auto">
-                        <toolkit:AvatarView
-                            HeightRequest="35"
-                            ImageSource="{x:Binding BreedImageUrl}"
+                        <Image
+                            HeightRequest="50"
+                            Source="{x:Binding BreedImageUrl}"
                             WidthRequest="35" />
                         <Label
                             Grid.Column="1"
@@ -54,7 +53,8 @@
                             BindableLayout.ItemTemplate="{x:StaticResource SpeciesPivotItemTemplate}"
                             BindableLayout.ItemsSource="{x:Binding Species}"
                             RadioButtonGroup.GroupName="SelectedItem"
-                            RadioButtonGroup.SelectedValue="{x:Binding SelectedSpecie, Mode=TwoWay}"
+                            RadioButtonGroup.SelectedValue="{x:Binding SelectedSpecies,
+                                                                       Mode=TwoWay}"
                             Spacing="{x:Static app:Dimensions.SpacingSm}" />
                         <Label Style="{x:Static app:Styles.Heading4}" Text="Filter" />
                         <HorizontalStackLayout Spacing="{x:Static app:Dimensions.SpacingSm}">
@@ -102,6 +102,6 @@
             HeaderTemplate="{x:StaticResource SpeciesCollectionViewHeaderTemplate}"
             ItemTemplate="{x:StaticResource SpeciesCollectionViewItemTemplate}"
             ItemsLayout="{x:StaticResource BreedLayout}"
-            ItemsSource="{x:Binding SelectedSpecie.BreedCards}" />
+            ItemsSource="{x:Binding SelectedSpecies.BreedCards}" />
     </RefreshView>
 </app:BasePage>

@@ -63,8 +63,7 @@ public class PetaverseAPIAuthenticationRefit : IAuthenticationService
         }
         catch (ApiException ex)
         {
-
-            throw new Exception(ex.Message);
+            await _appNavigator.ShowSnackbarAsync(ex.Message);
         }
     }
 

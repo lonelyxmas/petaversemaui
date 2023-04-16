@@ -60,7 +60,7 @@ public partial class SignInPageViewModel : BaseViewModel
         {
             await _authenticationService.AuthenticateWithPhoneNumber(Form.PhoneNumber, Form.Password);
 
-            var userInfo = await _profileService.GetUserInfo();
+            var userInfo = await _profileService.GetCurrentUser();
 
             if (userInfo is null)
                 await AppNavigator.ShowSnackbarAsync("User is not exist");
