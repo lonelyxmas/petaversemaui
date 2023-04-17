@@ -35,17 +35,17 @@ public partial class SignUpPageViewModel : NavigationAwareBaseViewModel
 
     #endregion
 
-    #region [ Realy Commands ]
+    #region [ Relay Commands ]
 
     [RelayCommand]
     async Task SignUpAsync()
     {
         await _authenticationService.SignUp(Form.PhoneNumber,
-                                            Form.Email,
+                                            Form.UserName,
                                             Form.Email,
                                             Form.ConfirmPassword,
-                                            "Strypper",
-                                            "Jason",
+                                            Form.FirstName,
+                                            Form.LastName,
                                             File);
     }
 

@@ -43,8 +43,6 @@
         <ToolbarItem Command="{x:Binding AddPetCommand}" IconImageSource="{x:StaticResource PetListCameraIcon}" />
     </app:BasePage.ToolbarItems>
     <app:BasePage.Resources>
-
-
         <DataTemplate x:Key="PetsCollectionViewGroupedHeaderTemplate" x:DataType="app:PetProfileCardsGroupModel">
             <Grid>
                 <Label

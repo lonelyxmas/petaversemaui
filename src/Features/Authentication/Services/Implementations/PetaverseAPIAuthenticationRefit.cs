@@ -67,7 +67,13 @@ public class PetaverseAPIAuthenticationRefit : IAuthenticationService
         }
     }
 
-    public async Task SignUp(string phonenumber, string username, string email, string password, string firstname, string lastname, FileResult profilepicurl)
+    public async Task SignUp(string phonenumber,
+                             string username,
+                             string email,
+                             string password,
+                             string firstname,
+                             string lastname,
+                             FileResult? profilepicurl)
     {
         Guard.IsNotNullOrEmpty(phonenumber);
         Guard.IsNotNullOrEmpty(username);
@@ -80,9 +86,10 @@ public class PetaverseAPIAuthenticationRefit : IAuthenticationService
 
         if (profilepicurl is not null)
         {
-            using var fileStream = File.OpenRead(profilepicurl.FullPath);
+            var fileStream = File.OpenRead(profilepicurl.FullPath);
 
             stream = new StreamPart(fileStream, profilepicurl.FileName, profilepicurl.ContentType);
+
         }
 
         try
@@ -94,12 +101,15 @@ public class PetaverseAPIAuthenticationRefit : IAuthenticationService
                                                                            email,
                                                                            password,
                                                                            stream ?? null);
+
+            //This need to be refactor
             if (!response.IsSuccessStatusCode)
             {
                 var errorContentJson = JsonConvert.DeserializeObject<RefitErrorMessageModel>(response.Error.Content);
                 throw new Exception(errorContentJson.title);
             }
         }
+        //This also need to be refactor
         catch (ApiException ex)
         {
             throw new Exception(ex.Message);

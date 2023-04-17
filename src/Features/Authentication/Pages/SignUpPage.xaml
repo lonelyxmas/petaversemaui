@@ -18,6 +18,12 @@
             Color="{x:Static app:AppColors.Black}" />
 
         <FontImageSource
+            x:Key="ContactCard24Icon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_contact_card_24_regular}"
+            Color="{x:Static app:AppColors.Black}" />
+
+        <FontImageSource
             x:Key="PhoneIcon"
             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
             Glyph="{Static app:FluentUIIcon.Ic_fluent_phone_24_regular}"
@@ -40,13 +46,6 @@
     <Grid>
         <ScrollView VerticalScrollBarVisibility="Never">
             <VerticalStackLayout Spacing="0">
-                <!--<Image
-                    Margin="{app:EdgeInsets Top=80,
-                                            Bottom={x:Static app:Dimensions.SpacingMd}}"
-                    HeightRequest="48"
-                    HorizontalOptions="Center"
-                    SemanticProperties.Description="Petaverse"
-                    Source="cap_icon" />-->
                 <Label
                     Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingMd}}"
                     HorizontalTextAlignment="Center"
@@ -63,7 +62,7 @@
                     TextColor="{x:Static app:AppColors.Grey50}" />
 
                 <HorizontalStackLayout
-                    Margin="{app:EdgeInsets Top=40,
+                    Margin="{app:EdgeInsets Top=10,
                                             Bottom={x:Static app:Dimensions.SpacingMd}}"
                     HorizontalOptions="Center"
                     Spacing="10"
@@ -90,41 +89,63 @@
                 <app:RoundedEntry
                     Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg},
                                             Bottom={x:Static app:Dimensions.SpacingSm}}"
-                    IsValid="{Binding Form.FullNameValid}"
-                    Placeholder="Tên của bạn"
+                    IsValid="{x:Binding Form.UserNameValid}"
+                    Placeholder="Username"
                     PrefixIcon="{StaticResource PersonIcon}"
-                    Text="{Binding Form.FullName}" />
+                    Text="{x:Binding Form.UserName,
+                                     Mode=TwoWay}" />
+
                 <app:RoundedEntry
                     Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg},
                                             Bottom={x:Static app:Dimensions.SpacingSm}}"
-                    IsValid="{Binding Form.PhoneNumberValid}"
+                    IsValid="{x:Binding Form.FirstNameValid}"
+                    Placeholder="Tên chính"
+                    PrefixIcon="{x:StaticResource ContactCard24Icon}"
+                    Text="{x:Binding Form.FirstName,
+                                     Mode=TwoWay}" />
+                <app:RoundedEntry
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg},
+                                            Bottom={x:Static app:Dimensions.SpacingSm}}"
+                    Placeholder="Tên họ"
+                    PrefixIcon="{x:StaticResource ContactCard24Icon}"
+                    Text="{x:Binding Form.LastName,
+                                     Mode=TwoWay}" />
+
+                <app:RoundedEntry
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg},
+                                            Bottom={x:Static app:Dimensions.SpacingSm}}"
+                    IsValid="{x:Binding Form.PhoneNumberValid}"
                     Keyboard="Telephone"
                     Placeholder="Số điện thoại"
-                    PrefixIcon="{StaticResource PhoneIcon}"
-                    Text="{Binding Form.PhoneNumber}" />
+                    PrefixIcon="{x:StaticResource PhoneIcon}"
+                    Text="{x:Binding Form.PhoneNumber,
+                                     Mode=TwoWay}" />
                 <app:RoundedEntry
                     Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg},
                                             Bottom={x:Static app:Dimensions.SpacingSm}}"
-                    IsValid="{Binding Form.Email}"
+                    IsValid="{x:Binding Form.EmailValid}"
                     Keyboard="Email"
                     Placeholder="Địa chỉ mail"
                     PrefixIcon="{StaticResource MailIcon}"
-                    Text="{Binding Form.Email}" />
+                    Text="{x:Binding Form.Email,
+                                     Mode=TwoWay}" />
                 <app:RoundedEntry
                     Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg},
                                             Bottom={x:Static app:Dimensions.SpacingSm}}"
                     IsPassword="True"
-                    IsValid="{Binding Form.PasswordValid}"
+                    IsValid="{x:Binding Form.PasswordValid}"
                     Placeholder="Nhập mật khẩu"
                     PrefixIcon="{x:StaticResource PasswordIcon}"
-                    Text="{Binding Form.Password}" />
+                    Text="{x:Binding Form.Password,
+                                     Mode=TwoWay}" />
                 <app:RoundedEntry
                     Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg}}"
                     IsPassword="True"
-                    IsValid="{Binding Form.ConfirmPasswordValid}"
+                    IsValid="{x:Binding Form.ConfirmPasswordValid}"
                     Placeholder="Nhập lại mật khẩu"
                     PrefixIcon="{StaticResource PasswordIcon}"
-                    Text="{Binding Form.ConfirmPassword}" />
+                    Text="{x:Binding Form.ConfirmPassword,
+                                     Mode=TwoWay}" />
 
                 <Label
                     Margin="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingLg},
@@ -135,7 +156,9 @@
                     <Label.Opacity>
                         <MultiBinding Converter="{Static app:AppConverters.AnyFalseToOpacity}">
                             <Binding Path="Form.FullNameValid" />
+                            <Binding Path="Form.FirstNameValid" />
                             <Binding Path="Form.PhoneNumberValid" />
+                            <Binding Path="Form.EmailValid" />
                             <Binding Path="Form.PasswordValid" />
                             <Binding Path="Form.ConfirmPasswordValid" />
                         </MultiBinding>
@@ -143,7 +166,9 @@
                     <Label.Text>
                         <MultiBinding Converter="{Static app:AppConverters.FirstItem}">
                             <Binding Path="Form.FullNameInvalidMessage" />
+                            <Binding Path="Form.FirstNameInvalidMessage" />
                             <Binding Path="Form.PhoneNumberInvalidMessage" />
+                            <Binding Path="Form.EmailInvalidMessage" />
                             <Binding Path="Form.PasswordInvalidMessage" />
                             <Binding Path="Form.ConfirmPasswordInvalidMessage" />
                         </MultiBinding>
