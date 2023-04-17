@@ -46,6 +46,7 @@
                 PrefixIcon="{x:StaticResource GalleryIcon}"
                 Text="{x:Binding ComponentData.MediaCount,
                                  Source={x:Reference root}}" />
+            <Button Clicked="Detail_Clicked" Text="Detail" />
         </VerticalStackLayout>
     </Frame>
 </ContentView>

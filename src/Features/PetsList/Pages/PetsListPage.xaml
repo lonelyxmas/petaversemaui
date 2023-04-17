@@ -54,7 +54,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="PetsCollectionViewItemTemplate" x:DataType="app:PetProfileCardModel">
-            <app:PetProfileCardContentView ComponentData="{x:Binding}" />
+            <app:PetProfileCardContentView ComponentData="{x:Binding}" PetCardTapped="PetProfileCardContentView_PetCardTapped" />
         </DataTemplate>
 
         <DataTemplate x:Key="PetsCollectionViewFooterTemplate" x:DataType="app:PetsListPageViewModel">
