@@ -1,12 +1,17 @@
+using CommunityToolkit.Mvvm.Messaging;
+
 namespace PetaverseMAUI;
 
 public partial class PetProfileCardContentView : ContentView
 {
+    IConnectivity connectivity;
     #region [ CTor ]
 
-    public PetProfileCardContentView()
+    public PetProfileCardContentView(IConnectivity connectivity)
     {
         InitializeComponent();
+        this.connectivity = connectivity;
+        //WeakReferenceMessenger.Default.Register<ItemsDetailMessage>();
     }
 
     #endregion
@@ -23,6 +28,11 @@ public partial class PetProfileCardContentView : ContentView
     {
         get => (PetProfileCardModel)GetValue(ComponentDataProperty);
         set => SetValue(ComponentDataProperty, value);
+    }
+
+    [RelayCommand]
+    void CallBack(string s)
+    {
     }
 
     #endregion

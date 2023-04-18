@@ -25,6 +25,10 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     ObservableCollection<PetProfileCardsGroupModel> items;
+
+
+    [ObservableProperty]
+    PetProfileCardsGroupModel selectedItem;
     #endregion
 
     #region [Services]

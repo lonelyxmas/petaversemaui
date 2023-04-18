@@ -43,7 +43,10 @@
         <ToolbarItem Command="{x:Binding AddPetCommand}" IconImageSource="{x:StaticResource PetListCameraIcon}" />
     </app:BasePage.ToolbarItems>
     <app:BasePage.Resources>
-
+        <FontImageSource x:Key="GalleryIcon"
+                         Color="{x:Static app:AppColors.Black}"
+                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                         Glyph="{x:Static app:FluentUIIcon.Ic_fluent_content_view_gallery_28_regular}"/>
 
         <DataTemplate x:Key="PetsCollectionViewGroupedHeaderTemplate" x:DataType="app:PetProfileCardsGroupModel">
             <Grid>
@@ -55,9 +58,9 @@
             </Grid>
         </DataTemplate>
 
-        <DataTemplate x:Key="PetsCollectionViewItemTemplate" x:DataType="app:PetProfileCardModel">
+        <!--<DataTemplate x:Key="PetsCollectionViewItemTemplate" x:DataType="app:PetProfileCardModel">
             <app:PetProfileCardContentView ComponentData="{x:Binding}" />
-        </DataTemplate>
+        </DataTemplate>-->
 
         <DataTemplate x:Key="PetsCollectionViewFooterTemplate" x:DataType="app:PetsListPageViewModel">
             <Grid
@@ -88,12 +91,18 @@
         <CollectionView
             x:Name="PetsCollectionView"
             EmptyView="Fetching data"
+            SelectionMode="Single"
+            SelectedItem="{x:Binding SelectedItem}"
+            SelectionChangedCommand="{x:Binding NavigateToProfileDetailCommand}"
+            SelectionChangedCommandParameter="{x:Binding SelectedItem, Source={x:Reference PetsCollectionView}}"
             Footer="{x:Binding}"
             FooterTemplate="{x:StaticResource PetsCollectionViewFooterTemplate}"
             GroupHeaderTemplate="{x:StaticResource PetsCollectionViewGroupedHeaderTemplate}"
             IsGrouped="True"
             ItemTemplate="{x:StaticResource PetsCollectionViewItemTemplate}"
             ItemsLayout="{x:StaticResource PetsCollectionViewPhoneLayout}"
-            ItemsSource="{x:Binding Items}" />
+            ItemsSource="{x:Binding Items}">
+        </CollectionView>
+        <!---->
     </RefreshView>
 </app:BasePage>

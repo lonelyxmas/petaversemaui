@@ -46,9 +46,9 @@ public partial class PetsListPage
         }
     }
 
-    private void PetHandler_SelectPet(PetProfileCardModel pet)
-    {
-		//PetsCollectionView.ScrollTo(pet, animate: true);
-		viewModel.NavigateToProfileDetailCommand.Execute(pet);
-    }
+  //  private void PetHandler_SelectPet(PetProfileCardModel pet)
+  //  {
+		////PetsCollectionView.ScrollTo(pet, animate: true);
+		//viewModel.NavigateToProfileDetailCommand.Execute(pet);
+  //  }
 }

@@ -16,28 +16,28 @@
                          FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
                          Glyph="{x:Static app:FluentUIIcon.Ic_fluent_content_view_gallery_28_regular}"/>
     </ContentView.Resources>
-    
+
     <Frame HasShadow="True">
         <VerticalStackLayout HorizontalOptions="Center"
-                             Spacing="{x:Static app:Dimensions.SpacingSm}">
+                            Spacing="{x:Static app:Dimensions.SpacingSm}">
             <toolkit:AvatarView CornerRadius="75"
-                                WidthRequest="120"
-                                HeightRequest="120"
-                                VerticalOptions="Center"
-                                HorizontalOptions="Center"
-                                ImageSource="{x:Binding ComponentData.ProfileUrl, Source={x:Reference root}}"/>
+                            WidthRequest="120"
+                            HeightRequest="120"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            ImageSource="{x:Binding ComponentData.ProfileUrl, Source={x:Reference root}}"/>
 
             <Label HorizontalOptions="Center"
-                   Style="{x:Static app:Styles.SubHeading2Semi}"
-                   Text="{x:Binding ComponentData.Name, Source={x:Reference root}}"/>
+                Style="{x:Static app:Styles.SubHeading2Semi}"
+                Text="{x:Binding ComponentData.Name, Source={x:Reference root}}"/>
 
             <app:BreedLabel HorizontalOptions="Center"
-                            Text="{x:Binding ComponentData.Breed.Name, Source={x:Reference root}}"
-                            Color="{x:Binding ComponentData.Breed.Color, Source={x:Reference root}}"/>
+                        Text="{x:Binding ComponentData.Breed.Name, Source={x:Reference root}}"
+                        Color="{x:Binding ComponentData.Breed.Color, Source={x:Reference root}}"/>
 
             <app:IconLabel HorizontalOptions="Center"
-                           PrefixIcon="{x:StaticResource GalleryIcon}"
-                           Text="{x:Binding ComponentData.MediaCount, Source={x:Reference root}}"/>
+                        PrefixIcon="{x:StaticResource GalleryIcon}"
+                        Text="{x:Binding ComponentData.MediaCount, Source={x:Reference root}}"/>
         </VerticalStackLayout>
     </Frame>
 </ContentView>
