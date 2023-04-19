@@ -1,14 +1,23 @@
+using System.Collections.Generic;
+
 namespace PetaverseMAUI;
 
 public partial class PetsListPage
 {
-	private PetsListPageViewModel viewModel;
-    public PetsListPage(PetsListPageViewModel vm)
-	{
-		InitializeComponent();
+    #region [ Fields ]
+    private readonly PetsListPageViewModel viewModel;
+    #endregion
 
-		BindingContext = viewModel = vm;
+    #region [ CTor ]
+    public PetsListPage(PetsListPageViewModel vm)
+    {
+        InitializeComponent();
+
+        BindingContext = viewModel = vm;
     }
+    #endregion
+
+    #region [ Event Handlers ]
 
     private void BasePage_SizeChanged(object sender, EventArgs e)
     {
@@ -46,9 +55,10 @@ public partial class PetsListPage
         }
     }
 
-  //  private void PetHandler_SelectPet(PetProfileCardModel pet)
-  //  {
-		////PetsCollectionView.ScrollTo(pet, animate: true);
-		//viewModel.NavigateToProfileDetailCommand.Execute(pet);
-  //  }
+    private void PetHandler_SelectPet(PetProfileCardModel pet)
+    {
+        //PetsCollectionView.ScrollTo(pet, animate: true);
+        viewModel.NavigateToProfileDetailCommand.Execute(pet);
+    }
+    #endregion
 }

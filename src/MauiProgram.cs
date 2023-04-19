@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
+using Refit;
 using System.Reflection;
 
 namespace PetaverseMAUI;
@@ -10,6 +11,9 @@ public static class MauiProgram
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
+
+        var isLocal = false;
+
         builder
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
@@ -37,9 +41,10 @@ public static class MauiProgram
             {
                 essentials.UseVersionTracking();
             })
-            .RegisterServices()
             .RegisterPages()
-            .RegisterPopups();
+            .RegisterPopups()
+            .RegisterServices()
+            .RegisterRefitApi(isLocal);
 
         //#if ANDROID
         //        ImageHandler.Mapper.AppendToMapping(nameof(ImageView.Drawable), async (handler, view) =>
@@ -106,6 +111,20 @@ public static class MauiProgram
         return builder;
     }
 
+    static MauiAppBuilder RegisterRefitApi(this MauiAppBuilder builder, bool isLocal)
+    {
+        builder.Services.AddRefitClient<IPetaverseAPIAuthenticationRefit>()
+                        .ConfigureHttpClient(c => c.BaseAddress = new Uri(!isLocal
+                                                                          ? "https://petaverserestapi.azurewebsites.net/api"
+                                                                          : "https://localhost:54781/api"));
+
+        builder.Services.AddRefitClient<IPetaverseAPIUserProfileRefit>()
+                .ConfigureHttpClient(c => c.BaseAddress = new Uri(!isLocal
+                                                                  ? "https://petaverserestapi.azurewebsites.net/api"
+                                                                  : "https://localhost:54781/api"));
+        return builder;
+    }
+
     static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
         builder.Services.AddSingleton<IAppInfo>(AppInfo.Current);
@@ -113,13 +132,16 @@ public static class MauiProgram
         //builder.Services.AddSingleton<IMessagingCenter>(MessagingCenter.Instance);
 
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
+        builder.Services.AddSingleton<ISecureStorageService, SecureStorageService>();
         //builder.Services.AddSingleton<IAppSettingsService, AppSettingsService>();
 
-        builder.Services.AddTransient<IWelcomeService, WelcomeService>();
+        builder.Services.AddTransient<IFilePicker, FilePicker>();
         builder.Services.AddTransient<IWikiService, FakeWikiService>();
+        builder.Services.AddTransient<IWelcomeService, WelcomeService>();
         builder.Services.AddTransient<IPetsListService, FakePetListService>();
         builder.Services.AddTransient<IPetProfileService, PetProfileService>();
-
+        builder.Services.AddTransient<IProfileService, PetaverseAPIUserProfileRefit>();
+        builder.Services.AddTransient<IAuthenticationService, PetaverseAPIAuthenticationRefit>();
         return builder;
     }
 

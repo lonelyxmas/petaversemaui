@@ -2,35 +2,64 @@
 
 public partial class SignUpPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [Ctor]
+    #region [ Fields ]
 
-    public SignUpPageViewModel(IAppNavigator appNavigator) : base(appNavigator)
+    private readonly IFilePicker _filePicker;
+    private readonly IProfileService _profileService;
+    private readonly IAuthenticationService _authenticationService;
+    #endregion
+    #region [ CTor ]
+
+    public SignUpPageViewModel(IAppNavigator appNavigator,
+                               IFilePicker filePicker,
+                               IProfileService profileService,
+                               IAuthenticationService authenticationService)
+                               : base(appNavigator)
     {
         Form = new();
+        _filePicker = filePicker;
+        _profileService = profileService;
+        _authenticationService = authenticationService;
     }
 
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
 
+    [ObservableProperty]
+    FileResult file;
+
+    [ObservableProperty]
+    ImageSource avatarImageSource;
     public SignUpFormModel Form { get; init; }
 
     #endregion
 
-    #region [Commands]
+    #region [ Relay Commands ]
 
     [RelayCommand]
-    Task SignUpAsync()
+    async Task SignUpAsync()
     {
-        var isValid = Form.IsValid();
+        await _authenticationService.SignUp(Form.PhoneNumber,
+                                            Form.UserName,
+                                            Form.Email,
+                                            Form.ConfirmPassword,
+                                            Form.FirstName,
+                                            Form.LastName,
+                                            File);
+    }
 
-        if (!isValid)
-        {
-            return Task.CompletedTask;
-        }
 
-        return AppNavigator.GoBackAsync();
+    [RelayCommand]
+    private async Task OpenFileAsync()
+    {
+        File = await _filePicker.OpenMediaPickerAsync();
+        var imagefile = await _filePicker.UploadImageFile(File);
+        AvatarImageSource = ImageSource.FromStream(() =>
+            _filePicker.ByteArrayToStream(_filePicker.StringToByteBase64(imagefile?.byteBase64))
+        );
     }
 
     #endregion
 }
+

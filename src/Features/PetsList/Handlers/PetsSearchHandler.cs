@@ -11,12 +11,15 @@ public class PetsSearchHandler : SearchHandler
     }
     #endregion
 
-    #region [Properties]
+    #region [Bindable Properties]
     public static readonly BindableProperty PetsProperty = BindableProperty.Create(nameof(Pets),
                                                                                    typeof(ObservableCollection<PetProfileCardsGroupModel>),
                                                                                    typeof(PetsSearchHandler),
                                                                                    new ObservableCollection<PetProfileCardsGroupModel>(),
                                                                                    BindingMode.OneWay);
+    #endregion
+
+    #region [Properties]
     public ObservableCollection<PetProfileCardsGroupModel> Pets
     {
         get => (ObservableCollection<PetProfileCardsGroupModel>)GetValue(PetsProperty);
@@ -50,6 +53,7 @@ public class PetsSearchHandler : SearchHandler
         base.OnItemSelected(item);
         var selectedPet = item as PetProfileCardModel;
         SelectPet.Invoke(selectedPet);
+        //SelectPet(selectedPet);
     }
 
     #endregion

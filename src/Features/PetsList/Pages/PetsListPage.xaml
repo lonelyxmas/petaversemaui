@@ -43,11 +43,6 @@
         <ToolbarItem Command="{x:Binding AddPetCommand}" IconImageSource="{x:StaticResource PetListCameraIcon}" />
     </app:BasePage.ToolbarItems>
     <app:BasePage.Resources>
-        <FontImageSource x:Key="GalleryIcon"
-                         Color="{x:Static app:AppColors.Black}"
-                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                         Glyph="{x:Static app:FluentUIIcon.Ic_fluent_content_view_gallery_28_regular}"/>
-
         <DataTemplate x:Key="PetsCollectionViewGroupedHeaderTemplate" x:DataType="app:PetProfileCardsGroupModel">
             <Grid>
                 <Label
@@ -58,9 +53,10 @@
             </Grid>
         </DataTemplate>
 
-        <!--<DataTemplate x:Key="PetsCollectionViewItemTemplate" x:DataType="app:PetProfileCardModel">
-            <app:PetProfileCardContentView ComponentData="{x:Binding}" />
-        </DataTemplate>-->
+        <DataTemplate x:Key="PetsCollectionViewItemTemplate" x:DataType="app:PetProfileCardModel">
+            <app:PetProfileCardContentView ComponentData="{x:Binding}" 
+                                           PetCardTapped="PetHandler_SelectPet"/>
+        </DataTemplate>
 
         <DataTemplate x:Key="PetsCollectionViewFooterTemplate" x:DataType="app:PetsListPageViewModel">
             <Grid
@@ -81,28 +77,23 @@
 
         <GridItemsLayout
             x:Key="PetsCollectionViewPhoneLayout"
-            HorizontalItemSpacing="1"
+            HorizontalItemSpacing="10"
             Orientation="Vertical"
             Span="{x:Binding Span}"
-            VerticalItemSpacing="1" />
+            VerticalItemSpacing="10"/>
     </app:BasePage.Resources>
 
-    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy}">
+    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy}" Margin="10">
         <CollectionView
             x:Name="PetsCollectionView"
             EmptyView="Fetching data"
-            SelectionMode="Single"
-            SelectedItem="{x:Binding SelectedItem}"
-            SelectionChangedCommand="{x:Binding NavigateToProfileDetailCommand}"
-            SelectionChangedCommandParameter="{x:Binding SelectedItem, Source={x:Reference PetsCollectionView}}"
+            SelectionMode="None"
             Footer="{x:Binding}"
             FooterTemplate="{x:StaticResource PetsCollectionViewFooterTemplate}"
             GroupHeaderTemplate="{x:StaticResource PetsCollectionViewGroupedHeaderTemplate}"
             IsGrouped="True"
             ItemTemplate="{x:StaticResource PetsCollectionViewItemTemplate}"
             ItemsLayout="{x:StaticResource PetsCollectionViewPhoneLayout}"
-            ItemsSource="{x:Binding Items}">
-        </CollectionView>
-        <!---->
+            ItemsSource="{x:Binding Items}"/>
     </RefreshView>
 </app:BasePage>

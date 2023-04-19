@@ -1,43 +1,55 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:app="clr-namespace:PetaverseMAUI"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             
-             x:Name="root"
-             x:DataType="app:PetProfileCardContentView"
-             x:Class="PetaverseMAUI.PetProfileCardContentView"
-             
-             Padding="10">
+<ContentView
+    x:Class="PetaverseMAUI.PetProfileCardContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:PetaverseMAUI"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:DataType="app:PetProfileCardContentView"
+    x:Name="root">
 
     <ContentView.Resources>
-        <FontImageSource x:Key="GalleryIcon"
-                         Color="{x:Static app:AppColors.Black}"
-                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                         Glyph="{x:Static app:FluentUIIcon.Ic_fluent_content_view_gallery_28_regular}"/>
+        <FontImageSource
+            x:Key="GalleryIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{x:Static app:FluentUIIcon.Ic_fluent_content_view_gallery_28_regular}"
+            Color="{x:Static app:AppColors.Black}" />
     </ContentView.Resources>
 
     <Frame HasShadow="True">
-        <VerticalStackLayout HorizontalOptions="Center"
-                            Spacing="{x:Static app:Dimensions.SpacingSm}">
-            <toolkit:AvatarView CornerRadius="75"
-                            WidthRequest="120"
-                            HeightRequest="120"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Center"
-                            ImageSource="{x:Binding ComponentData.ProfileUrl, Source={x:Reference root}}"/>
+        <VerticalStackLayout HorizontalOptions="Center" Spacing="{x:Static app:Dimensions.SpacingSm}">
+            <toolkit:AvatarView
+                CornerRadius="75"
+                HeightRequest="120"
+                HorizontalOptions="Center"
+                ImageSource="{x:Binding ComponentData.ProfileUrl,
+                                        Source={x:Reference root}}"
+                VerticalOptions="Center"
+                WidthRequest="120" />
 
-            <Label HorizontalOptions="Center"
+            <Label
+                HorizontalOptions="Center"
                 Style="{x:Static app:Styles.SubHeading2Semi}"
-                Text="{x:Binding ComponentData.Name, Source={x:Reference root}}"/>
+                Text="{x:Binding ComponentData.Name,
+                                 Source={x:Reference root}}" />
 
             <app:BreedLabel HorizontalOptions="Center"
                         Text="{x:Binding ComponentData.Breed.Name, Source={x:Reference root}}"
                         Color="{x:Binding ComponentData.Breed.Color, Source={x:Reference root}}"/>
+            <app:BreedLabel
+                HorizontalOptions="Center"
+                Text="{x:Binding ComponentData.Breed.Name,
+                                 Source={x:Reference root}}"
+                Color="{x:Binding ComponentData.Breed.Color,
+                                  Source={x:Reference root}}"/>
 
-            <app:IconLabel HorizontalOptions="Center"
-                        PrefixIcon="{x:StaticResource GalleryIcon}"
-                        Text="{x:Binding ComponentData.MediaCount, Source={x:Reference root}}"/>
+            <app:IconLabel
+                HorizontalOptions="Center"
+                PrefixIcon="{x:StaticResource GalleryIcon}"
+                Text="{x:Binding ComponentData.MediaCount,
+                                 Source={x:Reference root}}"/>
+            
+            <Button Clicked="Detail_Clicked" Text="Detail" />
         </VerticalStackLayout>
     </Frame>
 </ContentView>

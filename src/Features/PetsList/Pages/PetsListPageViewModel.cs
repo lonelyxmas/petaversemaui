@@ -36,6 +36,15 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
     private readonly IPetsListService petsListService;
     #endregion
 
+    #region [Overrides]
+    public override async Task OnAppearingAsync()
+    {
+        await base.OnAppearingAsync();
+
+        LoadDataAsync().FireAndForget();
+    }
+    #endregion
+
     #region [RelayCommands]
     [RelayCommand]
     private void Refresh() => LoadDataAsync()
@@ -44,7 +53,10 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
 
     [RelayCommand]
     private void NavigateToProfileDetail(PetProfileCardModel petProfileCardModel)
-                            => AppNavigator.NavigateAsync(AppRoutes.PetDetailProfile, args: petProfileCardModel);
+    {
+        AppNavigator.NavigateAsync(AppRoutes.PetDetailProfile, args: petProfileCardModel);
+    }
+
 
     [RelayCommand]
     private Task AddPetAsync() => AppNavigator.NavigateAsync(AppRoutes.AddPetPopup);
@@ -73,15 +85,6 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
         }
 
         IsBusy = false;
-    }
-    #endregion
-
-    #region [Overrides]
-    public override async Task OnAppearingAsync()
-    {
-        await base.OnAppearingAsync();
-
-        LoadDataAsync().FireAndForget();
     }
     #endregion
 }

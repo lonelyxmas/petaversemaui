@@ -1,11 +1,26 @@
-﻿namespace PetaverseMAUI;
+﻿using CommunityToolkit.Diagnostics;
+
+namespace PetaverseMAUI;
 
 public partial class SignInPageViewModel : BaseViewModel
 {
-    #region [ Ctor ]
+    #region [ Fields ]
 
-    public SignInPageViewModel(IAppNavigator appNavigator) : base(appNavigator)
+    private readonly IFilePicker filePicker;
+    private readonly IProfileService _profileService;
+    private readonly IAuthenticationService _authenticationService;
+    #endregion
+
+    #region [ CTor ]
+
+    public SignInPageViewModel(IAppNavigator appNavigator,
+                               IProfileService profileService,
+                               IAuthenticationService authenticationService)
+                        : base(appNavigator)
     {
+        _profileService = profileService;
+        _authenticationService = authenticationService;
+
         Form = new();
     }
 
@@ -17,7 +32,7 @@ public partial class SignInPageViewModel : BaseViewModel
 
     #endregion
 
-    #region [ Commands ]
+    #region [ Relay Commands ]
 
 
     [RelayCommand]
@@ -29,24 +44,34 @@ public partial class SignInPageViewModel : BaseViewModel
     [RelayCommand]
     Task SignInWithSocialAccountAsync(SocialAccountType socialAccountType)
     {
-        return GoHomeAsync();
+        return GoHomeAsync(null);
     }
 
     [RelayCommand]
-    Task SignInAsync()
+    async Task SignInAsync()
     {
         var isValid = Form.IsValid();
 
         if (!isValid)
         {
-            return Task.CompletedTask;
+            await AppNavigator.ShowSnackbarAsync(Form.PasswordInvalidMessage);
         }
+        else
+        {
+            await _authenticationService.AuthenticateWithPhoneNumber(Form.PhoneNumber, Form.Password);
 
-        return GoHomeAsync();
+            var userInfo = await _profileService.GetCurrentUser();
+
+            if (userInfo is null)
+                await AppNavigator.ShowSnackbarAsync("User is not exist");
+            else
+                await GoHomeAsync(userInfo);
+        }
     }
 
     #endregion
-
-
-    Task GoHomeAsync() => AppNavigator.NavigateAsync(AppRoutes.Profile);
+    Task GoHomeAsync(UserProfile userProfile)
+    {
+        return AppNavigator.NavigateAsync(AppRoutes.Profile, true, userProfile ?? null);
+    }
 }

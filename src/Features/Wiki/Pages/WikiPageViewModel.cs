@@ -10,7 +10,7 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
     public WikiPageViewModel(
         IWikiService wikiService,
         IAppNavigator appNavigator) : base(appNavigator)
-	{
+    {
         this.wikiService = wikiService;
     }
     #endregion
@@ -23,10 +23,10 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
     bool isSpeciesFrameInfoVisible;
 
     [ObservableProperty]
-    SpeciesPivotModel selectedItem;
+    SpeciesPivotModel selectedSpecies;
 
     [ObservableProperty]
-    ObservableCollection<SpeciesPivotModel> items;
+    ObservableCollection<SpeciesPivotModel> species;
 
     [ObservableProperty]
     ObservableCollection<BreedCardModel> fakeBreedCards;
@@ -50,11 +50,13 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [RelayCommands]
+    [RelayCommand]
+    private void Refresh() => LoadDataAsync().ContinueWith(x => IsBusy = false)
+                                             .FireAndForget();
 
     [RelayCommand]
-    private void Refresh() => LoadDataAsync()
-                                .ContinueWith(x => IsBusy = false)
-                                .FireAndForget();
+    private void NavigateToBreedDetail(BreedCardModel breedCardModel)
+                        => AppNavigator.NavigateAsync(AppRoutes.Wiki, args: breedCardModel);
     #endregion
 
     #region [Methods]
@@ -64,21 +66,21 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
 
         IsBusy = true;
 
-        if (Items == null)
+        if (Species == null)
         {
-            Items = new ObservableCollection<SpeciesPivotModel>();
+            Species = new ObservableCollection<SpeciesPivotModel>();
         }
 
-        Items.Clear();
+        Species.Clear();
 
         var items = await wikiService.GetAllSpecies();
 
         foreach (var item in items)
         {
-            Items.Add(item);
+            Species.Add(item);
         }
 
-        SelectedItem = Items.FirstOrDefault();
+        SelectedSpecies = Species.FirstOrDefault();
 
         IsBusy = false;
     }

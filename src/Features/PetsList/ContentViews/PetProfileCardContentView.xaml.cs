@@ -4,14 +4,22 @@ namespace PetaverseMAUI;
 
 public partial class PetProfileCardContentView : ContentView
 {
-    IConnectivity connectivity;
+    #region [ Delegates ]
+    public delegate void PetCardTappedEventHandler(PetProfileCardModel petProfileCardModel);
+    #endregion
+
+    #region [ Event Handlers ]
+    public event PetCardTappedEventHandler PetCardTapped;
+
+    private void Detail_Clicked(object sender, EventArgs e)
+        => PetCardTapped?.Invoke(ComponentData);
+    #endregion
+
     #region [ CTor ]
 
-    public PetProfileCardContentView(IConnectivity connectivity)
+    public PetProfileCardContentView()
     {
         InitializeComponent();
-        this.connectivity = connectivity;
-        //WeakReferenceMessenger.Default.Register<ItemsDetailMessage>();
     }
 
     #endregion
@@ -28,11 +36,6 @@ public partial class PetProfileCardContentView : ContentView
     {
         get => (PetProfileCardModel)GetValue(ComponentDataProperty);
         set => SetValue(ComponentDataProperty, value);
-    }
-
-    [RelayCommand]
-    void CallBack(string s)
-    {
     }
 
     #endregion
