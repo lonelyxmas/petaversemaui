@@ -12,19 +12,22 @@ public partial class BreedDetailModel : BaseModel
     string hairColor;
 
     [ObservableProperty]
-    string hairLength;
+    string hairLength; //WikiPageCoatEnum
 
     [ObservableProperty]
-    WikiPageSizeEnum size;
+    string size; //WikiPageSizeEnum
 
     [ObservableProperty]
     double weight;
 
     [ObservableProperty]
-    string longevity;
+    string shedding; //WikiPageSheddingLevel
 
     [ObservableProperty]
-    WikiPageSizeEnum energy;
+    int longevity;
+
+    [ObservableProperty]
+    string energy; //WikiPageEnergyEnum
 
     [ObservableProperty]
     string otherCharacterictics;
