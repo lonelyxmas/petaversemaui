@@ -18,6 +18,7 @@ public class PetsSearchHandler : SearchHandler
                                                                                    new ObservableCollection<PetProfileCardsGroupModel>(),
                                                                                    BindingMode.OneWay);
     #endregion
+
     #region [Properties]
     public ObservableCollection<PetProfileCardsGroupModel> Pets
     {
@@ -52,6 +53,7 @@ public class PetsSearchHandler : SearchHandler
         base.OnItemSelected(item);
         var selectedPet = item as PetProfileCardModel;
         SelectPet.Invoke(selectedPet);
+        //SelectPet(selectedPet);
     }
 
     #endregion

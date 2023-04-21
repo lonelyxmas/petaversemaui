@@ -72,7 +72,6 @@ public partial class SignInPageViewModel : BaseViewModel
     #endregion
     Task GoHomeAsync(UserProfile userProfile)
     {
-        Guard.IsNotNull(userProfile);
-        return AppNavigator.NavigateAsync(AppRoutes.Profile, true, userProfile);
+        return AppNavigator.NavigateAsync(AppRoutes.Profile, true, userProfile ?? null);
     }
 }

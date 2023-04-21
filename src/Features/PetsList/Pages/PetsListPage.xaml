@@ -54,7 +54,8 @@
         </DataTemplate>
 
         <DataTemplate x:Key="PetsCollectionViewItemTemplate" x:DataType="app:PetProfileCardModel">
-            <app:PetProfileCardContentView ComponentData="{x:Binding}" PetCardTapped="PetProfileCardContentView_PetCardTapped" />
+            <app:PetProfileCardContentView ComponentData="{x:Binding}" 
+                                           PetCardTapped="PetHandler_SelectPet"/>
         </DataTemplate>
 
         <DataTemplate x:Key="PetsCollectionViewFooterTemplate" x:DataType="app:PetsListPageViewModel">
@@ -76,22 +77,23 @@
 
         <GridItemsLayout
             x:Key="PetsCollectionViewPhoneLayout"
-            HorizontalItemSpacing="1"
+            HorizontalItemSpacing="10"
             Orientation="Vertical"
             Span="{x:Binding Span}"
-            VerticalItemSpacing="1" />
+            VerticalItemSpacing="10"/>
     </app:BasePage.Resources>
 
-    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy}">
+    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy}" Margin="10">
         <CollectionView
             x:Name="PetsCollectionView"
             EmptyView="Fetching data"
+            SelectionMode="None"
             Footer="{x:Binding}"
             FooterTemplate="{x:StaticResource PetsCollectionViewFooterTemplate}"
             GroupHeaderTemplate="{x:StaticResource PetsCollectionViewGroupedHeaderTemplate}"
             IsGrouped="True"
             ItemTemplate="{x:StaticResource PetsCollectionViewItemTemplate}"
             ItemsLayout="{x:StaticResource PetsCollectionViewPhoneLayout}"
-            ItemsSource="{x:Binding Items}" />
+            ItemsSource="{x:Binding Items}"/>
     </RefreshView>
 </app:BasePage>

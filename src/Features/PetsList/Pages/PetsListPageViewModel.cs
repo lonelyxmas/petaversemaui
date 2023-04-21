@@ -25,6 +25,10 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     ObservableCollection<PetProfileCardsGroupModel> items;
+
+
+    [ObservableProperty]
+    PetProfileCardsGroupModel selectedItem;
     #endregion
 
     #region [Services]
@@ -49,7 +53,10 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
 
     [RelayCommand]
     private void NavigateToProfileDetail(PetProfileCardModel petProfileCardModel)
-                            => AppNavigator.NavigateAsync(AppRoutes.PetDetailProfile, args: petProfileCardModel);
+    {
+        AppNavigator.NavigateAsync(AppRoutes.PetDetailProfile, args: petProfileCardModel);
+    }
+
 
     [RelayCommand]
     private Task AddPetAsync() => AppNavigator.NavigateAsync(AppRoutes.AddPetPopup);

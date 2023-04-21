@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PetaverseMAUI;
 
 public partial class PetsListPage
@@ -58,11 +60,5 @@ public partial class PetsListPage
         //PetsCollectionView.ScrollTo(pet, animate: true);
         viewModel.NavigateToProfileDetailCommand.Execute(pet);
     }
-
-    private void PetProfileCardContentView_PetCardTapped(PetProfileCardModel petProfileCardModel)
-    {
-
-    }
     #endregion
-
 }

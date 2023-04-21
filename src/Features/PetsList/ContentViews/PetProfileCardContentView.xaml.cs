@@ -1,3 +1,5 @@
+using CommunityToolkit.Mvvm.Messaging;
+
 namespace PetaverseMAUI;
 
 public partial class PetProfileCardContentView : ContentView
@@ -37,5 +39,4 @@ public partial class PetProfileCardContentView : ContentView
     }
 
     #endregion
-
 }
