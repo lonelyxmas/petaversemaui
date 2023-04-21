@@ -58,7 +58,7 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
         await base.OnAppearingAsync();
 
         LoadDataAsync().FireAndForget();
-        LoadEnumAsync();
+        LoadEnums();
 
     }
     #endregion
@@ -99,12 +99,12 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
         IsBusy = false;
     }
 
-    private void LoadEnumAsync()
+    private void LoadEnums()
     {
         SizeEnum = Enum.GetNames(typeof(WikiPageSizeEnum)).ToList();
         CoatEnum = Enum.GetNames(typeof(WikiPageCoatEnum)).ToList();
         SheddingLevelEnum = Enum.GetNames(typeof(WikiPageSheddingLevelEnum)).ToList();
-        EnergyEnum = Enum.GetNames(typeof(WikiPageSheddingLevelEnum)).ToList();
+        EnergyEnum = Enum.GetNames(typeof(WikiPageEnergyEnum)).ToList();
     }
     #endregion
 }

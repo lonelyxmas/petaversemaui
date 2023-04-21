@@ -58,18 +58,10 @@
                             Spacing="{x:Static app:Dimensions.SpacingSm}" />
                         <Label Style="{x:Static app:Styles.Heading4}" Text="Filter" />
                         <HorizontalStackLayout Spacing="{x:Static app:Dimensions.SpacingSm}">
-                            <Picker Title="Size" 
-                                    ItemsSource="{x:Binding SizeEnum}"
-                                    />
-                            <Picker Title="Coat" 
-                                    ItemsSource="{x:Binding CoatEnum}"
-                                    />
-                            <Picker Title="Shedding" 
-                                    ItemsSource="{x:Binding SheddingLevelEnum}"
-                                    />
-                            <Picker Title="Energy" 
-                                    ItemsSource="{x:Binding EnergyEnum}"
-                                    />
+                            <Picker Title="Size" ItemsSource="{x:Binding SizeEnum}" />
+                            <Picker Title="Coat" ItemsSource="{x:Binding CoatEnum}" />
+                            <Picker Title="Shedding" ItemsSource="{x:Binding SheddingLevelEnum}" />
+                            <Picker Title="Energy" ItemsSource="{x:Binding EnergyEnum}" />
                         </HorizontalStackLayout>
                     </VerticalStackLayout>
 
