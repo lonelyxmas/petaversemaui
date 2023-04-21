@@ -4,14 +4,14 @@ namespace PetaverseMAUI;
 
 public class WikiSearchHandler : SearchHandler
 {
-    #region [CTor]
+    #region [ CTor ]
     public WikiSearchHandler()
     {
         this.BreedList = new();
     }
     #endregion
 
-    #region [Bindable Properties]
+    #region [ Bindable Properties ]
     public static readonly BindableProperty BreedListProperty = BindableProperty.Create(nameof(BreedList),
                                                                                    typeof(ObservableCollection<SpeciesPivotModel>),
                                                                                    typeof(WikiSearchHandler),
@@ -19,7 +19,7 @@ public class WikiSearchHandler : SearchHandler
                                                                                    BindingMode.OneWay);
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
     public ObservableCollection<SpeciesPivotModel> BreedList
     {
         get => (ObservableCollection<SpeciesPivotModel>)GetValue(BreedListProperty);
@@ -31,7 +31,7 @@ public class WikiSearchHandler : SearchHandler
     public delegate void SelecBreedListEventHandler(BreedCardModel breed);
     #endregion
 
-    #region [Event Handlers]
+    #region [ Event Handlers ]
     public event SelecBreedListEventHandler SelectBreedList;
 
     protected override void OnQueryChanged(string oldValue, string newValue)

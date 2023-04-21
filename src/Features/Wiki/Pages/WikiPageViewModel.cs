@@ -17,6 +17,18 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
 
     #region [Properties]
     [ObservableProperty]
+    List<string> sizeEnum;
+
+    [ObservableProperty]
+    List<string> coatEnum;
+
+    [ObservableProperty]
+    List<string> sheddingLevelEnum;
+
+    [ObservableProperty]
+    List<string> energyEnum;
+
+    [ObservableProperty]
     bool isBusy;
 
     [ObservableProperty]
@@ -46,6 +58,8 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
         await base.OnAppearingAsync();
 
         LoadDataAsync().FireAndForget();
+        LoadEnumAsync();
+
     }
     #endregion
 
@@ -83,6 +97,14 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
         SelectedSpecies = Species.FirstOrDefault();
 
         IsBusy = false;
+    }
+
+    private void LoadEnumAsync()
+    {
+        SizeEnum = Enum.GetNames(typeof(WikiPageSizeEnum)).ToList();
+        CoatEnum = Enum.GetNames(typeof(WikiPageCoatEnum)).ToList();
+        SheddingLevelEnum = Enum.GetNames(typeof(WikiPageSheddingLevelEnum)).ToList();
+        EnergyEnum = Enum.GetNames(typeof(WikiPageSheddingLevelEnum)).ToList();
     }
     #endregion
 }
