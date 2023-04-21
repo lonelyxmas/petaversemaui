@@ -26,7 +26,7 @@ public class WikiFilterHandler : Picker
     #region [ Method ]
     private object OnFilterChanged<T>(string oldValue, string newValue) 
         where T : Enum
-    {
+    { //Not Done Yet
         if (!string.IsNullOrEmpty(newValue))
         {
             return Enum.Parse(typeof(T), newValue, true);
@@ -36,19 +36,6 @@ public class WikiFilterHandler : Picker
             return ItemsSource;
         }
     }
-
-    //protected override void OnQueryChanged(string oldValue, string newValue)
-    //{
-    //    var list = new List<BreedCardModel>();
-    //    foreach (var specie in BreedList)
-    //    {
-    //        foreach (var breed in specie.BreedCards.Where(species => species.BreedName.ToLower().Contains(newValue.ToLower())).ToList())
-    //        {
-    //            list.Add(breed);
-    //        }
-    //    }
-    //    ItemsSource = list;
-    //}
     #endregion
 
 }
