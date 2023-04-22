@@ -6,23 +6,26 @@
     xmlns:app="clr-namespace:PetaverseMAUI"
     Shell.FlyoutBehavior="Disabled">
     <Shell.Resources>
-        <FontImageSource x:Key="WikiIcon"
-                         Color="{x:Static app:AppColors.Black}"
-                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                         Glyph="{Static app:FluentUIIcon.Ic_fluent_info_24_regular}"/>
+        <FontImageSource
+            x:Key="WikiIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_info_24_regular}"
+            Color="{x:Static app:AppColors.Black}" />
 
-        <FontImageSource x:Key="DogIcon"
-                         Color="{x:Static app:AppColors.Black}"
-                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                         Glyph="{Static app:FluentUIIcon.Ic_fluent_animal_dog_24_regular}"/>
-        
-        <FontImageSource x:Key="PersonIcon"
-                         Color="{x:Static app:AppColors.Black}"
-                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                         Glyph="{Static app:FluentUIIcon.Ic_fluent_person_24_regular}"/>
+        <FontImageSource
+            x:Key="DogIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_animal_dog_24_regular}"
+            Color="{x:Static app:AppColors.Black}" />
+
+        <FontImageSource
+            x:Key="PersonIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_person_24_regular}"
+            Color="{x:Static app:AppColors.Black}" />
     </Shell.Resources>
 
-    <TabBar>
+    <!--<TabBar>
         <ShellContent
             Route="welcome"
             Title="Welcome"
@@ -39,18 +42,16 @@
             Route="signIn"
             Title="Sign In"
             ContentTemplate="{DataTemplate app:SignInPage}" />
-    </TabBar>
+    </TabBar>-->
 
-    <TabBar x:Name="main"
-            Route="main">
+    <TabBar x:Name="main" Route="main">
         <Tab
             Title="Wiki"
             Icon="{StaticResource WikiIcon}"
             Route="wiki">
-            <ShellContent
-                ContentTemplate="{DataTemplate app:WikiPage}" />
+            <ShellContent ContentTemplate="{DataTemplate app:WikiPage}" />
         </Tab>
-        <Tab
+        <!--<Tab
             Title="Thú cưng"
             Icon="{StaticResource DogIcon}"
             Route="petsProfile">
@@ -63,6 +64,6 @@
             Route="profile">
             <ShellContent
                 ContentTemplate="{DataTemplate app:ProfilePage}" />
-        </Tab>
+        </Tab>-->
     </TabBar>
 </Shell>

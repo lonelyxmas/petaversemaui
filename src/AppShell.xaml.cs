@@ -2,14 +2,14 @@
 
 public partial class AppShell : Shell
 {
-	public AppShell()
-	{
-		InitializeComponent();
+    public AppShell()
+    {
+        InitializeComponent();
 
         Routing.RegisterRoute("wiki", typeof(WikiPage));
-        Routing.RegisterRoute("signUp", typeof(SignUpPage));
-        Routing.RegisterRoute("forgotPassword", typeof(ForgotPasswordPage));
-        Routing.RegisterRoute("petDetailProfile", typeof(PetDetailProfilePage));
+        //Routing.RegisterRoute("signUp", typeof(SignUpPage));
+        //Routing.RegisterRoute("forgotPassword", typeof(ForgotPasswordPage));
+        //Routing.RegisterRoute("petDetailProfile", typeof(PetDetailProfilePage));
     }
     protected override void OnNavigating(ShellNavigatingEventArgs args)
     {
