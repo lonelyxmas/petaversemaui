@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net7.0-android;net7.0-ios;</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
@@ -11,8 +11,9 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<_MauiForceXamlCForDebug>true</_MauiForceXamlCForDebug>
-		
-		
+
+		<EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+		<AndroidLinkResources>false</AndroidLinkResources> 
 
 		<!--<AndroidLinkResources>True</AndroidLinkResources> 
 		<AndroidLinkMode>None</AndroidLinkMode> 
@@ -34,11 +35,9 @@
 		<ApplicationVersion>1</ApplicationVersion>
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
@@ -80,6 +79,7 @@
 	  <AndroidResource Remove="Features\Profile\**" />
 	  <AndroidResource Remove="Features\Shared\**" />
 	  <AndroidResource Remove="Features\Welcome\**" />
+	  <AndroidResource Remove="Features\Wiki\**" />
 	  <AndroidResource Remove="Interfaces\**" />
 	  <AndroidResource Remove="Services\**" />
 	  <Compile Remove="ContentViews\**" />
@@ -92,6 +92,7 @@
 	  <Compile Remove="Features\Profile\**" />
 	  <Compile Remove="Features\Shared\**" />
 	  <Compile Remove="Features\Welcome\**" />
+	  <Compile Remove="Features\Wiki\**" />
 	  <Compile Remove="Interfaces\**" />
 	  <Compile Remove="Services\**" />
 	  <EmbeddedResource Remove="ContentViews\**" />
@@ -104,6 +105,7 @@
 	  <EmbeddedResource Remove="Features\Profile\**" />
 	  <EmbeddedResource Remove="Features\Shared\**" />
 	  <EmbeddedResource Remove="Features\Welcome\**" />
+	  <EmbeddedResource Remove="Features\Wiki\**" />
 	  <EmbeddedResource Remove="Interfaces\**" />
 	  <EmbeddedResource Remove="Services\**" />
 	  <MauiCss Remove="ContentViews\**" />
@@ -116,6 +118,7 @@
 	  <MauiCss Remove="Features\Profile\**" />
 	  <MauiCss Remove="Features\Shared\**" />
 	  <MauiCss Remove="Features\Welcome\**" />
+	  <MauiCss Remove="Features\Wiki\**" />
 	  <MauiCss Remove="Interfaces\**" />
 	  <MauiCss Remove="Services\**" />
 	  <MauiXaml Remove="ContentViews\**" />
@@ -128,6 +131,7 @@
 	  <MauiXaml Remove="Features\Profile\**" />
 	  <MauiXaml Remove="Features\Shared\**" />
 	  <MauiXaml Remove="Features\Welcome\**" />
+	  <MauiXaml Remove="Features\Wiki\**" />
 	  <MauiXaml Remove="Interfaces\**" />
 	  <MauiXaml Remove="Services\**" />
 	  <None Remove="ContentViews\**" />
@@ -140,8 +144,13 @@
 	  <None Remove="Features\Profile\**" />
 	  <None Remove="Features\Shared\**" />
 	  <None Remove="Features\Welcome\**" />
+	  <None Remove="Features\Wiki\**" />
 	  <None Remove="Interfaces\**" />
 	  <None Remove="Services\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="Resources\Styles\FluentIcons.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -173,13 +182,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Features\Wiki\ContentViews\BreedCardContentView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Wiki\Pages\WikiPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\FluentIcons.xaml">
+	  <MauiXaml Update="NewPage1.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UI\Views\BreedLabel.xaml">
@@ -194,6 +197,10 @@
 	  <MauiXaml Update="UI\Views\RoundedEntry.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Features\" />
 	</ItemGroup>
 
 </Project>

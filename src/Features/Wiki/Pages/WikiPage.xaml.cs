@@ -3,11 +3,11 @@ namespace PetaverseMAUI;
 public partial class WikiPage
 {
     private WikiPageViewModel viewModel;
-    public WikiPage(WikiPageViewModel vm)
+    public WikiPage()
     {
         InitializeComponent();
 
-        BindingContext = viewModel = vm;
+        //BindingContext = viewModel = vm;
     }
 
     #region [Event Handler]

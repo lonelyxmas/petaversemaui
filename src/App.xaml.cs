@@ -12,7 +12,7 @@ public partial class App : Application
         MainPage = new AppShell();
 
         //MauiExceptions.UnhandledException += (sender, args) => HandleException(args);
-        AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
+        //AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
     }
 
     //Connect to a logging system

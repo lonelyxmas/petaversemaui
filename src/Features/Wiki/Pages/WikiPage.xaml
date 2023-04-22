@@ -7,7 +7,7 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:DataType="app:WikiPageViewModel"
     SizeChanged="BasePage_SizeChanged">
-    <Shell.SearchHandler>
+    <!--<Shell.SearchHandler>
         <app:WikiSearchHandler
             BreedList="{x:Binding Species}"
             ClearIcon="{x:StaticResource Clear24Icon}"
@@ -35,13 +35,13 @@
                 </DataTemplate>
             </app:WikiSearchHandler.ItemTemplate>
         </app:WikiSearchHandler>
-    </Shell.SearchHandler>
+    </Shell.SearchHandler>-->
 
-    <app:BasePage.ToolbarItems>
+    <!--<app:BasePage.ToolbarItems>
         <ToolbarItem IconImageSource="{x:StaticResource WikiScanCameraIcon}" />
-    </app:BasePage.ToolbarItems>
+    </app:BasePage.ToolbarItems>-->
 
-    <app:BasePage.Resources>
+    <!--<app:BasePage.Resources>
 
         <DataTemplate x:Key="SpeciesCollectionViewHeaderTemplate" x:DataType="app:WikiPageViewModel">
 
@@ -92,9 +92,9 @@
             Orientation="Vertical"
             Span="{x:Binding Span}" />
 
-    </app:BasePage.Resources>
+    </app:BasePage.Resources>-->
 
-    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy}">
+    <!--<RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy}">
         <CollectionView
             Footer="{x:Binding}"
             FooterTemplate="{x:StaticResource SpeciesCollectionViewFooterTemplate}"
@@ -103,5 +103,5 @@
             ItemTemplate="{x:StaticResource SpeciesCollectionViewItemTemplate}"
             ItemsLayout="{x:StaticResource BreedLayout}"
             ItemsSource="{x:Binding SelectedSpecies.BreedCards}" />
-    </RefreshView>
+    </RefreshView>-->
 </app:BasePage>

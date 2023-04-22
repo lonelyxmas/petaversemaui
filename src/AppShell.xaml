@@ -6,7 +6,7 @@
     xmlns:app="clr-namespace:PetaverseMAUI"
     Shell.FlyoutBehavior="Disabled">
     <Shell.Resources>
-        <FontImageSource
+        <!--<FontImageSource
             x:Key="WikiIcon"
             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
             Glyph="{Static app:FluentUIIcon.Ic_fluent_info_24_regular}"
@@ -22,7 +22,7 @@
             x:Key="PersonIcon"
             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
             Glyph="{Static app:FluentUIIcon.Ic_fluent_person_24_regular}"
-            Color="{x:Static app:AppColors.Black}" />
+            Color="{x:Static app:AppColors.Black}" />-->
     </Shell.Resources>
 
     <!--<TabBar>
@@ -45,11 +45,8 @@
     </TabBar>-->
 
     <TabBar x:Name="main" Route="main">
-        <Tab
-            Title="Wiki"
-            Icon="{StaticResource WikiIcon}"
-            Route="wiki">
-            <ShellContent ContentTemplate="{DataTemplate app:WikiPage}" />
+        <Tab Title="Wiki" Route="wiki">
+            <ShellContent ContentTemplate="{DataTemplate app:NewPage1}" />
         </Tab>
         <!--<Tab
             Title="Thú cưng"

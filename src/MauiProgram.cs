@@ -29,11 +29,11 @@ public static class MauiProgram
             .ConfigureEssentials(essentials =>
             {
                 essentials.UseVersionTracking();
-            })
-            .RegisterPages()
-            .RegisterPopups()
-            .RegisterServices()
-            .RegisterRefitApi(isLocal);
+            });
+        //.RegisterPages()
+        //.RegisterPopups()
+        //.RegisterServices()
+        //.RegisterRefitApi(isLocal);
 
         //#if ANDROID
         //        ImageHandler.Mapper.AppendToMapping(nameof(ImageView.Drawable), async (handler, view) =>
@@ -125,7 +125,7 @@ public static class MauiProgram
         ////builder.Services.AddSingleton<IAppSettingsService, AppSettingsService>();
 
         //builder.Services.AddTransient<IFilePicker, FilePicker>();
-        builder.Services.AddTransient<IWikiService, FakeWikiService>();
+        //builder.Services.AddTransient<IWikiService, FakeWikiService>();
         //builder.Services.AddTransient<IWelcomeService, WelcomeService>();
         //builder.Services.AddTransient<IPetsListService, FakePetListService>();
         //builder.Services.AddTransient<IPetProfileService, PetProfileService>();

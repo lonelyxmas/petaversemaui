@@ -6,7 +6,7 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
-        Routing.RegisterRoute("wiki", typeof(WikiPage));
+        //Routing.RegisterRoute("wiki", typeof(WikiPage));
         //Routing.RegisterRoute("signUp", typeof(SignUpPage));
         //Routing.RegisterRoute("forgotPassword", typeof(ForgotPasswordPage));
         //Routing.RegisterRoute("petDetailProfile", typeof(PetDetailProfilePage));
