@@ -2,31 +2,51 @@
 
 public partial class AddPetPopupViewModel : BaseViewModel
 {
+    #region [Services]
+    private readonly IWikiCreateService wikiCreateBreedService;
+    #endregion
+
+    #region [CTor]
+    public AddPetPopupViewModel(IAppNavigator appNavigator,
+                                IWikiCreateService wikiCreateService) : base(appNavigator)
+    {
+        PetForm = new();
+        wikiCreateBreedService = wikiCreateService;
+    }
+    #endregion
+
     #region [Properties]
 
     [ObservableProperty]
     List<SpeciesPivotModel> speciesPivots;
 
     [ObservableProperty]
-    SpeciesPivotModel selectedSpecies;
+    SpeciesType selectedSpecies;
 
-    public CreatePetFormModel PetForm { get; init; }
+    [ObservableProperty]
+    CreatePetFormModel petForm;
+
+    [ObservableProperty]
+    List<Breed> breeds;
+
+    [ObservableProperty]
+    List<string> breedNames;
+
+    [ObservableProperty]
+    Breed selectedBreeds;
 
     #endregion
 
-    #region [CTor]
-    public AddPetPopupViewModel(IAppNavigator appNavigator) : base(appNavigator)
-	{
-        PetForm = new();
-	}
-    #endregion
+    #region [Overrides]
+    public override async Task OnAppearingAsync()
+    {
+        await base.OnAppearingAsync();
 
-    #region [Services]
-
+        await LoadDataAsync(SelectedSpecies);
+    }
     #endregion
 
     #region [RelayCommand]
-
     [RelayCommand]
     async Task Create()
     {
@@ -48,23 +68,15 @@ public partial class AddPetPopupViewModel : BaseViewModel
     #endregion
 
     #region [Methods]
-    private async Task LoadDataAsync()
+    private async Task LoadDataAsync(SpeciesType speciesType)
     {
-
-        if(SpeciesPivots == null)
+        BreedNames = new();
+        Breeds = await wikiCreateBreedService.GetBySpeciesTypeAsync(speciesType);
+        foreach (var breed in Breeds)
         {
-            SpeciesPivots = new List<SpeciesPivotModel>();
-            //return;
+            BreedNames.Add(breed.Name);
         }
-    }
-    #endregion
-
-    #region [Overrides]
-    public override async Task OnAppearingAsync()
-    {
-        await base.OnAppearingAsync();
-
-        LoadDataAsync().FireAndForget();
+        //BreedNames.Add( Breeds.FirstOrDefault().Name);
     }
     #endregion
 }

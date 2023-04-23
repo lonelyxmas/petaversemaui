@@ -84,6 +84,7 @@
                 <HorizontalStackLayout Spacing="10"
                                        HorizontalOptions="Center"
                                        RadioButtonGroup.GroupName="animals"
+                                       RadioButtonGroup.SelectedValue="{x:Binding SelectedSpecies}"
                                        Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}">
                     <RadioButton Value="Cat">
                         <RadioButton.Content>
@@ -141,7 +142,10 @@
                                   Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
 
                 <Picker Title="Loài"
-                        Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>
+                        Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"
+                        ItemsSource="{x:Binding Breeds}"
+                        ItemDisplayBinding="{x:Binding Name}"
+                        SelectedItem="{x:Binding SelectedBreeds}"/>
 
                 <Editor Placeholder="Mô tả về thú cưng"
                         Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"/>

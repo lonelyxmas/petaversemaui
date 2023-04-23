@@ -2,6 +2,11 @@
 
 public partial class PetDetailProfilePageViewModel : NavigationAwareBaseViewModel
 {
+    #region [ Services ]
+    private readonly IPetProfileService petProfileService;
+    private readonly IAppNavigator appNavigator;
+    #endregion
+
     #region [ Ctor ]
     public PetDetailProfilePageViewModel(
         IPetProfileService petProfileService,
@@ -24,11 +29,6 @@ public partial class PetDetailProfilePageViewModel : NavigationAwareBaseViewMode
 
     [ObservableProperty]
     ObservableCollection<PetaverseMediaThumbnail> fakeThumbnails;
-    #endregion
-
-    #region [ Services ]
-    private readonly IPetProfileService petProfileService;
-    private readonly IAppNavigator appNavigator;
     #endregion
 
     #region [ RelayCommands ]

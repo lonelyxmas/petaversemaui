@@ -2,6 +2,10 @@
 
 public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
 {
+    #region [Services]
+    private readonly IPetsListService petsListService;
+    #endregion
+
     #region [CTor]
     public PetsListPageViewModel(
         IPetsListService petsListService,
@@ -29,11 +33,6 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     PetProfileCardsGroupModel selectedItem;
-    #endregion
-
-    #region [Services]
-
-    private readonly IPetsListService petsListService;
     #endregion
 
     #region [Overrides]

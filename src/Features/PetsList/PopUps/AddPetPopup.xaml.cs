@@ -2,19 +2,21 @@ namespace PetaverseMAUI;
 
 public partial class AddPetPopup
 {
-    #region [CTor]
+    #region [ Fields ]
+    private readonly AddPetPopupViewModel viewModel;
+    #endregion
 
+    #region [CTor]
     public AddPetPopup(AddPetPopupViewModel vm)
     {
         InitializeComponent();
 
-        BindingContext = vm;
+        BindingContext = viewModel = vm;
     }
-
     #endregion
 
     #region [Event Handlers]
-    private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+    private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
     {
         RadioButton button = default;
 
@@ -31,6 +33,18 @@ public partial class AddPetPopup
             button = ((Label)sender).Parent.Parent as RadioButton;
         }
         button.IsChecked = true;
+        if (button.IsChecked.Equals(true))
+        {
+            if (button.Value.Equals(SpeciesType.Cat.ToString()))
+            {
+                viewModel.SelectedSpecies = SpeciesType.Cat;
+            }
+            if (button.Value.Equals(SpeciesType.Dog.ToString()))
+            {
+                viewModel.SelectedSpecies = SpeciesType.Dog;
+            }
+            await viewModel.OnAppearingAsync();
+        }
     }
     #endregion
 }

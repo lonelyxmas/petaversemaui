@@ -133,6 +133,7 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
         builder.Services.AddSingleton<ISecureStorageService, SecureStorageService>();
+        builder.Services.AddSingleton<IWikiCreateService, CreateSpecisService>();
         //builder.Services.AddSingleton<IAppSettingsService, AppSettingsService>();
 
         builder.Services.AddTransient<IFilePicker, FilePicker>();
