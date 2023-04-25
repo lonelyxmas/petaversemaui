@@ -1,17 +1,19 @@
-﻿namespace PetaverseMAUI;
+﻿using CommunityToolkit.Mvvm.Messaging;
+
+namespace PetaverseMAUI;
 
 public partial class AddPetPopupViewModel : BaseViewModel
 {
     #region [Services]
-    private readonly IWikiCreateService wikiCreateBreedService;
+    private readonly IWikiFakeBreedService wikiFakeBreedService;
     #endregion
 
     #region [CTor]
     public AddPetPopupViewModel(IAppNavigator appNavigator,
-                                IWikiCreateService wikiCreateService) : base(appNavigator)
+                                IWikiFakeBreedService wikiFakeBreedService) : base(appNavigator)
     {
         PetForm = new();
-        wikiCreateBreedService = wikiCreateService;
+        this.wikiFakeBreedService = wikiFakeBreedService;
     }
     #endregion
 
@@ -55,7 +57,9 @@ public partial class AddPetPopupViewModel : BaseViewModel
         {
             await Task.CompletedTask;
         }
-
+        PetForm.BreedId = int.Parse(SelectedBreeds.Id);
+        PetForm.SpeciesId = (int)SelectedSpecies;
+        WeakReferenceMessenger.Default.Send(new PetListCreateMessage(PetForm));
         AppNavigator.NavigateAsync(AppRoutes.PetsProfile, true, args: PetForm)
                     .FireAndForget();
     }
@@ -71,12 +75,11 @@ public partial class AddPetPopupViewModel : BaseViewModel
     private async Task LoadDataAsync(SpeciesType speciesType)
     {
         BreedNames = new();
-        Breeds = await wikiCreateBreedService.GetBySpeciesTypeAsync(speciesType);
+        Breeds = await wikiFakeBreedService.GetBySpeciesTypeAsync(speciesType);
         foreach (var breed in Breeds)
         {
             BreedNames.Add(breed.Name);
         }
-        //BreedNames.Add( Breeds.FirstOrDefault().Name);
     }
     #endregion
 }

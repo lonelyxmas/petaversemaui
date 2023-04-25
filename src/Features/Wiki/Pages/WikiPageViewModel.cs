@@ -83,6 +83,7 @@ public partial class WikiPageViewModel : NavigationAwareBaseViewModel
         SelectedSpecies = Species.FirstOrDefault();
 
         IsBusy = false;
+
     }
     #endregion
 }

@@ -1,18 +1,23 @@
-﻿namespace PetaverseMAUI;
+﻿using CommunityToolkit.Mvvm.Messaging;
+
+namespace PetaverseMAUI;
 
 public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
 {
     #region [Services]
     private readonly IPetsListService petsListService;
+    private readonly IWikiFakeBreedService wikiFakeBreedService;
     #endregion
 
     #region [CTor]
     public PetsListPageViewModel(
+        IWikiFakeBreedService wikiFakeBreedService,
         IPetsListService petsListService,
         IAppNavigator appNavigator
         ):base(appNavigator)
     {
         this.petsListService = petsListService;
+        this.wikiFakeBreedService = wikiFakeBreedService;
     }
     #endregion
 
@@ -39,7 +44,7 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
     public override async Task OnAppearingAsync()
     {
         await base.OnAppearingAsync();
-
+        SubcribeToCreateMessage();
         LoadDataAsync().FireAndForget();
     }
     #endregion
@@ -84,6 +89,42 @@ public partial class PetsListPageViewModel : NavigationAwareBaseViewModel
         }
 
         IsBusy = false;
+    }
+
+    private void SubcribeToCreateMessage()
+    {
+        WeakReferenceMessenger.Default.Register<PetListCreateMessage>(this, (register, message) =>
+        {
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+
+                var petProfile = message.Value;
+                var newCardModel = new PetProfileCardModel
+                {
+                    Name = petProfile.PetName,
+                    ProfileUrl = string.Empty,
+                    MediaCount = new int(),
+                    Breed = await wikiFakeBreedService.GetByIdAsync(petProfile.BreedId),
+                    SpeciesType = Enum.Parse<SpeciesType>(petProfile.SpeciesId.ToString())
+                };
+                Items.ToList().ForEach(x => 
+                {
+                    x.Where(x => x.SpeciesType.Equals(newCardModel.SpeciesType));
+                    //x.SpeciesName.Equals(newCardModel.SpeciesType.ToString());
+                });
+
+                foreach (var item in Items.Where(x => x.SpeciesName.Equals(newCardModel.SpeciesType.ToString())))
+                {
+                    item.Add(newCardModel);
+                }
+
+                //Items.Add(new PetProfileCardModel()
+                //{
+
+
+                //});
+            });
+        });
     }
     #endregion
 }
