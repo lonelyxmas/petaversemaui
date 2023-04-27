@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="petaverse.frontend.mauiapp.AIBreedDetectorToolkitPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:petaverse.frontend.mauiapp"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="root"
+    BindingContext="{x:Reference root}">
+    <VerticalStackLayout>
+        <VerticalStackLayout.Resources>
+            <FontImageSource
+                x:Key="AIBreedDetectorToolkitPopupCheckMark24Regular"
+                FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                Glyph="{x:Static app:FluentUIIcon.Ic_fluent_checkmark_24_regular}"
+                Color="{x:Static app:AppColors.Green}" />
+            <FontImageSource
+                x:Key="AIBreedDetectorToolkitPopupDismiss24Regular"
+                FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                Glyph="{x:Static app:FluentUIIcon.Ic_fluent_dismiss_24_regular}"
+                Color="{x:Static app:AppColors.Red}" />
+        </VerticalStackLayout.Resources>
+        <Image
+            x:Name="PreviewImage"
+            HeightRequest="150"
+            Source="{Binding CapturedBreed, Mode=OneWay}"
+            WidthRequest="300" />
+        <Label HorizontalOptions="Center" Text="This is" />
+        <app:BreedCardContentView
+            x:Name="Card"
+            Margin="{app:EdgeInsets All={x:Static app:Dimensions.SpacingMd}}"
+            ComponentData="{Binding PredictedBreed, Mode=OneWay}"
+            WidthRequest="300" />
+        <Label HorizontalOptions="Center" Text="Do you agree ?" />
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <ImageButton Clicked="Right_Clicked" Source="{x:StaticResource AIBreedDetectorToolkitPopupCheckMark24Regular}" />
+            <ImageButton Clicked="Wrong_Clicked" Source="{x:StaticResource AIBreedDetectorToolkitPopupDismiss24Regular}" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</toolkit:Popup>

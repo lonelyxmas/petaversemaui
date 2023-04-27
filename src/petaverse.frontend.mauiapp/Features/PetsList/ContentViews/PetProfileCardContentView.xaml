@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="petaverse.frontend.mauiapp.PetProfileCardContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:petaverse.frontend.mauiapp"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="root"
+    x:DataType="app:PetProfileCardContentView">
+
+    <ContentView.Resources>
+        <FontImageSource
+            x:Key="GalleryIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{x:Static app:FluentUIIcon.Ic_fluent_content_view_gallery_28_regular}"
+            Color="{x:Static app:AppColors.Black}" />
+    </ContentView.Resources>
+
+    <Frame HasShadow="True">
+        <VerticalStackLayout HorizontalOptions="Center" Spacing="{x:Static app:Dimensions.SpacingSm}">
+            <toolkit:AvatarView
+                CornerRadius="75"
+                HeightRequest="120"
+                HorizontalOptions="Center"
+                ImageSource="{x:Binding ComponentData.ProfileUrl,
+                                        Source={x:Reference root}}"
+                VerticalOptions="Center"
+                WidthRequest="120" />
+
+            <Label
+                HorizontalOptions="Center"
+                Style="{x:Static app:Styles.SubHeading2Semi}"
+                Text="{x:Binding ComponentData.Name,
+                                 Source={x:Reference root}}" />
+            <app:BreedLabel
+                HorizontalOptions="Center"
+                Text="{x:Binding ComponentData.BreedName,
+                                 Source={x:Reference root}}"
+                Color="{x:Binding ComponentData.BreedColors,
+                                  Source={x:Reference root}}" />
+
+            <app:IconLabel
+                HorizontalOptions="Center"
+                PrefixIcon="{x:StaticResource GalleryIcon}"
+                Text="{x:Binding ComponentData.MediaCount,
+                                 Source={x:Reference root}}" />
+
+            <Button Clicked="Detail_Clicked" Text="Detail" />
+        </VerticalStackLayout>
+    </Frame>
+</ContentView>

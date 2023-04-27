@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="petaverse.frontend.mauiapp.ProfilePagePhoneModeContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:petaverse.frontend.mauiapp"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:DataType="app:ProfilePageViewModel"
+    Loaded="ContentView_Loaded">
+
+    <Grid
+        Padding="10"
+        RowDefinitions="auto, 110, *"
+        RowSpacing="10">
+        <Frame Margin="0,50,0,0">
+            <Grid
+                Margin="0,35,0,0"
+                RowDefinitions="auto,25,25,25,25"
+                RowSpacing="10">
+                <VerticalStackLayout>
+                    <Label
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="{x:Binding UserProfile.UserName}" />
+                    <Switch HorizontalOptions="Center" MinimumWidthRequest="0" />
+                </VerticalStackLayout>
+                <Grid Grid.Row="1">
+                    <Label Text="Country" />
+                    <Label HorizontalOptions="End" Text="Viet Nam" />
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Label Text="Phone Number" />
+                    <Label HorizontalOptions="End" Text="{x:Binding UserProfile.PhoneNumber}" />
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Label Text="Country" />
+                    <Label HorizontalOptions="End" Text="{x:Binding UserProfile.CountryName}" />
+                </Grid>
+                <Grid Grid.Row="4">
+                    <Label Text="City" />
+                    <Label HorizontalOptions="End" Text="{x:Binding UserProfile.City}" />
+                </Grid>
+            </Grid>
+        </Frame>
+        <Frame Grid.Row="1" HasShadow="True">
+            <!--  Make this as collectionview scroll horizontal  -->
+            <ScrollView>
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                    <toolkit:AvatarView
+                        CornerRadius="35"
+                        HeightRequest="65"
+                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Bravo.png"
+                        WidthRequest="65" />
+                    <toolkit:AvatarView
+                        CornerRadius="35"
+                        HeightRequest="65"
+                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Lucky.png"
+                        WidthRequest="65" />
+                    <toolkit:AvatarView
+                        CornerRadius="35"
+                        HeightRequest="65"
+                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Snow.png"
+                        WidthRequest="65" />
+                    <toolkit:AvatarView
+                        CornerRadius="35"
+                        HeightRequest="65"
+                        ImageSource="https://petaversestorageaccount.blob.core.windows.net/demo/Yummi.png"
+                        WidthRequest="65" />
+                </HorizontalStackLayout>
+            </ScrollView>
+        </Frame>
+        <Frame Grid.Row="2" HasShadow="True">
+            <VerticalStackLayout>
+                <Frame Background="{x:StaticResource PremiumSubscriptionColor}">
+                    <HorizontalStackLayout Spacing="10">
+                        <Image HorizontalOptions="Center" VerticalOptions="Center" />
+                        <VerticalStackLayout Spacing="5">
+                            <Label
+                                FontAttributes="Bold"
+                                Text="PREMIUM"
+                                TextColor="{x:Static app:AppColors.LightYellow}" />
+                            <Label Text="Get the most for you and your pets" TextColor="{x:Static app:AppColors.Black}" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </Frame>
+                <TableView Intent="Settings">
+                    <TableRoot>
+                        <TableSection Title="Cài đặt">
+                            <ImageCell
+                                Detail="Kiểm soát tài khoản của bạn"
+                                ImageSource="settingicon.png"
+                                Text="Thông tin cá nhân" />
+                            <ImageCell
+                                Detail="1,199 bài yêu thích"
+                                ImageSource="likeicon.png"
+                                Text="Yêu thích từ cộng đồng" />
+                            <ImageCell
+                                Detail="57 tin tức đang được theo dõi"
+                                ImageSource="followicon.png"
+                                Text="Theo dõi từ cộng đồng" />
+                            <!--  Tapped="{x:Binding LogOutCommand}"  -->
+                            <TextCell
+                                Tapped="Logout_Tapped"
+                                Text="Đăng xuất"
+                                TextColor="Red" />
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </VerticalStackLayout>
+        </Frame>
+
+
+        <toolkit:AvatarView
+            CornerRadius="50"
+            HeightRequest="100"
+            ImageSource="{x:Binding UserProfile.AvatarUrl}"
+            VerticalOptions="Start"
+            WidthRequest="100" />
+    </Grid>
+</ContentView>

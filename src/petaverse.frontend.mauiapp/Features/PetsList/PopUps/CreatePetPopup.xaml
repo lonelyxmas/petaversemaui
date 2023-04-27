@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePopup
+    x:Class="petaverse.frontend.mauiapp.CreatePetPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:petaverse.frontend.mauiapp"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:DataType="app:CreatePetPopupViewModel"
+    Shell.PresentationMode="Modal">
+    <app:BasePopup.Resources>
+        <app:CreatePetPopupStringToListStringConverter x:Key="CreatePetPopupStringToListStringConverter" />
+        <GridItemsLayout
+            x:Key="SpeciesSelectorLayout"
+            HorizontalItemSpacing="{x:Static app:Dimensions.SpacingSm}"
+            Orientation="Horizontal" />
+        <GridItemsLayout
+            x:Key="BreedColorsSelectorLayout"
+            HorizontalItemSpacing="{x:Static app:Dimensions.SpacingSm}"
+            Orientation="Horizontal" />
+        <DataTemplate x:Key="BreedColorsSelectorItemTemplate">
+            <Rectangle
+                Margin="{app:EdgeInsets All={x:Static app:Dimensions.SpacingSm}}"
+                Fill="{x:Binding}"
+                HeightRequest="50"
+                WidthRequest="50" />
+        </DataTemplate>
+        <DataTemplate x:Key="SpeciesSelectorItemTemplate" x:DataType="app:CreatePetPopupSpeciesModel">
+            <RadioButton x:Name="rootRadioButton" Value="{x:Binding}">
+                <RadioButton.Resources>
+                    <ControlTemplate x:Key="RadioButtonTemplate">
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="#F3F2F1"
+                            BorderColor="#F3F2F1"
+                            HasShadow="False"
+                            HeightRequest="100"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Start"
+                            WidthRequest="100">
+                            <Grid Margin="4,4,10,4" WidthRequest="100">
+                                <Grid
+                                    HeightRequest="18"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Start"
+                                    WidthRequest="18">
+                                    <Ellipse
+                                        Fill="White"
+                                        HeightRequest="16"
+                                        HorizontalOptions="Center"
+                                        Stroke="Blue"
+                                        VerticalOptions="Center"
+                                        WidthRequest="16" />
+                                    <Ellipse
+                                        x:Name="check"
+                                        Fill="Blue"
+                                        HeightRequest="8"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        WidthRequest="8" />
+                                </Grid>
+                                <ContentPresenter />
+                            </Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroupList>
+                                    <VisualStateGroup x:Name="CheckedStates">
+                                        <VisualState x:Name="Checked">
+                                            <VisualState.Setters>
+                                                <Setter Property="BorderColor" Value="#FF3300" />
+                                                <Setter TargetName="check" Property="Opacity" Value="1" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Unchecked">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="#F3F2F1" />
+                                                <Setter Property="BorderColor" Value="#F3F2F1" />
+                                                <Setter TargetName="check" Property="Opacity" Value="0" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                            </VisualStateManager.VisualStateGroups>
+                        </Frame>
+                    </ControlTemplate>
+                    <Style TargetType="RadioButton">
+                        <Setter Property="ControlTemplate" Value="{StaticResource RadioButtonTemplate}" />
+                    </Style>
+                </RadioButton.Resources>
+                <RadioButton.Content>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Image
+                            HorizontalOptions="Center"
+                            Source="{x:Binding Source={x:Reference rootRadioButton},
+                                               Path=Value.FrontEndIcon}"
+                            VerticalOptions="Center" />
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="{x:Binding Source={x:Reference rootRadioButton},
+                                             Path=Value.SpeciesName}"
+                            VerticalOptions="End" />
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped" />
+                        </VerticalStackLayout.GestureRecognizers>
+                    </VerticalStackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+        </DataTemplate>
+    </app:BasePopup.Resources>
+
+    <Frame Margin="15">
+        <ScrollView>
+            <VerticalStackLayout Spacing="{x:Static app:Dimensions.SpacingSm}">
+                <Label
+                    HorizontalOptions="Center"
+                    Text="COOL! Tell us more about your pet"
+                    VerticalOptions="Center" />
+
+                <CollectionView
+                    HorizontalOptions="Center"
+                    ItemTemplate="{x:StaticResource SpeciesSelectorItemTemplate}"
+                    ItemsLayout="{x:StaticResource SpeciesSelectorLayout}"
+                    ItemsSource="{x:Binding PopupSpecies}"
+                    SelectionMode="None" />
+
+                <HorizontalStackLayout
+                    Margin="{app:EdgeInsets Top={x:Static app:Dimensions.SpacingXl}}"
+                    HorizontalOptions="Center"
+                    Spacing="{x:Static app:Dimensions.SpacingSm}">
+                    <toolkit:AvatarView
+                        BorderColor="Orange"
+                        BorderWidth="2"
+                        CornerRadius="50"
+                        HeightRequest="100"
+                        VerticalOptions="Center"
+                        WidthRequest="100" />
+                    <VerticalStackLayout
+                        HorizontalOptions="Center"
+                        Spacing="{x:Static app:Dimensions.SpacingSm}"
+                        VerticalOptions="Center">
+                        <ImageButton
+                            BorderColor="Orange"
+                            BorderWidth="2"
+                            HeightRequest="35"
+                            Source="{x:StaticResource Call24IconRegular}"
+                            WidthRequest="35" />
+                        <ImageButton
+                            BorderColor="Orange"
+                            BorderWidth="2"
+                            HeightRequest="35"
+                            Source="{x:StaticResource FolderUpload24IconRegular}"
+                            WidthRequest="35" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+
+                <app:RoundedEntry
+                    IsValid="{x:Binding PetForm.PetNameValid}"
+                    Placeholder="Tell us his/her name"
+                    PrefixIcon="{x:StaticResource AnimalCat24Regular}"
+                    Text="{x:Binding PetForm.PetName}" />
+
+                <Label
+                    Padding="{app:EdgeInsets Horizontal={x:Static app:Dimensions.SpacingMd}}"
+                    HorizontalTextAlignment="Center"
+                    TextColor="{x:Static app:AppColors.Red}">
+                    <Label.Opacity>
+                        <MultiBinding Converter="{Static app:AppConverters.AnyFalseToOpacity}">
+                            <Binding Path="PetForm.PetNameValid" />
+                        </MultiBinding>
+                    </Label.Opacity>
+                    <Label.Text>
+                        <MultiBinding Converter="{Static app:AppConverters.FirstItem}">
+                            <Binding Path="PetForm.PetNameInvalidMessage" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+
+                <Picker
+                    Title="Loài"
+                    ItemDisplayBinding="{x:Binding BreedName}"
+                    ItemsSource="{x:Binding SelectedPopupSpecies.Breeds}"
+                    SelectedItem="{x:Binding SelectedPopupBreed,
+                                             Mode=TwoWay}" />
+
+                <Editor Placeholder="Mô tả về thú cưng" Text="{x:Binding PetForm.Bio}" />
+
+                <DatePicker Date="{x:Binding PetForm.DateOfBirth}" />
+
+                <CollectionView
+                    x:Name="PetColors"
+                    Header="Màu của thú cưng"
+                    HorizontalOptions="Center"
+                    ItemTemplate="{x:StaticResource BreedColorsSelectorItemTemplate}"
+                    ItemsLayout="{x:StaticResource BreedColorsSelectorLayout}"
+                    ItemsSource="{x:Binding SelectedPopupBreed.Colors,
+                                            Converter={x:StaticResource CreatePetPopupStringToListStringConverter}}"
+                    SelectionChanged="PetColors_SelectionChanged"
+                    SelectionMode="Multiple" />
+
+                <Picker Title="Bạn nhận bé bằng cách nào ?" />
+
+                <Button Command="{x:Binding CreateCommand}" Text="Tạo" />
+                <Button Command="{Binding CancelCommand}" Text="Hủy" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Frame>
+</app:BasePopup>

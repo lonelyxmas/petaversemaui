@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="petaverse.frontend.mauiapp.BreedCardContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:petaverse.frontend.mauiapp"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="root"
+    x:DataType="app:BreedCardContentView">
+    <Frame
+        Padding="0"
+        BackgroundColor="#7cd4fd"
+        HasShadow="True"
+        HeightRequest="170">
+        <Grid IsClippedToBounds="True">
+            <Ellipse
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2"
+                Margin="0,-105,-105,0"
+                HeightRequest="300"
+                HorizontalOptions="End"
+                Opacity="0.7"
+                WidthRequest="300">
+                <Ellipse.Fill>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Offset="0.1" Color="#512ad4" />
+                        <GradientStop Offset="1.0" Color="#f6fbff" />
+                    </LinearGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Grid
+                Margin="10"
+                ColumnDefinitions="1.5*, *"
+                RowDefinitions="*,*"
+                RowSpacing="{x:Static app:Dimensions.SpacingSm}">
+                <VerticalStackLayout
+                    HorizontalOptions="Start"
+                    Spacing="{x:Static app:Dimensions.SpacingSm}"
+                    VerticalOptions="Start">
+                    <Label FontAttributes="Bold" Text="{x:Binding ComponentData.BreedName, Source={x:Reference root}}" />
+                    <Label MaxLines="3" Text="{x:Binding ComponentData.BreedDetail, Source={x:Reference root}}" />
+
+                </VerticalStackLayout>
+
+                <Button
+                    Grid.Row="1"
+                    HorizontalOptions="Start"
+                    Text="Chi tiết"
+                    VerticalOptions="End" />
+
+                <Image
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    Aspect="AspectFit"
+                    HeightRequest="230"
+                    Source="{x:Binding ComponentData.BreedImageUrl,
+                                       Mode=OneWay,
+                                       Source={x:Reference root}}"
+                    VerticalOptions="Center" />
+            </Grid>
+        </Grid>
+    </Frame>
+</ContentView>

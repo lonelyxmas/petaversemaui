@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="petaverse.frontend.mauiapp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:petaverse.frontend.mauiapp"
+    Shell.FlyoutBehavior="Disabled">
+
+    <TabBar>
+        <ShellContent
+            Title="Welcome"
+            ContentTemplate="{DataTemplate app:WelcomePage}"
+            Route="welcome" />
+    </TabBar>
+    <TabBar>
+        <ShellContent
+            Title="Walkthrough"
+            ContentTemplate="{DataTemplate app:WalkthroughPage}"
+            Route="walkthrough" />
+    </TabBar>
+    <TabBar>
+        <ShellContent
+            Title="Sign In"
+            ContentTemplate="{DataTemplate app:SignInPage}"
+            Route="signIn" />
+    </TabBar>
+
+    <TabBar x:Name="main" Route="main">
+        <Tab
+            Title="Wiki"
+            Icon="{x:StaticResource LightBulbFilament24Regular}"
+            Route="wiki">
+            <ShellContent ContentTemplate="{DataTemplate app:WikiPage}" />
+        </Tab>
+        <Tab
+            Title="Thú cưng"
+            Icon="{x:StaticResource AnimalCat24Regular}"
+            Route="petsProfile">
+            <ShellContent ContentTemplate="{DataTemplate app:PetsListPage}" />
+        </Tab>
+        <Tab
+            Title="Cá nhân"
+            Icon="{x:StaticResource ContactCard24IconRegular}"
+            Route="profile">
+            <ShellContent ContentTemplate="{DataTemplate app:ProfilePage}" />
+        </Tab>
+    </TabBar>
+
+</Shell>

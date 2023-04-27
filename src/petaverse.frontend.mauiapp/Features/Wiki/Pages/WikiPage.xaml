@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    x:Class="petaverse.frontend.mauiapp.WikiPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:petaverse.frontend.mauiapp"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="Wiki"
+    x:DataType="app:WikiPageViewModel"
+    SizeChanged="BasePage_SizeChanged">
+    <Shell.SearchHandler>
+        <app:WikiSearchHandler
+            BreedList="{x:Binding Species,
+                                  Mode=OneWay}"
+            ClearIcon="{x:StaticResource Clear24IconRegular}"
+            Placeholder="Explore the animal world"
+            QueryIcon="{x:StaticResource Search24IconRegular}"
+            SelectBreedList="BreedHandler_SelectBreedList"
+            ShowsResults="True">
+            <app:WikiSearchHandler.ItemTemplate>
+                <DataTemplate x:DataType="app:BreedCardModel">
+                    <Grid
+                        Margin="5"
+                        ColumnDefinitions="40,Auto"
+                        RowDefinitions="Auto">
+                        <Image
+                            HeightRequest="50"
+                            Source="{x:Binding BreedImageUrl}"
+                            WidthRequest="35" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="18"
+                            HorizontalTextAlignment="Center"
+                            Text="{x:Binding BreedName}"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </app:WikiSearchHandler.ItemTemplate>
+        </app:WikiSearchHandler>
+    </Shell.SearchHandler>
+
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem Clicked="ScanBreed_Clicked" IconImageSource="{x:StaticResource ScanCamera24Regular}" />
+    </app:BasePage.ToolbarItems>
+
+    <app:BasePage.Resources>
+
+        <DataTemplate x:Key="SpeciesCollectionViewHeaderTemplate" x:DataType="app:WikiPageViewModel">
+            <Frame Margin="{app:EdgeInsets All={x:Static app:Dimensions.SpacingMd}}" HasShadow="True">
+                <Grid ColumnDefinitions="*, auto">
+                    <VerticalStackLayout Spacing="{x:Static app:Dimensions.SpacingSm}">
+                        <Label Text="Species" />
+                        <HorizontalStackLayout
+                            BindableLayout.ItemTemplate="{x:StaticResource SpeciesPivotItemTemplate}"
+                            BindableLayout.ItemsSource="{x:Binding Species}"
+                            RadioButtonGroup.GroupName="SelectedItem"
+                            RadioButtonGroup.SelectedValue="{x:Binding SelectedSpecies,
+                                                                       Mode=TwoWay}"
+                            Spacing="{x:Static app:Dimensions.SpacingSm}" />
+                        <Label Text="Filter" />
+                        <HorizontalStackLayout Spacing="{x:Static app:Dimensions.SpacingSm}">
+                            <Picker
+                                Title="Size"
+                                ItemsSource="{x:Binding SizeEnum}"
+                                SelectedItem="{x:Binding SelectedSize}" />
+                            <Picker
+                                Title="Coat"
+                                ItemsSource="{x:Binding CoatEnum}"
+                                SelectedItem="{x:Binding SelectedCoat}" />
+                            <Picker
+                                Title="Shedding"
+                                ItemsSource="{x:Binding SheddingLevelEnum}"
+                                SelectedItem="{x:Binding SelectedSheddingLevel}" />
+                            <Picker
+                                Title="Energy"
+                                ItemsSource="{x:Binding EnergyEnum}"
+                                SelectedItem="{x:Binding SelectedEnergy}" />
+                        </HorizontalStackLayout>
+                        <Button
+                            Command="{x:Binding ClearFilterCommand}"
+                            HorizontalOptions="Start"
+                            ImageSource="{x:StaticResource Clear24IconRegular}"
+                            Text="Clear filter" />
+                    </VerticalStackLayout>
+
+                    <Frame
+                        Grid.Column="1"
+                        BackgroundColor="{x:StaticResource Primary}"
+                        HasShadow="True"
+                        HorizontalOptions="End"
+                        IsVisible="{x:Binding IsSpeciesFrameInfoVisible}">
+                        <Label
+                            LineBreakMode="WordWrap"
+                            MaximumWidthRequest="280"
+                            Text="Your cat is cute – you know it, and they know it. With such a large community of feline enthusiasts online, comes a long list of cute cate quotes only cat lovers will understand. We’ve gathered 30 of the cutest cat quotes perfect to put on your personalized home decor – a practical and stylish solution that will help you to integrate your love for cats in your home décor that doesn’t scream “crazy cat lady”"
+                            TextColor="White" />
+                    </Frame>
+                </Grid>
+            </Frame>
+        </DataTemplate>
+
+        <DataTemplate x:Key="SpeciesCollectionViewItemTemplate" x:DataType="app:BreedCardModel">
+            <app:BreedCardContentView Margin="{app:EdgeInsets All={x:Static app:Dimensions.SpacingMd}}" ComponentData="{x:Binding}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="SpeciesCollectionViewFooterTemplate" x:DataType="app:WikiPageViewModel" />
+
+        <GridItemsLayout
+            x:Key="BreedLayout"
+            Orientation="Vertical"
+            Span="{x:Binding Span}" />
+
+    </app:BasePage.Resources>
+
+    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy}">
+        <CollectionView
+            Footer="{x:Binding}"
+            FooterTemplate="{x:StaticResource SpeciesCollectionViewFooterTemplate}"
+            Header="{x:Binding}"
+            HeaderTemplate="{x:StaticResource SpeciesCollectionViewHeaderTemplate}"
+            ItemTemplate="{x:StaticResource SpeciesCollectionViewItemTemplate}"
+            ItemsLayout="{x:StaticResource BreedLayout}"
+            ItemsSource="{x:Binding SelectedSpecies.BreedCards}" />
+    </RefreshView>
+</app:BasePage>

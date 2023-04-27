@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:petaverse.frontend.mauiapp"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <DataTemplate x:Key="SpeciesPivotItemTemplate" x:DataType="app:SpeciesPivotModel">
+        <RadioButton Content="{Binding .}" Value="{Binding .}">
+            <RadioButton.Resources>
+                <app:HexToSolidColorBrushConverter x:Key="HexToSolidColorBrushConverter" />
+            </RadioButton.Resources>
+            <RadioButton.ControlTemplate>
+                <ControlTemplate>
+                    <Grid x:Name="SpeciesBadge" BackgroundColor="Transparent">
+                        <BoxView
+                            x:Name="SpeciesBoxView"
+                            CornerRadius="30"
+                            Opacity="0.5"
+                            Color="{x:Static app:AppColors.PetaversePrimary}" />
+                        <HorizontalStackLayout
+                            Margin="15,0,15,0"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
+                            <Label
+                                x:Name="TextLabel"
+                                Margin="{app:EdgeInsets Right={x:Static app:Dimensions.SpacingXs}}"
+                                Text="{TemplateBinding Content.SpeciesName}"
+                                VerticalOptions="Center" />
+                            <toolkit:AvatarView
+                                BorderColor="Black"
+                                BorderWidth="1"
+                                HeightRequest="30"
+                                ImageSource="{TemplateBinding Content.SpeciesImageUrl}"
+                                VerticalOptions="Center"
+                                WidthRequest="30" />
+                        </HorizontalStackLayout>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroupList>
+                                <VisualStateGroup x:Name="CheckedStates">
+                                    <VisualState x:Name="Checked">
+                                        <VisualState.Setters>
+                                            <Setter TargetName="SpeciesBadge" Property="Grid.Opacity" Value="1" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <VisualState x:Name="Unchecked">
+                                        <VisualState.Setters>
+                                            <Setter TargetName="SpeciesBadge" Property="Grid.Opacity" Value="0.5" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateGroupList>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </RadioButton.ControlTemplate>
+        </RadioButton>
+    </DataTemplate>
+</ResourceDictionary>
